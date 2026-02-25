@@ -40,12 +40,12 @@ describe('App', () => {
 
   it('should call handleClick when button is clicked', () => {
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
-    
+
     render(<App />);
     const primaryButton = screen.getByText('Primary Button');
-    
+
     primaryButton.click();
-    
+
     expect(consoleWarnSpy).toHaveBeenCalledWith('Button clicked!');
     consoleWarnSpy.mockRestore();
   });

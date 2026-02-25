@@ -28,6 +28,7 @@ git checkout -b fix/your-bug-fix
 ```
 
 Branch naming conventions:
+
 - `feat/` - New features
 - `fix/` - Bug fixes
 - `docs/` - Documentation changes
@@ -81,6 +82,7 @@ Or manually follow the format:
 ```
 
 **Types:**
+
 - `feat`: A new feature
 - `fix`: A bug fix
 - `docs`: Documentation only changes
@@ -147,6 +149,7 @@ If any of these fail, the commit will be blocked. Fix the issues and try again.
 ### Coverage Requirements
 
 All code must maintain >= 90% coverage for:
+
 - Branches
 - Functions
 - Lines
@@ -166,10 +169,10 @@ describe('Button', () => {
   it('should render with correct text', () => {
     // Arrange
     const text = 'Click me';
-    
+
     // Act
     render(<Button>{text}</Button>);
-    
+
     // Assert
     expect(screen.getByText(text)).toBeInTheDocument();
   });
@@ -231,6 +234,7 @@ npm run release:major
 ```
 
 This will:
+
 1. Run tests and linters
 2. Bump version in package.json
 3. Generate/update CHANGELOG.md

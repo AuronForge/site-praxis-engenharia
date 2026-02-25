@@ -9,25 +9,30 @@ Praxis Engenharia is built using a modern React + TypeScript stack with a focus 
 ## 📐 Architecture Principles
 
 ### 1. Separation of Concerns
+
 - Clear separation between UI, business logic, and data access
 - Each module has a single, well-defined responsibility
 
 ### 2. Component-Based Architecture
+
 - Reusable, composable UI components
 - Props-driven component design
 - Container/Presentational pattern where appropriate
 
 ### 3. Type Safety
+
 - Comprehensive TypeScript usage
 - Strict type checking enabled
 - No implicit any types
 
 ### 4. Testability
+
 - Components designed for easy testing
 - High test coverage requirements (>= 90%)
 - Dependency injection where needed
 
 ### 5. Scalability
+
 - Modular folder structure
 - Clear naming conventions
 - Easy to locate and modify code
@@ -100,12 +105,14 @@ User Interaction → Page Component → Service → API
 **Purpose**: Application routes and page-level components
 
 **Characteristics**:
+
 - One folder per page/route
 - Coordinates between UI components and services
 - Manages page-level state
 - Handles routing logic
 
 **Example**:
+
 ```typescript
 // pages/Home/Home.tsx
 import { Button } from '@ui-components/Button';
@@ -113,7 +120,7 @@ import { useUsers } from '@core/hooks/useUsers';
 
 export const Home: React.FC = () => {
   const { users, loading } = useUsers();
-  
+
   return (
     <div>
       <h1>Home Page</h1>
@@ -128,17 +135,20 @@ export const Home: React.FC = () => {
 **Purpose**: Business logic, utilities, types, hooks
 
 **Subdirectories**:
+
 - **types/**: TypeScript interfaces and types
 - **utils/**: Pure utility functions
 - **hooks/**: Custom React hooks
 - **constants/**: Application-wide constants
 
 **Characteristics**:
+
 - Framework-agnostic where possible
 - Highly testable
 - No UI concerns
 
 **Example**:
+
 ```typescript
 // core/utils/validation.ts
 export const validateEmail = (email: string): boolean => {
@@ -159,6 +169,7 @@ export const useAuth = () => {
 **Purpose**: Reusable, generic UI components
 
 **Characteristics**:
+
 - Presentational (dumb) components
 - Props-driven
 - No business logic
@@ -167,6 +178,7 @@ export const useAuth = () => {
 - Fully tested
 
 **Component Structure**:
+
 ```
 Button/
 ├── Button.tsx          # Component implementation
@@ -176,6 +188,7 @@ Button/
 ```
 
 **Example**:
+
 ```typescript
 // ui-components/Button/Button.tsx
 interface ButtonProps {
@@ -208,12 +221,14 @@ export const Button: React.FC<ButtonProps> = ({
 **Purpose**: External integrations, API communication
 
 **Characteristics**:
+
 - Handles all external communication
 - API client configuration
 - Error handling
 - Request/response transformations
 
 **Example**:
+
 ```typescript
 // services/api/client.ts
 import axios from 'axios';
@@ -232,7 +247,7 @@ export const userService = {
     const response = await apiClient.get<User[]>('/users');
     return response.data;
   },
-  
+
   getById: async (id: string): Promise<User> => {
     const response = await apiClient.get<User>(`/users/${id}`);
     return response.data;
@@ -243,17 +258,20 @@ export const userService = {
 ## 🎨 Styling Strategy
 
 ### CSS Modules
+
 - Component-scoped styles using CSS Modules
 - Naming: `ComponentName.module.scss`
 - Prevents style conflicts
 - Better maintainability
 
 ### SCSS
+
 - Variables for colors, spacing, etc.
 - Mixins for reusable patterns
 - Nested selectors (use sparingly)
 
 ### Example:
+
 ```scss
 // ui-components/Button/Button.module.scss
 .button {
@@ -261,17 +279,17 @@ export const userService = {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  
+
   &--primary {
     background-color: #007bff;
     color: white;
   }
-  
+
   &--secondary {
     background-color: #6c757d;
     color: white;
   }
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -282,20 +300,24 @@ export const userService = {
 ## 🧪 Testing Strategy
 
 ### Unit Tests
+
 - Test individual components and functions in isolation
 - Mock external dependencies
 - Focus on behavior, not implementation
 
 ### Coverage Requirements
+
 - Minimum 90% coverage for all metrics
 - Enforced at commit time
 
 ### Test Organization
+
 - Co-located with components (`*.test.tsx`)
 - Descriptive test names
 - AAA pattern (Arrange, Act, Assert)
 
 ### Example:
+
 ```typescript
 // ui-components/Button/Button.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
@@ -310,7 +332,7 @@ describe('Button', () => {
   it('should call onClick when clicked', () => {
     const handleClick = jest.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
-    
+
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -318,7 +340,7 @@ describe('Button', () => {
   it('should not call onClick when disabled', () => {
     const handleClick = jest.fn();
     render(<Button onClick={handleClick} disabled>Click me</Button>);
-    
+
     fireEvent.click(screen.getByText('Click me'));
     expect(handleClick).not.toHaveBeenCalled();
   });
@@ -328,12 +350,14 @@ describe('Button', () => {
 ## 🔒 Type Safety
 
 ### TypeScript Configuration
+
 - Strict mode enabled
 - No implicit any
 - Explicit return types for functions
 - Proper typing for React components
 
 ### Type Definitions
+
 ```typescript
 // core/types/user.types.ts
 export interface User {
@@ -356,31 +380,37 @@ export type UserUpdateInput = Partial<UserCreateInput>;
 ## 🔌 State Management
 
 ### Local State
+
 - Use `useState` for component-local state
 - Use `useReducer` for complex state logic
 
 ### Global State
+
 - Context API for app-wide state
 - Custom hooks to encapsulate state logic
 
 ### Server State
+
 - React Query (if needed) for server state management
 - Caching, background updates, optimistic updates
 
 ## 🚀 Build & Deployment
 
 ### Development
+
 ```bash
 npm run dev    # Vite dev server with HMR
 ```
 
 ### Production
+
 ```bash
 npm run build  # TypeScript compilation + Vite build
 npm run preview # Preview production build locally
 ```
 
 ### Build Output
+
 - Optimized and minified
 - Code splitting
 - Asset hashing
@@ -389,12 +419,14 @@ npm run preview # Preview production build locally
 ## 🔄 CI/CD Integration
 
 ### Quality Gates
+
 1. Linting (ESLint, Stylelint, HTMLHint)
 2. Type checking
 3. Testing with coverage
 4. Build verification
 
 ### Automated Checks
+
 - Pre-commit hooks via Husky
 - Conventional commits validation
 - Automated releases with standard-version

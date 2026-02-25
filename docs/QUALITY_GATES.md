@@ -15,6 +15,7 @@ Before any commit is accepted, the following checks run automatically via Husky 
 **Purpose**: Fix and format only the files being committed
 
 **What it does**:
+
 - Runs ESLint with auto-fix on TypeScript/React files
 - Runs Stylelint with auto-fix on CSS/SCSS files
 - Formats all staged files with Prettier
@@ -22,6 +23,7 @@ Before any commit is accepted, the following checks run automatically via Husky 
 **Configuration**: See `lint-staged` section in [package.json](../package.json)
 
 **Files affected**:
+
 ```json
 {
   "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
@@ -31,6 +33,7 @@ Before any commit is accepted, the following checks run automatically via Husky 
 ```
 
 **How to bypass** (NOT RECOMMENDED):
+
 ```bash
 git commit --no-verify
 ```
@@ -42,17 +45,20 @@ git commit --no-verify
 **Purpose**: Ensure all tests pass and coverage thresholds are met
 
 **What it does**:
+
 - Runs entire test suite
 - Generates coverage report
 - Fails if coverage is below thresholds
 
 **Coverage Thresholds** (Minimum 90% for each):
+
 - **Branches**: 90%
 - **Functions**: 90%
 - **Lines**: 90%
 - **Statements**: 90%
 
 **Command**:
+
 ```bash
 npm run test:ci
 ```
@@ -60,6 +66,7 @@ npm run test:ci
 **Configuration**: See [jest.config.js](../jest.config.js)
 
 **If it fails**:
+
 1. Check which tests are failing
 2. Fix failing tests
 3. Add tests for uncovered code
@@ -74,6 +81,7 @@ After writing your commit message, validation runs automatically:
 **Purpose**: Ensure commit messages follow Conventional Commits specification
 
 **Format**:
+
 ```
 <type>(<scope>): <subject>
 
@@ -83,6 +91,7 @@ After writing your commit message, validation runs automatically:
 ```
 
 **Allowed Types**:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation only
@@ -96,6 +105,7 @@ After writing your commit message, validation runs automatically:
 - `revert`: Revert a previous commit
 
 **Rules**:
+
 - Type must be lowercase
 - Type is required
 - Subject is required
@@ -105,6 +115,7 @@ After writing your commit message, validation runs automatically:
 - Footer must have blank line before it
 
 **Valid Examples**:
+
 ```bash
 feat: add user authentication
 fix: resolve navigation bug on mobile devices
@@ -115,6 +126,7 @@ perf: optimize image loading
 ```
 
 **Invalid Examples**:
+
 ```bash
 # ❌ No type
 add user authentication
@@ -132,9 +144,11 @@ feature: add user authentication
 **Configuration**: See [commitlint.config.js](../commitlint.config.js)
 
 **Recommended Tool**:
+
 ```bash
 npm run commit
 ```
+
 This launches an interactive CLI that guides you through creating a valid commit message.
 
 ## 🧪 Test Quality Gates
@@ -144,6 +158,7 @@ This launches an interactive CLI that guides you through creating a valid commit
 **Global Thresholds**: 90% minimum for all metrics
 
 **What's covered**:
+
 ```javascript
 collectCoverageFrom: [
   'src/**/*.{ts,tsx}',
@@ -153,10 +168,11 @@ collectCoverageFrom: [
   '!src/**/__mocks__/**',
   '!src/main.tsx',
   '!src/vite-env.d.ts',
-]
+];
 ```
 
 **What's excluded**:
+
 - Type definition files (`*.d.ts`)
 - Story files (`*.stories.tsx`)
 - Test files themselves
@@ -199,6 +215,7 @@ npm run test:coverage
 **Purpose**: Enforce code quality and consistency rules
 
 **Key Rules**:
+
 - No unused variables (except those prefixed with `_`)
 - Explicit function return types required
 - No `any` type allowed
@@ -209,6 +226,7 @@ npm run test:coverage
 - Accessibility rules enforced (jsx-a11y)
 
 **Run manually**:
+
 ```bash
 npm run lint:ts
 npm run lint:ts -- --fix
@@ -221,12 +239,14 @@ npm run lint:ts -- --fix
 **Purpose**: Enforce CSS/SCSS code quality and consistency
 
 **Key Rules**:
+
 - Standard CSS rules
 - SCSS-specific rules
 - Consistent class naming
 - Consistent custom property naming
 
 **Run manually**:
+
 ```bash
 npm run lint:css
 npm run lint:css -- --fix
@@ -239,6 +259,7 @@ npm run lint:css -- --fix
 **Purpose**: Enforce HTML best practices
 
 **Key Rules**:
+
 - Lowercase tag names
 - Lowercase attributes
 - Double quotes for attribute values
@@ -247,6 +268,7 @@ npm run lint:css -- --fix
 - Valid HTML5 doctype
 
 **Run manually**:
+
 ```bash
 npm run lint:html
 ```
@@ -260,6 +282,7 @@ npm run lint:html
 **Purpose**: Ensure consistent code formatting
 
 **Settings**:
+
 - Semicolons: Yes
 - Single quotes: Yes (TypeScript/JavaScript)
 - Trailing commas: ES5
@@ -268,6 +291,7 @@ npm run lint:html
 - End of line: LF (Unix)
 
 **Run manually**:
+
 ```bash
 # Format all files
 npm run format
@@ -287,6 +311,7 @@ npm run format:check
 **Purpose**: Ensure TypeScript code compiles without errors
 
 **Run manually**:
+
 ```bash
 npm run type-check
 ```
@@ -298,11 +323,13 @@ npm run type-check
 **Purpose**: Ensure the project builds successfully
 
 **Run manually**:
+
 ```bash
 npm run build
 ```
 
 **What it does**:
+
 1. Runs TypeScript compiler
 2. Runs Vite build process
 3. Outputs production-ready files to `dist/`
@@ -311,17 +338,18 @@ npm run build
 
 ### Minimum Requirements
 
-| Metric | Threshold | Gate |
-|--------|-----------|------|
-| Test Coverage (All) | >= 90% | Pre-commit |
-| ESLint Errors | 0 | Pre-commit |
-| ESLint Warnings | 0 | Pre-commit |
-| TypeScript Errors | 0 | Build |
-| Commit Message Format | Valid | Commit-msg |
+| Metric                | Threshold | Gate       |
+| --------------------- | --------- | ---------- |
+| Test Coverage (All)   | >= 90%    | Pre-commit |
+| ESLint Errors         | 0         | Pre-commit |
+| ESLint Warnings       | 0         | Pre-commit |
+| TypeScript Errors     | 0         | Build      |
+| Commit Message Format | Valid     | Commit-msg |
 
 ### Monitoring
 
 Track these metrics over time:
+
 - Test coverage trends
 - Number of linting issues
 - Build times
@@ -332,10 +360,12 @@ Track these metrics over time:
 ### Lint-Staged Fails
 
 **Symptoms**:
+
 - Pre-commit hook fails
 - Error messages from ESLint or Prettier
 
 **Solutions**:
+
 1. Read the error messages carefully
 2. Run `npm run lint:fix` to auto-fix
 3. Manually fix remaining issues
@@ -345,10 +375,12 @@ Track these metrics over time:
 ### Tests Fail
 
 **Symptoms**:
+
 - Pre-commit hook fails after lint-staged passes
 - Test failures or coverage below threshold
 
 **Solutions**:
+
 1. Run `npm test` to see failures
 2. Fix failing tests
 3. Add tests for uncovered code
@@ -358,10 +390,12 @@ Track these metrics over time:
 ### Commit Message Fails
 
 **Symptoms**:
+
 - Commit is rejected after entering message
 - commitlint error message
 
 **Solutions**:
+
 1. Read the error message
 2. Use correct Conventional Commit format
 3. Or use: `npm run commit` for guided flow
@@ -369,19 +403,19 @@ Track these metrics over time:
 
 ## 🛠️ Configuration Files Reference
 
-| File | Purpose |
-|------|---------|
-| `.eslintrc.json` | ESLint configuration |
-| `.stylelintrc.json` | Stylelint configuration |
-| `.prettierrc.json` | Prettier configuration |
-| `.prettierignore` | Prettier ignore patterns |
-| `.htmlhintrc` | HTMLHint configuration |
-| `commitlint.config.js` | Commitlint configuration |
-| `jest.config.js` | Jest test configuration |
-| `.husky/pre-commit` | Pre-commit hook script |
-| `.husky/commit-msg` | Commit message hook script |
-| `tsconfig.json` | TypeScript configuration |
-| `.editorconfig` | Editor configuration |
+| File                   | Purpose                    |
+| ---------------------- | -------------------------- |
+| `.eslintrc.json`       | ESLint configuration       |
+| `.stylelintrc.json`    | Stylelint configuration    |
+| `.prettierrc.json`     | Prettier configuration     |
+| `.prettierignore`      | Prettier ignore patterns   |
+| `.htmlhintrc`          | HTMLHint configuration     |
+| `commitlint.config.js` | Commitlint configuration   |
+| `jest.config.js`       | Jest test configuration    |
+| `.husky/pre-commit`    | Pre-commit hook script     |
+| `.husky/commit-msg`    | Commit message hook script |
+| `tsconfig.json`        | TypeScript configuration   |
+| `.editorconfig`        | Editor configuration       |
 
 ## 🎓 Best Practices
 

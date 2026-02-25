@@ -9,24 +9,28 @@ npm install
 ## Dependencies
 
 ### Production Dependencies
+
 - `react@^18.3.1` - React library
 - `react-dom@^18.3.1` - React DOM rendering
 
 ### Development Dependencies
 
 #### Build Tools
+
 - `vite@^5.0.11` - Fast build tool and dev server
 - `@vitejs/plugin-react@^4.2.1` - Vite React plugin
 - `typescript@^5.3.3` - TypeScript compiler
 - `ts-node@^10.9.2` - TypeScript execution engine
 
 #### TypeScript & Types
+
 - `@types/react@^18.3.1` - React type definitions
 - `@types/react-dom@^18.3.0` - React DOM type definitions
 - `@types/node@^20.11.5` - Node.js type definitions
 - `@types/jest@^29.5.11` - Jest type definitions
 
 #### Linters
+
 - `eslint@^8.56.0` - JavaScript/TypeScript linter
 - `@typescript-eslint/parser@^6.19.0` - TypeScript parser for ESLint
 - `@typescript-eslint/eslint-plugin@^6.19.0` - TypeScript rules for ESLint
@@ -42,9 +46,11 @@ npm install
 - `htmlhint@^1.1.4` - HTML linter
 
 #### Formatter
+
 - `prettier@^3.2.4` - Code formatter
 
 #### Git Hooks & Commits
+
 - `husky@^8.0.3` - Git hooks manager
 - `lint-staged@^15.2.0` - Run linters on staged files
 - `@commitlint/cli@^18.6.0` - Commit message linter
@@ -54,6 +60,7 @@ npm install
 - `standard-version@^9.5.0` - Automated versioning and changelog
 
 #### Testing
+
 - `jest@^29.7.0` - Testing framework
 - `ts-jest@^29.1.1` - TypeScript preprocessor for Jest
 - `jest-environment-jsdom@^29.7.0` - DOM environment for Jest
@@ -65,9 +72,11 @@ npm install
 ## Configuration Files
 
 ### TypeScript
+
 - **tsconfig.json**: TypeScript compiler configuration with strict mode and path aliases
 
 ### Linters
+
 - **.eslintrc.json**: ESLint configuration for TypeScript/React
 - **.eslintignore**: Files to ignore for ESLint
 - **.stylelintrc.json**: Stylelint configuration for CSS/SCSS
@@ -75,35 +84,43 @@ npm install
 - **commitlint.config.js**: Commitlint configuration for commit messages
 
 ### Formatter
+
 - **.prettierrc.json**: Prettier formatting rules
 - **.prettierignore**: Files to ignore for Prettier
 
 ### Editor
+
 - **.editorconfig**: Editor configuration for consistent coding styles
 
 ### Testing
+
 - **jest.config.js**: Jest test configuration with 90% coverage threshold
 - **src/setupTests.ts**: Jest setup file
 
 ### Git Hooks
+
 - **.husky/pre-commit**: Pre-commit hook (lint-staged + tests)
 - **.husky/commit-msg**: Commit message validation hook
 
 ### Build
+
 - **vite.config.ts**: Vite build configuration with path aliases
 - **index.html**: HTML entry point
 - **src/main.tsx**: Application entry point
 
 ### Versioning
+
 - **.versionrc.json**: Standard-version configuration
 
 ### Other
+
 - **.gitignore**: Git ignore patterns
 - **package.json**: Project configuration and scripts
 
 ## Available Scripts
 
 ### Development
+
 ```bash
 npm run dev              # Start development server
 npm run build            # Build for production
@@ -111,6 +128,7 @@ npm run preview          # Preview production build
 ```
 
 ### Testing
+
 ```bash
 npm test                 # Run tests
 npm run test:watch       # Run tests in watch mode
@@ -119,6 +137,7 @@ npm run test:ci          # Run tests in CI mode (for hooks)
 ```
 
 ### Linting & Formatting
+
 ```bash
 npm run lint             # Run all linters
 npm run lint:ts          # Run TypeScript linter
@@ -131,6 +150,7 @@ npm run type-check       # Run TypeScript type checking
 ```
 
 ### Commits & Releases
+
 ```bash
 npm run commit           # Interactive commit (recommended)
 npm run release          # Create patch release
@@ -139,6 +159,7 @@ npm run release:major    # Create major release
 ```
 
 ### Setup
+
 ```bash
 npm run prepare          # Install git hooks (runs automatically after install)
 ```
@@ -146,6 +167,7 @@ npm run prepare          # Install git hooks (runs automatically after install)
 ## Quality Gates
 
 ### Pre-commit (Automated)
+
 1. **Lint-staged**: Auto-fix and format changed files
    - ESLint with auto-fix on `.ts`, `.tsx` files
    - Stylelint with auto-fix on `.css`, `.scss` files
@@ -158,6 +180,7 @@ npm run prepare          # Install git hooks (runs automatically after install)
    - Statements: 90%
 
 ### Commit Message (Automated)
+
 - **Commitlint**: Validates Conventional Commits format
 - Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
 - Format: `type(scope): subject`
@@ -192,12 +215,14 @@ src/
 ## Path Aliases
 
 The following path aliases are configured:
+
 - `@pages/*` → `src/pages/*`
 - `@core/*` → `src/core/*`
 - `@ui-components/*` → `src/ui-components/*`
 - `@services/*` → `src/services/*`
 
 Example usage:
+
 ```typescript
 import { Button } from '@ui-components/Button';
 import { validateEmail } from '@core/utils/validation';
@@ -207,21 +232,25 @@ import { apiClient } from '@services/api/client';
 ## Getting Started
 
 1. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 2. **Start development server**:
+
    ```bash
    npm run dev
    ```
 
 3. **Run tests**:
+
    ```bash
    npm test
    ```
 
 4. **Make a commit**:
+
    ```bash
    npm run commit
    ```

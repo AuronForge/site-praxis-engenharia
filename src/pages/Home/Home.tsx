@@ -17,9 +17,7 @@ export const Home: React.FC = (): JSX.Element => {
     <div className={styles.home}>
       <section className={styles.hero}>
         <h1 className={styles.title}>Welcome to Praxis Engenharia</h1>
-        <p className={styles.subtitle}>
-          Building the future with innovative engineering solutions
-        </p>
+        <p className={styles.subtitle}>Building the future with innovative engineering solutions</p>
         <div className={styles.actions}>
           <Button size="large" onClick={handleGetStarted}>
             Get Started

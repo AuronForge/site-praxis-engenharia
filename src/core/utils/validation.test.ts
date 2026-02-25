@@ -1,10 +1,4 @@
-import {
-  validateEmail,
-  validatePassword,
-  validatePhone,
-  isEmpty,
-  validateUrl,
-} from './validation';
+import { validateEmail, validatePassword, validatePhone, isEmpty, validateUrl } from './validation';
 
 describe('validation utilities', () => {
   describe('validateEmail', () => {

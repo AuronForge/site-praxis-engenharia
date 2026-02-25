@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss",
-    "stylelint-config-prettier-scss"
-  ],
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
   "rules": {
     "selector-class-pattern": null,
     "custom-property-pattern": null,
@@ -14,10 +11,5 @@
     "color-function-notation": "legacy",
     "alpha-value-notation": "number"
   },
-  "ignoreFiles": [
-    "node_modules/**/*",
-    "dist/**/*",
-    "build/**/*",
-    "coverage/**/*"
-  ]
+  "ignoreFiles": ["node_modules/**/*", "dist/**/*", "build/**/*", "coverage/**/*"]
 }

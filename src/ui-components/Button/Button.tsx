@@ -48,9 +48,9 @@ export interface ButtonProps {
 
 /**
  * Button component
- * 
+ *
  * A reusable button component with multiple variants and sizes.
- * 
+ *
  * @example
  * ```tsx
  * <Button onClick={handleClick}>Click me</Button>
