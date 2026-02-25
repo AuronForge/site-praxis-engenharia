@@ -1,4 +1,2 @@
-export { StatsRow } from './StatsRow';
-export type { StatsRowProps, StatItem } from './StatsRow';
 export { FeatureList } from './FeatureList';
 export type { FeatureListProps, FeatureListItem } from './FeatureList';
