@@ -65,13 +65,14 @@ npm run type-check
 
 ### 5. Committing Your Changes
 
-We use **Conventional Commits** specification. Use the interactive commit helper:
+We use **Conventional Commits** specification for all commit messages. This ensures:
 
-```bash
-npm run commit
-```
+- Automatic changelog generation
+- Semantic versioning automation
+- Clear and searchable git history
+- Better collaboration
 
-Or manually follow the format:
+#### Commit Message Format
 
 ```
 <type>(<scope>): <subject>
@@ -81,29 +82,117 @@ Or manually follow the format:
 <footer>
 ```
 
-**Types:**
+- **type**: The kind of change (required)
+- **scope**: The area affected (optional)
+- **subject**: Brief description (required, max 100 chars)
+- **body**: Detailed explanation (optional)
+- **footer**: Breaking changes, issues closed (optional)
 
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation only changes
-- `style`: Changes that don't affect code meaning (white-space, formatting)
-- `refactor`: Code change that neither fixes a bug nor adds a feature
-- `perf`: Code change that improves performance
-- `test`: Adding missing tests or correcting existing tests
-- `build`: Changes that affect the build system or dependencies
-- `ci`: Changes to CI configuration files and scripts
-- `chore`: Other changes that don't modify src or test files
-- `revert`: Reverts a previous commit
+#### Using the Interactive Helper
 
-**Examples:**
+The easiest way to create valid commits:
 
 ```bash
-feat: add user authentication
-fix: resolve navigation bug on mobile
-docs: update API documentation
-refactor: simplify calculation logic
-test: add unit tests for Button component
+npm run commit
 ```
+
+This will guide you through the commit creation process.
+
+#### Commit Types
+
+| Type       | Description                                             | Example                               |
+| ---------- | ------------------------------------------------------- | ------------------------------------- |
+| `feat`     | New feature for the user                                | `feat: add user profile page`         |
+| `fix`      | Bug fix for the user                                    | `fix: resolve login redirect issue`   |
+| `docs`     | Documentation only changes                              | `docs: update API documentation`      |
+| `style`    | Formatting, missing semicolons, etc (no code change)    | `style: format with prettier`         |
+| `refactor` | Code change that neither fixes a bug nor adds a feature | `refactor: simplify validation logic` |
+| `perf`     | Performance improvement                                 | `perf: optimize image loading`        |
+| `test`     | Adding or correcting tests                              | `test: add Button component tests`    |
+| `build`    | Changes to build system or dependencies                 | `build: update vite to v5`            |
+| `ci`       | Changes to CI configuration                             | `ci: add automated deployment`        |
+| `chore`    | Other changes (tooling, configs, etc)                   | `chore: update .gitignore`            |
+| `revert`   | Reverts a previous commit                               | `revert: revert "feat: add X"`        |
+
+#### Good Commit Examples
+
+```bash
+# Simple feature
+feat: add dark mode toggle
+
+# Feature with scope
+feat(auth): implement password reset functionality
+
+# Bug fix
+fix: prevent memory leak in dashboard
+
+# Bug fix with scope
+fix(api): handle timeout errors properly
+
+# Documentation
+docs: add contributing guidelines
+
+# Refactoring
+refactor(validation): extract email regex to constant
+
+# Tests
+test(utils): add edge cases for validateEmail
+
+# With body and footer
+feat(api): add rate limiting
+
+Implemented token bucket algorithm to prevent API abuse.
+Default limit is 100 requests per minute per user.
+
+BREAKING CHANGE: API endpoints now require authentication
+Closes #123, #456
+```
+
+#### Commit Message Rules
+
+✅ **DO:**
+
+- Use present tense ("add feature" not "added feature")
+- Use imperative mood ("move cursor to..." not "moves cursor to...")
+- Keep the subject line under 100 characters
+- Start subject with lowercase (after type)
+- Don't end subject with a period
+- Leave blank line between subject and body
+- Wrap body at 72 characters
+- Explain _what_ and _why_ in the body, not _how_
+
+❌ **DON'T:**
+
+- Use past tense
+- Capitalize first letter of subject (after type)
+- End subject with period
+- Write vague messages like "fix stuff" or "update code"
+- Mix multiple unrelated changes in one commit
+
+#### Scopes (Optional but Recommended)
+
+Common scopes in this project:
+
+- `auth` - Authentication related
+- `api` - API client and services
+- `ui` - UI components
+- `validation` - Validation utilities
+- `routing` - Routing and navigation
+- `config` - Configuration files
+- `deps` - Dependencies
+
+#### Breaking Changes
+
+If your commit introduces breaking changes, add `BREAKING CHANGE:` in the footer:
+
+```bash
+feat(api): change authentication method
+
+BREAKING CHANGE: JWT tokens are now required for all API requests.
+Previous session-based authentication is no longer supported.
+```
+
+This will trigger a major version bump (1.x.x → 2.0.0).
 
 ### 6. Pre-commit Quality Gates
 
