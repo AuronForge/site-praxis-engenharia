@@ -3,14 +3,16 @@ import { render, screen } from '@testing-library/react';
 import { App } from './App';
 
 describe('App', () => {
-  it('should render the app title', () => {
+  it('should render the Header component', () => {
     render(<App />);
-    expect(screen.getByText('Praxis Engenharia')).toBeInTheDocument();
+    expect(screen.getByText('Praxis Engenharia Clínica')).toBeInTheDocument();
   });
 
-  it('should render the app description', () => {
+  it('should render navigation links', () => {
     render(<App />);
-    expect(screen.getByText('React + TypeScript with Quality Gates')).toBeInTheDocument();
+    expect(screen.getAllByText('Serviços').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Experiência').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Gestão').length).toBeGreaterThan(0);
   });
 
   it('should render button showcase section', () => {

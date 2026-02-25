@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Button } from '@ui-components/Button';
+import { Header } from '@ui-components/layout/Header';
+import { HeroSection } from '@ui-components/sections/HeroSection';
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {
@@ -10,10 +12,44 @@ export const App: React.FC = (): JSX.Element => {
 
   return (
     <div className="app">
-      <header className="app-header">
-        <h1>Praxis Engenharia</h1>
-        <p>React + TypeScript with Quality Gates</p>
-      </header>
+      <Header
+        brand={{
+          name: 'Praxis Engenharia Clínica',
+          href: '/',
+          logoAlt: 'Praxis Logo',
+        }}
+        links={[
+          { label: 'Serviços', href: '#servicos' },
+          { label: 'Experiência', href: '#experiencia' },
+          { label: 'Gestão', href: '#gestao' },
+          { label: 'Clientes', href: '#clientes' },
+        ]}
+        cta={{
+          label: 'Contato',
+          href: '#contato',
+        }}
+      />
+
+      <HeroSection
+        badge="Certificações e Reconhecimento"
+        title="Engenharia Clínica de Excelência"
+        highlightWord="Excelência"
+        subtitle="Soluções Completas para Gestão Hospitalar"
+        description="Oferecemos um portfólio integrado de serviços para garantir a segurança e eficiência de equipamentos médicos."
+        primaryCta={{
+          label: 'Fale com Especialista',
+          href: '#contato',
+        }}
+        secondaryCta={{
+          label: 'Conheça os Serviços',
+          href: '#servicos',
+        }}
+        stats={[
+          { value: '25+', label: 'Anos de Experiência' },
+          { value: '500+', label: 'Projetos Concluídos' },
+          { value: '100%', label: 'Conformidade ANVISA' },
+        ]}
+      />
 
       <main className="app-main">
         <section className="button-showcase">

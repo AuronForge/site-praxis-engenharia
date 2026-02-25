@@ -1,0 +1,336 @@
+// HeroSection Styles - Based on Praxis Design System
+// Colors from design system
+$primary-700: #1e3a8a;
+$primary-600: #1e40af;
+$primary-50: #eff6ff;
+$gray-900: #121826;
+$gray-700: #374151;
+$gray-600: #4b5563;
+$gray-50: #f9fafb;
+$white: #fff;
+$success: #10b981;
+
+// Typography from design system (Inter font)
+$font-display: 48px;
+$font-h2: 32px;
+$font-body-large: 20px;
+$font-body-medium: 18px;
+$font-body: 16px;
+$line-height-display: 1.2;
+$line-height-h2: 1.25;
+$line-height-body: 1.6;
+
+// Spacing scale
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+$spacing-4xl: 40px;
+$spacing-5xl: 64px;
+$spacing-6xl: 96px;
+
+// Border radius
+$radius-small: 4px;
+$radius-medium: 8px;
+$radius-large: 16px;
+$radius-full: 9999px;
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1280px;
+
+// Transitions
+$transition-speed: 0.3s;
+$transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Hero Section
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $gray-900;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+// Dark overlay gradient
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(18, 24, 38, 0.95) 0%, rgba(30, 58, 138, 0.85) 100%);
+  z-index: 1;
+}
+
+// Container
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: $breakpoint-desktop;
+  width: 100%;
+  margin: 0 auto;
+  padding: $spacing-3xl $spacing-2xl;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+// Content wrapper
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  color: $white;
+}
+
+// Badge/Pill
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-sm $spacing-lg;
+  background-color: rgba(239, 246, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $radius-full;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: $primary-50;
+  margin-bottom: $spacing-2xl;
+  backdrop-filter: blur(8px);
+  transition: all $transition-speed $transition-ease;
+
+  &:hover {
+    background-color: rgba(239, 246, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// Title (H1)
+.title {
+  font-size: $font-display;
+  font-weight: 700;
+  line-height: $line-height-display;
+  margin-bottom: $spacing-2xl;
+  color: $white;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  @media (width <= 480px) {
+    font-size: 32px;
+  }
+}
+
+// Highlighted word in title
+.highlight {
+  color: $primary-50;
+  background: linear-gradient(135deg, $primary-600 0%, $primary-50 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+// Subtitle
+.subtitle {
+  font-size: $font-body-large;
+  font-weight: 600;
+  line-height: $line-height-body;
+  margin-bottom: $spacing-lg;
+  color: $primary-50;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-body-medium;
+  }
+}
+
+// Description
+.description {
+  font-size: $font-body-large;
+  font-weight: 400;
+  line-height: $line-height-body;
+  margin-bottom: $spacing-4xl;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-body-medium;
+    margin-bottom: $spacing-3xl;
+  }
+}
+
+// CTAs container
+.ctas {
+  display: flex;
+  gap: $spacing-lg;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: $spacing-5xl;
+  flex-wrap: wrap;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: $spacing-4xl;
+  }
+}
+
+// CTA base styles
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg $spacing-3xl;
+  font-size: $font-body-medium;
+  font-weight: 600;
+  border-radius: $radius-medium;
+  text-decoration: none;
+  transition: all $transition-speed $transition-ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  min-width: 200px;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    padding: $spacing-lg $spacing-2xl;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+// Primary CTA
+.ctaPrimary {
+  background-color: $primary-600;
+  color: $white;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+
+  &:hover {
+    background-color: $primary-700;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(30, 64, 175, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Secondary CTA
+.ctaSecondary {
+  background-color: transparent;
+  color: $white;
+  border-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Stats container
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-3xl;
+  padding-top: $spacing-4xl;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+    padding-top: $spacing-3xl;
+  }
+
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-2xl;
+  }
+}
+
+// Individual stat
+.stat {
+  text-align: center;
+}
+
+// Stat value
+.statValue {
+  font-size: $font-display;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: $spacing-sm;
+  color: $primary-50;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 36px;
+  }
+}
+
+// Stat label
+.statLabel {
+  font-size: $font-body;
+  font-weight: 500;
+  line-height: $line-height-body;
+  color: rgba(255, 255, 255, 0.9);
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 14px;
+  }
+}
+
+// Stat helper text
+.statHelper {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: $line-height-body;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: $spacing-xs;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 12px;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .cta {
+    border-width: 3px;
+    font-weight: 700;
+  }
+
+  .badge {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .badge {
+    transition: none;
+  }
+
+  .ctaPrimary:hover,
+  .ctaSecondary:hover {
+    transform: none;
+  }
+}

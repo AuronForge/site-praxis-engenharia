@@ -1,0 +1,397 @@
+// Header Component Styles
+// Sticky navigation with responsive mobile menu
+
+// =============================================================================
+// Variables
+// =============================================================================
+
+$header-height: 72px;
+$header-height-mobile: 64px;
+$header-bg: #fff;
+$header-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+$brand-color: #1e3a5f;
+$link-color: #334155;
+$link-hover-color: #06c;
+$cta-bg: #06c;
+$cta-hover-bg: #0052a3;
+$mobile-menu-bg: #fff;
+$hamburger-color: #334155;
+$transition-speed: 0.3s;
+
+// Breakpoints
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// =============================================================================
+// Header Container
+// =============================================================================
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: $header-bg;
+  box-shadow: $header-shadow;
+  transition: box-shadow $transition-speed ease;
+}
+
+// =============================================================================
+// Navigation
+// =============================================================================
+
+.nav {
+  width: 100%;
+  height: $header-height-mobile;
+
+  @media (min-width: $breakpoint-tablet) {
+    height: $header-height;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 0 2rem;
+  }
+}
+
+// =============================================================================
+// Brand
+// =============================================================================
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: $brand-color;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: opacity $transition-speed ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cta-bg;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brandName {
+  display: none;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: inline;
+  }
+
+  @media (width <= 900px) {
+    font-size: 1rem;
+  }
+}
+
+// =============================================================================
+// Desktop Navigation Links
+// =============================================================================
+
+.navLinks {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: flex;
+  }
+}
+
+.navItem {
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  text-decoration: none;
+  color: $link-color;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: color $transition-speed ease;
+  position: relative;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cta-bg;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  // Underline effect on hover
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $link-hover-color;
+    transition: width $transition-speed ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// =============================================================================
+// CTA Button
+// =============================================================================
+
+.ctaButton {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background-color: $cta-bg;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 6px;
+  transition:
+    background-color $transition-speed ease,
+    transform 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $cta-hover-bg;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cta-bg;
+    outline-offset: 4px;
+  }
+}
+
+.desktopOnly {
+  display: none;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: inline-block;
+  }
+}
+
+// =============================================================================
+// Mobile Menu Toggle (Hamburger)
+// =============================================================================
+
+.mobileMenuToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity $transition-speed ease;
+
+  @media (min-width: $breakpoint-desktop) {
+    display: none;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cta-bg;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 24px;
+  height: 24px;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: $hamburger-color;
+  border-radius: 2px;
+  transition: all $transition-speed ease;
+}
+
+// Hamburger animation when menu is open
+.mobileMenuToggle[aria-expanded='true'] {
+  .hamburgerLine {
+    &:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+}
+
+// =============================================================================
+// Mobile Menu
+// =============================================================================
+
+.mobileMenu {
+  position: fixed;
+  inset: $header-height-mobile 0 0 0;
+  background-color: $mobile-menu-bg;
+  transform: translateX(-100%);
+  transition: transform $transition-speed ease;
+  overflow-y: auto;
+  box-shadow: $header-shadow;
+
+  @media (min-width: $breakpoint-tablet) {
+    top: $header-height;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    display: none;
+  }
+
+  &[aria-hidden='false'] {
+    transform: translateX(0);
+  }
+}
+
+.mobileMenuOpen {
+  transform: translateX(0);
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1.5rem 1rem;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.mobileNavItem {
+  margin: 0;
+  padding: 0;
+}
+
+.mobileNavLink {
+  display: block;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: $link-color;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition:
+    background-color $transition-speed ease,
+    color $transition-speed ease;
+
+  &:hover {
+    background-color: rgba(0, 102, 204, 0.08);
+    color: $link-hover-color;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cta-bg;
+    outline-offset: 2px;
+  }
+}
+
+.mobileCtaButton {
+  display: block;
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  background-color: $cta-bg;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color $transition-speed ease;
+
+  &:hover {
+    background-color: $cta-hover-bg;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cta-bg;
+    outline-offset: 4px;
+  }
+}
+
+// =============================================================================
+// Accessibility
+// =============================================================================
+
+// Ensure focus outlines are visible
+*:focus-visible {
+  outline: 2px solid $cta-bg;
+  outline-offset: 2px;
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .navLink,
+  .mobileNavLink {
+    font-weight: 600;
+  }
+
+  .header {
+    border-bottom: 2px solid $brand-color;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .brand,
+  .navLink,
+  .ctaButton,
+  .mobileMenuToggle,
+  .hamburgerLine,
+  .mobileMenu,
+  .mobileNavLink,
+  .mobileCtaButton {
+    transition: none;
+  }
+}
