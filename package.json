@@ -72,7 +72,7 @@
     "vite": "^5.0.11"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,js,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
@@ -80,7 +80,7 @@
       "stylelint --fix",
       "prettier --write"
     ],
-    "*.{json,md}": [
+    "*.{md,json,yml,yaml}": [
       "prettier --write"
     ]
   },
