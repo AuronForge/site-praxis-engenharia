@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StatsRow } from '@ui-components/data-display/StatsRow';
+
 import styles from './HeroSection.module.scss';
 
 export interface CTAButton {
@@ -145,13 +147,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Stats */}
           {stats.length > 0 && (
             <div className={styles.stats}>
-              {stats.map((stat, index) => (
-                <div key={index} className={styles.stat}>
-                  <div className={styles.statValue}>{stat.value}</div>
-                  <div className={styles.statLabel}>{stat.label}</div>
-                  {stat.helper && <div className={styles.statHelper}>{stat.helper}</div>}
-                </div>
-              ))}
+              <StatsRow items={stats} variant="light" />
             </div>
           )}
         </div>

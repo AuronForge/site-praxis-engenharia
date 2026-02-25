@@ -1,0 +1,153 @@
+// StatsRow Styles - Based on Praxis Design System
+
+// Colors
+$primary-600: #1e40af;
+$primary-50: #eff6ff;
+$gray-900: #121826;
+$gray-700: #374151;
+$gray-600: #4b5563;
+$gray-100: #f3f4f6;
+$white: #fff;
+
+// Typography
+$font-display: 48px;
+$font-h3: 28px;
+$font-body: 16px;
+$font-small: 14px;
+$line-height-tight: 1.1;
+$line-height-body: 1.6;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+$spacing-4xl: 40px;
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Transitions
+$transition-speed: 0.3s;
+$transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+// StatsRow container
+.statsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-3xl;
+  justify-content: center;
+  align-items: stretch;
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: $spacing-2xl;
+    flex-direction: column;
+  }
+}
+
+// Individual stat (using dl element)
+.stat {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    min-width: auto;
+  }
+}
+
+// Value (dt element)
+.value {
+  font-size: $font-display;
+  font-weight: 700;
+  line-height: $line-height-tight;
+  margin-bottom: $spacing-sm;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 36px;
+  }
+
+  @media (width <= 480px) {
+    font-size: 32px;
+  }
+}
+
+// Label (dd element)
+.label {
+  font-size: $font-body;
+  font-weight: 500;
+  line-height: $line-height-body;
+  margin: 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-small;
+  }
+}
+
+// Helper text (dd element)
+.helper {
+  font-size: $font-small;
+  font-weight: 400;
+  line-height: $line-height-body;
+  margin: 0;
+  margin-top: $spacing-xs;
+  opacity: 0.7;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 12px;
+  }
+}
+
+// Light variant (for dark backgrounds)
+.light {
+  .value {
+    color: $primary-50;
+  }
+
+  .label {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .helper {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+// Dark variant (for light backgrounds)
+.dark {
+  .value {
+    color: $primary-600;
+  }
+
+  .label {
+    color: $gray-700;
+  }
+
+  .helper {
+    color: $gray-600;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .value {
+    font-weight: 800;
+  }
+
+  .label {
+    font-weight: 600;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .statsRow {
+    transition: none;
+  }
+}

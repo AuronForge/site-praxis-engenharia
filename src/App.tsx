@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Button } from '@ui-components/Button';
+import { StatsRow } from '@ui-components/data-display/StatsRow';
 import { Header } from '@ui-components/layout/Header';
 import { HeroSection } from '@ui-components/sections/HeroSection';
 import './App.css';
@@ -90,6 +91,34 @@ export const App: React.FC = (): JSX.Element => {
             <Button fullWidth onClick={handleClick}>
               Full Width Button
             </Button>
+          </div>
+        </section>
+
+        <section className="button-showcase">
+          <h2>StatsRow Component Examples</h2>
+
+          <div className="button-group">
+            <h3>Dark Variant (for light backgrounds)</h3>
+            <StatsRow
+              items={[
+                { value: '25+', label: 'Anos de Experiência' },
+                { value: '500+', label: 'Projetos Concluídos' },
+                { value: '100%', label: 'Conformidade ANVISA' },
+              ]}
+              variant="dark"
+            />
+          </div>
+
+          <div className="button-group">
+            <h3>With Helper Text</h3>
+            <StatsRow
+              items={[
+                { value: '25+', label: 'Anos', helper: 'Desde 1999' },
+                { value: '500+', label: 'Projetos', helper: 'Em todo Brasil' },
+                { value: '100%', label: 'Qualidade', helper: 'Certificado ISO 9001' },
+              ]}
+              variant="dark"
+            />
           </div>
         </section>
       </main>

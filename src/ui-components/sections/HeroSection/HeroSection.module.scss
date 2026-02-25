@@ -249,64 +249,11 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Stats container
 .stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $spacing-3xl;
   padding-top: $spacing-4xl;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 
   @media (max-width: $breakpoint-mobile) {
-    grid-template-columns: 1fr;
-    gap: $spacing-2xl;
     padding-top: $spacing-3xl;
-  }
-
-  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-2xl;
-  }
-}
-
-// Individual stat
-.stat {
-  text-align: center;
-}
-
-// Stat value
-.statValue {
-  font-size: $font-display;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: $spacing-sm;
-  color: $primary-50;
-
-  @media (max-width: $breakpoint-mobile) {
-    font-size: 36px;
-  }
-}
-
-// Stat label
-.statLabel {
-  font-size: $font-body;
-  font-weight: 500;
-  line-height: $line-height-body;
-  color: rgba(255, 255, 255, 0.9);
-
-  @media (max-width: $breakpoint-mobile) {
-    font-size: 14px;
-  }
-}
-
-// Stat helper text
-.statHelper {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: $line-height-body;
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: $spacing-xs;
-
-  @media (max-width: $breakpoint-mobile) {
-    font-size: 12px;
   }
 }
 

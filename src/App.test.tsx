@@ -51,4 +51,16 @@ describe('App', () => {
     expect(consoleWarnSpy).toHaveBeenCalledWith('Button clicked!');
     consoleWarnSpy.mockRestore();
   });
+
+  it('should render StatsRow component', () => {
+    render(<App />);
+    expect(screen.getByText('StatsRow Component Examples')).toBeInTheDocument();
+  });
+
+  it('should render stats with correct values', () => {
+    render(<App />);
+    expect(screen.getAllByText('25+').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('500+').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('100%').length).toBeGreaterThan(0);
+  });
 });
