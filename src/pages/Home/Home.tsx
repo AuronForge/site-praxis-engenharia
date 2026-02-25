@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Button } from '@ui-components/Button';
+
 import styles from './Home.module.scss';
 
 export const Home: React.FC = (): JSX.Element => {

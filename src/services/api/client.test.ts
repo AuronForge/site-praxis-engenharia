@@ -200,7 +200,7 @@ describe('ApiClient', () => {
       const mockData = { success: true };
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
-        json: async () => mockData,
+        json: () => Promise.resolve(mockData),
         status: 200,
         statusText: 'OK',
       });
@@ -212,6 +212,7 @@ describe('ApiClient', () => {
       expect(global.fetch).toHaveBeenCalledWith(
         expect.any(String),
         expect.objectContaining({
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           headers: expect.objectContaining({
             'X-Custom-Header': 'value',
           }),
@@ -223,7 +224,7 @@ describe('ApiClient', () => {
       const mockData = { updated: true };
       (global.fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
-        json: async () => mockData,
+        json: () => Promise.resolve(mockData),
         status: 200,
         statusText: 'OK',
       });
