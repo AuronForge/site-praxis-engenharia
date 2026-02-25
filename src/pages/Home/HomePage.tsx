@@ -32,55 +32,39 @@ const heroData = {
 };
 
 const servicesData = {
-  title: 'Soluções Completas',
-  subtitle: 'em Engenharia Clínica',
-  description:
-    'Oferecemos um portfólio completo de serviços para garantir a segurança, eficiência e conformidade de ambientes hospitalares e clínicos.',
   services: [
     {
-      id: '1',
-      icon: 'stethoscope',
       title: 'Engenharia Clínica',
       description:
         'Gestão completa do parque tecnológico das instituições assistenciais, incluindo planejamento, manutenção e controle de qualidade.',
-      features: [
-        'Manutenção Preventiva',
-        'Manutenção Corretiva',
-        'Calibração',
-        'Auditoria Técnica',
-      ],
-      link: { text: 'Saiba mais', href: '#engenharia-clinica' },
+      bullets: ['Manutenção Preventiva', 'Manutenção Corretiva', 'Calibração', 'Auditoria Técnica'],
+      href: '#engenharia-clinica',
     },
     {
-      id: '2',
-      icon: 'chart',
       title: 'Planejamento Tecnológico',
       description:
         'Assessoria especializada para aquisição, dimensionamento e substituição tecnológica de equipamentos médico-hospitalares.',
-      features: [
+      bullets: [
         'Plano Diretor',
         'Especificações Técnicas',
         'Comissionamento',
         'Análise de Viabilidade',
       ],
-      link: { text: 'Saiba mais', href: '#planejamento' },
+      href: '#planejamento',
     },
     {
-      id: '3',
-      icon: 'certificate',
       title: 'Acreditação',
       description:
         'Suporte integrado para processos de certificação (ONA, ISO, JCI) com adequação de processos e documentação técnica.',
-      features: ['Preparação ONA', 'ISO 9001', 'Documentação Técnica', 'Auditoria'],
-      link: { text: 'Saiba mais', href: '#acreditacao' },
+      bullets: ['Preparação ONA', 'ISO 9001', 'Documentação Técnica', 'Auditoria'],
+      href: '#acreditacao',
     },
   ],
   ctaBanner: {
     title: 'Precisa de uma solução personalizada?',
-    description:
-      'Nossa equipe está pronta para desenvolver um projeto sob medida para sua instituição.',
-    buttonText: 'Solicitar Orçamento',
-    buttonHref: '#contato',
+    text: 'Nossa equipe está pronta para desenvolver um projeto sob medida para sua instituição.',
+    buttonLabel: 'Solicitar Proposta',
+    href: '#contato',
   },
 };
 
@@ -337,13 +321,7 @@ export function HomePage(): React.ReactElement {
         />
 
         {/* Services Section - 3 service cards + CTA banner */}
-        <ServicesSection
-          title={servicesData.title}
-          subtitle={servicesData.subtitle}
-          description={servicesData.description}
-          services={servicesData.services}
-          ctaBanner={servicesData.ctaBanner}
-        />
+        <ServicesSection services={servicesData.services} ctaBanner={servicesData.ctaBanner} />
 
         {/* Experience Section - Company history + features + stats */}
         <ExperienceSection

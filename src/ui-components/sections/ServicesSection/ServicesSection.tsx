@@ -1,32 +1,19 @@
 import React from 'react';
 
-export interface ServiceLink {
+import { ServiceCard, type ServiceCardProps } from '@ui-components/cards/ServiceCard';
+
+import styles from './ServicesSection.module.scss';
+
+export interface ServicesSectionCtaBanner {
+  title: string;
   text: string;
+  buttonLabel: string;
   href: string;
 }
 
-export interface Service {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  features: string[];
-  link: ServiceLink;
-}
-
-export interface CTABanner {
-  title: string;
-  description: string;
-  buttonText: string;
-  buttonHref: string;
-}
-
 export interface ServicesSectionProps {
-  title: string;
-  subtitle: string;
-  description: string;
-  services: Service[];
-  ctaBanner: CTABanner;
+  services: ServiceCardProps[];
+  ctaBanner: ServicesSectionCtaBanner;
 }
 
 /**
@@ -40,26 +27,37 @@ export interface ServicesSectionProps {
  *
  * @param props - Services section data
  */
-export function ServicesSection({
-  title,
-  _subtitle,
-  _description,
-  _services,
-  _ctaBanner,
-}: ServicesSectionProps): React.ReactElement {
-  // TODO: Implement ServicesSection component
-  // - Section header (centered)
-  // - 3-column grid of service cards (responsive: 1 col mobile, 2 col tablet, 3 col desktop)
-  // - Service cards with icon, title, description, checkmark list, "Saiba mais" link
-  // - Blue CTA banner with centered text and button
-
+export function ServicesSection({ services, ctaBanner }: ServicesSectionProps): React.ReactElement {
   return (
-    <section aria-labelledby="services-title">
-      {/* TODO: Section header */}
-      <h2 id="services-title">{title}</h2>
-      {/* TODO: Service cards grid */}
-      {/* TODO: CTA banner */}
-      <p>ServicesSection - TODO: Implement 3 service cards + CTA banner</p>
+    <section className={styles.section} aria-labelledby="services-title">
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <span className={styles.label}>Serviços Especializados</span>
+          <h2 id="services-title" className={styles.title}>
+            Soluções Completas em Engenharia Clínica
+          </h2>
+          <p className={styles.description}>
+            Integramos tecnologia, conformidade e operação para garantir segurança, disponibilidade
+            e performance em todo o ciclo de vida dos equipamentos.
+          </p>
+        </div>
+
+        <div className={styles.grid}>
+          {services.map((service, index) => (
+            <ServiceCard key={`${service.title}-${index}`} {...service} />
+          ))}
+        </div>
+
+        <div className={styles.banner}>
+          <div className={styles.bannerContent}>
+            <h3 className={styles.bannerTitle}>{ctaBanner.title}</h3>
+            <p className={styles.bannerText}>{ctaBanner.text}</p>
+          </div>
+          <a href={ctaBanner.href} className={styles.bannerButton}>
+            {ctaBanner.buttonLabel}
+          </a>
+        </div>
+      </div>
     </section>
   );
 }
