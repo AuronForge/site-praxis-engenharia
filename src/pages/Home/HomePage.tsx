@@ -69,31 +69,32 @@ const servicesData = {
 };
 
 const experienceData = {
-  badge: 'Experiência Comprovada',
-  title: 'Mais de 25 Anos',
-  subtitle: 'Servindo à Saúde Brasileira',
+  heading: 'Mais de 25 Anos Servindo a Saúde Brasileira',
   description:
     'Somos referência em engenharia clínica no Brasil, com expertise consolidada em instituições de pequeno, médio e grande porte.',
   features: [
     {
-      icon: 'users',
       title: 'Equipe Multidisciplinar',
       description:
         'Profissionais especializados e experientes com formação técnica, além de certificações e qualificações.',
     },
     {
-      icon: 'lightbulb',
-      title: 'Tecnologia Prática',
+      title: 'Metodologia Reconhecida',
       description:
-        'Implementamos soluções tecnológicas que otimizam a rotina das equipes médicas e aumentam a segurança do paciente.',
+        'Processos validados e orientados por indicadores para garantir previsibilidade e segurança operacional.',
+    },
+    {
+      title: 'Tecnologia Própria',
+      description:
+        'Plataforma com rastreabilidade, inteligência de dados e suporte à decisão em tempo real.',
     },
   ],
   images: [
     { src: '/images/experience-1.jpg', alt: 'Equipe técnica trabalhando' },
     { src: '/images/experience-2.jpg', alt: 'Profissional em atendimento' },
     { src: '/images/experience-3.jpg', alt: 'Análise de equipamentos' },
-    { src: '/images/experience-4.jpg', alt: 'Tecnologia médica' },
   ],
+  badge: 'ISO 9001',
   stats: [
     { value: '150+', label: 'Clientes Ativos' },
     { value: '60+', label: 'Cidades Atendidas' },
@@ -325,12 +326,11 @@ export function HomePage(): React.ReactElement {
 
         {/* Experience Section - Company history + features + stats */}
         <ExperienceSection
-          badge={experienceData.badge}
-          title={experienceData.title}
-          subtitle={experienceData.subtitle}
+          heading={experienceData.heading}
           description={experienceData.description}
           features={experienceData.features}
           images={experienceData.images}
+          badge={experienceData.badge}
           stats={experienceData.stats}
         />
 

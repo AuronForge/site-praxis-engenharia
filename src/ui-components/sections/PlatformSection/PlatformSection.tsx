@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styles from './PlatformSection.module.scss';
+
 export interface PlatformFeature {
   icon: string;
   title: string;
@@ -26,25 +28,44 @@ export interface PlatformSectionProps {
  */
 export function PlatformSection({
   title,
-  _description,
-  _features,
+  description,
+  features,
 }: PlatformSectionProps): React.ReactElement {
-  // TODO: Implement PlatformSection component
-  // - Dark background (navy blue from design)
-  // - White/light text
-  // - Centered header
-  // - 3-column grid (responsive: 1 col mobile, 2 col tablet, 3 col desktop)
-  // - Feature cards with icon, title, description
-  // - Icon background circles with accent color
+  const getIconLabel = (icon: string): string => {
+    const iconMap: Record<string, string> = {
+      brain: '🧠',
+      gauge: '📈',
+      shield: '🛡️',
+      settings: '⚙️',
+      bell: '🔔',
+      monitor: '🖥️',
+    };
+
+    return iconMap[icon] ?? '•';
+  };
 
   return (
-    <section aria-labelledby="platform-title" style={{ backgroundColor: '#1e3a5f' }}>
-      {/* TODO: Container */}
-      <h2 id="platform-title">{title}</h2>
-      {/* TODO: Features grid */}
-      <p style={{ color: 'white' }}>
-        PlatformSection - TODO: Implement 6 feature cards on dark background
-      </p>
+    <section className={styles.section} aria-labelledby="platform-title">
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2 id="platform-title" className={styles.title}>
+            {title}
+          </h2>
+          <p className={styles.description}>{description}</p>
+        </div>
+
+        <div className={styles.grid}>
+          {features.map((feature, index) => (
+            <article key={`${feature.title}-${index}`} className={styles.card}>
+              <span className={styles.icon} aria-hidden="true">
+                {getIconLabel(feature.icon)}
+              </span>
+              <h3 className={styles.cardTitle}>{feature.title}</h3>
+              <p className={styles.cardDescription}>{feature.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

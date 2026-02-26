@@ -1,29 +1,22 @@
 import React from 'react';
 
-export interface Feature {
-  icon: string;
-  title: string;
-  description: string;
-}
+import { FeatureList, type FeatureListItem } from '@ui-components/data-display/FeatureList';
+import { StatsRow, type StatItem } from '@ui-components/data-display/StatsRow';
 
-export interface Image {
+import styles from './ExperienceSection.module.scss';
+
+export interface ExperienceImage {
   src: string;
   alt: string;
 }
 
-export interface MiniStat {
-  value: string;
-  label: string;
-}
-
 export interface ExperienceSectionProps {
-  badge: string;
-  title: string;
-  subtitle: string;
+  heading: string;
   description: string;
-  features: Feature[];
-  images: Image[];
-  stats: MiniStat[];
+  features: FeatureListItem[];
+  images: ExperienceImage[];
+  badge?: string;
+  stats: StatItem[];
 }
 
 /**
@@ -42,29 +35,49 @@ export interface ExperienceSectionProps {
  * @param props - Experience section data
  */
 export function ExperienceSection({
-  _badge,
-  title,
-  _subtitle,
-  _description,
-  _features,
-  _images,
-  _stats,
+  heading,
+  description,
+  features,
+  images,
+  badge,
+  stats,
 }: ExperienceSectionProps): React.ReactElement {
-  // TODO: Implement ExperienceSection component
-  // - Badge component (light blue background)
-  // - Two-column layout (responsive)
-  // - Left column: badge, title, description, feature list
-  // - Right column: image collage (2x2 grid), stats row below
-  // - Feature items with icon and text
-  // - Stats in horizontal row with values and labels
+  const collageImages = images.slice(0, 3);
 
   return (
-    <section aria-labelledby="experience-title">
-      {/* TODO: Container */}
-      {/* TODO: Left column - text content */}
-      <h2 id="experience-title">{title}</h2>
-      {/* TODO: Right column - images + stats */}
-      <p>ExperienceSection - TODO: Implement text + image collage + stats</p>
+    <section className={styles.section} aria-labelledby="experience-title">
+      <div className={styles.container}>
+        <div className={styles.contentGrid}>
+          <div className={styles.leftColumn}>
+            <span className={styles.pill}>Experiência Comprovada</span>
+            <h2 id="experience-title" className={styles.heading}>
+              {heading}
+            </h2>
+            <p className={styles.description}>{description}</p>
+
+            <FeatureList items={features} variant="dark" />
+          </div>
+
+          <div className={styles.rightColumn}>
+            <div className={styles.collage}>
+              {collageImages.map((image, index) => (
+                <img
+                  key={`${image.alt}-${index}`}
+                  src={image.src}
+                  alt={image.alt}
+                  className={`${styles.collageImage} ${styles[`collageImage${index + 1}`]}`}
+                />
+              ))}
+
+              {badge ? <span className={styles.imageBadge}>{badge}</span> : null}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.statsWrap}>
+          <StatsRow items={stats} variant="dark" />
+        </div>
+      </div>
     </section>
   );
 }
