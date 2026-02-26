@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 
 import styles from './PlatformSection.module.scss';
 
 export interface PlatformFeature {
-  icon: string;
+  icon?: ReactNode;
   title: string;
   description: string;
 }
 
 export interface PlatformSectionProps {
-  title: string;
-  description: string;
   features: PlatformFeature[];
 }
 
@@ -26,39 +24,26 @@ export interface PlatformSectionProps {
  *
  * @param props - Platform features data
  */
-export function PlatformSection({
-  title,
-  description,
-  features,
-}: PlatformSectionProps): React.ReactElement {
-  const getIconLabel = (icon: string): string => {
-    const iconMap: Record<string, string> = {
-      brain: '🧠',
-      gauge: '📈',
-      shield: '🛡️',
-      settings: '⚙️',
-      bell: '🔔',
-      monitor: '🖥️',
-    };
-
-    return iconMap[icon] ?? '•';
-  };
-
+export function PlatformSection({ features }: PlatformSectionProps): React.ReactElement {
   return (
     <section className={styles.section} aria-labelledby="platform-title">
       <div className={styles.container}>
         <div className={styles.header}>
+          <span className={styles.pill}>Plataforma Tecnológica</span>
           <h2 id="platform-title" className={styles.title}>
-            {title}
+            Sistema de Gestão Avançado
           </h2>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>
+            Tecnologia proprietária desenvolvida especificamente para as necessidades de engenharia
+            clínica moderna, integrando gestão, rastreabilidade e inteligência de dados.
+          </p>
         </div>
 
         <div className={styles.grid}>
           {features.map((feature, index) => (
             <article key={`${feature.title}-${index}`} className={styles.card}>
               <span className={styles.icon} aria-hidden="true">
-                {getIconLabel(feature.icon)}
+                {feature.icon ?? '•'}
               </span>
               <h3 className={styles.cardTitle}>{feature.title}</h3>
               <p className={styles.cardDescription}>{feature.description}</p>

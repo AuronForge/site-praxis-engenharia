@@ -104,9 +104,6 @@ const experienceData = {
 };
 
 const platformData = {
-  title: 'Sistema de Gestão Avançado',
-  description:
-    'Tecnologia proprietária desenvolvida especificamente para as necessidades de engenharia clínica moderna, integrando gestão, rastreabilidade e inteligência de dados.',
   features: [
     {
       icon: 'brain',
@@ -335,11 +332,7 @@ export function HomePage(): React.ReactElement {
         />
 
         {/* Platform Section - Dark section with platform features */}
-        <PlatformSection
-          title={platformData.title}
-          description={platformData.description}
-          features={platformData.features}
-        />
+        <PlatformSection features={platformData.features} />
 
         {/* Segments Section - Market segments with metrics */}
         <SegmentsSection
