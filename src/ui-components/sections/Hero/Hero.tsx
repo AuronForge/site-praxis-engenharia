@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { HeroSection } from '@ui-components/sections/HeroSection';
+
 export interface CTALink {
   text: string;
   href: string;
@@ -17,46 +19,38 @@ export interface HeroProps {
   primaryCTA: CTALink;
   secondaryCTA: CTALink;
   stats: Stat[];
-  backgroundImage: string;
+  backgroundImage?: string;
 }
 
-/**
- * Hero Component
- *
- * Above-the-fold hero section with:
- * - Large headline with gradient/colored text
- * - Description text
- * - Primary and secondary CTAs
- * - Stats/metrics row
- * - Background image with overlay
- *
- * @param props - Hero section data
- */
 export function Hero({
   title,
   subtitle,
-  _description,
-  _primaryCTA,
-  _secondaryCTA,
-  _stats,
-  _backgroundImage,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  stats,
+  backgroundImage,
 }: HeroProps): React.ReactElement {
-  // TODO: Implement Hero component
-  // - Background image with dark overlay
-  // - Gradient or colored subtitle text (e.g., "de Excelência" in blue)
-  // - Two CTA buttons (primary solid, secondary outline)
-  // - Stats row with icons
-  // - Responsive layout (stack on mobile)
+  const words = title.split(' ');
+  const highlightWord = words[words.length - 1];
+  const adjustedTitle = words.slice(0, -1).join(' ');
 
   return (
-    <section aria-label={`${title} ${subtitle}`}>
-      {/* TODO: Background image with overlay */}
-      {/* TODO: Content container */}
-      {/* TODO: Title with colored subtitle */}
-      {/* TODO: Description */}
-      {/* TODO: CTA buttons */}
-      {/* TODO: Stats row */}
-      <p>Hero - TODO: Implement hero section with background and CTAs</p>
-    </section>
+    <HeroSection
+      title={adjustedTitle}
+      subtitle={subtitle}
+      highlightWord={highlightWord}
+      description={description}
+      primaryCta={{
+        label: primaryCTA.text,
+        href: primaryCTA.href,
+      }}
+      secondaryCta={{
+        label: secondaryCTA.text,
+        href: secondaryCTA.href,
+      }}
+      stats={stats.map((stat) => ({ label: stat.label, value: stat.value }))}
+      backgroundImageUrl={backgroundImage}
+    />
   );
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 
+import styles from './SegmentsSection.module.scss';
+
 export interface Segment {
-  icon: string;
+  icon?: React.ReactNode;
   value: string;
   label: string;
   description: string;
@@ -9,41 +11,53 @@ export interface Segment {
 
 export interface SegmentsSectionProps {
   title: string;
-  description: string;
+  description?: string;
   segments: Segment[];
+  pill?: string;
 }
 
-/**
- * SegmentsSection Component
- *
- * Displays market segments served with metrics:
- * - Section header
- * - 4 segment cards in horizontal row
- * - Each card has icon, metric value, label, description
- *
- * @param props - Segments data
- */
+const iconMap: Record<string, string> = {
+  hospital: '🏥',
+  heart: '❤️',
+  lab: '🔬',
+  building: '🏢',
+};
+
+function getIcon(icon?: string): string {
+  if (!icon) return '📊';
+  return iconMap[icon] ?? '📊';
+}
+
 export function SegmentsSection({
   title,
-  _description,
-  _segments,
+  description,
+  segments,
+  pill,
 }: SegmentsSectionProps): React.ReactElement {
-  // TODO: Implement SegmentsSection component
-  // - Centered section header
-  // - 4-column grid (responsive: 1-2 cols mobile, 4 cols desktop)
-  // - Segment cards with:
-  //   - Icon (at top)
-  //   - Large metric value (e.g., "80+")
-  //   - Bold label (e.g., "Hospitais Gerais")
-  //   - Small description text
-  // - Light background for cards
-
   return (
-    <section aria-labelledby="segments-title">
-      <h2 id="segments-title">{title}</h2>
-      {/* TODO: Description */}
-      {/* TODO: Segments grid */}
-      <p>SegmentsSection - TODO: Implement 4 segment metric cards</p>
+    <section className={styles.section} aria-labelledby="segments-title">
+      <div className={styles.container}>
+        <div className={styles.header}>
+          {pill && <span className={styles.pill}>{pill}</span>}
+          <h2 id="segments-title" className={styles.title}>
+            {title}
+          </h2>
+          {description && <p className={styles.description}>{description}</p>}
+        </div>
+
+        <div className={styles.grid}>
+          {segments.map((segment, index) => (
+            <article key={`segment-${index}`} className={styles.card}>
+              <span className={styles.icon} aria-hidden="true">
+                {segment.icon ?? getIcon(segment.icon as unknown as string)}
+              </span>
+              <p className={styles.value}>{segment.value}</p>
+              <p className={styles.label}>{segment.label}</p>
+              {segment.description && <p className={styles.cardDescription}>{segment.description}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
