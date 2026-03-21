@@ -4,6 +4,7 @@ import styles from './SegmentsSection.module.scss';
 
 export interface Segment {
   icon?: React.ReactNode;
+  iconName?: string;
   value: string;
   label: string;
   description: string;
@@ -16,16 +17,18 @@ export interface SegmentsSectionProps {
   pill?: string;
 }
 
-const iconMap: Record<string, string> = {
-  hospital: '🏥',
-  heart: '❤️',
-  lab: '🔬',
-  building: '🏢',
+const segmentIconMap: Record<string, string> = {
+  hospital: '/icon-hospital.svg',
+  heart: '/icon-heart.svg',
+  lab: '/icon-lab.svg',
+  building: '/icon-building.svg',
 };
 
-function getIcon(icon?: string): string {
-  if (!icon) return '📊';
-  return iconMap[icon] ?? '📊';
+function getSegmentIcon(iconName?: string): string {
+  if (!iconName || !segmentIconMap[iconName]) {
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>';
+  }
+  return segmentIconMap[iconName];
 }
 
 export function SegmentsSection({
@@ -49,7 +52,13 @@ export function SegmentsSection({
           {segments.map((segment, index) => (
             <article key={`segment-${index}`} className={styles.card}>
               <span className={styles.icon} aria-hidden="true">
-                {segment.icon ?? getIcon(segment.icon as unknown as string)}
+                {segment.iconName && segmentIconMap[segment.iconName] ? (
+                  <img src={segmentIconMap[segment.iconName]} alt="" width="42" height="42" />
+                ) : segment.icon ? (
+                  segment.icon
+                ) : (
+                  <img src={getSegmentIcon(segment.iconName)} alt="" width="42" height="42" />
+                )}
               </span>
               <p className={styles.value}>{segment.value}</p>
               <p className={styles.label}>{segment.label}</p>

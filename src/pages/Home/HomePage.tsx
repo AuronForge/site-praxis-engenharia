@@ -28,7 +28,7 @@ const heroData = {
     { value: '500+', label: 'Equipamentos Gerenciados' },
     { value: '100%', label: 'Conformidade Regulatória' },
   ],
-  backgroundImage: '/images/hero-bg.jpg',
+  backgroundImage: '/hero-bg.svg',
 };
 
 const servicesData = {
@@ -90,9 +90,9 @@ const experienceData = {
     },
   ],
   images: [
-    { src: '/images/experience-1.jpg', alt: 'Equipe técnica trabalhando' },
-    { src: '/images/experience-2.jpg', alt: 'Profissional em atendimento' },
-    { src: '/images/experience-3.jpg', alt: 'Análise de equipamentos' },
+    { src: '/experience-1.svg', alt: 'Equipe técnica trabalhando' },
+    { src: '/experience-2.svg', alt: 'Profissional em atendimento' },
+    { src: '/experience-3.svg', alt: 'Análise de equipamentos' },
   ],
   badge: 'ISO 9001',
   stats: [
@@ -106,37 +106,37 @@ const experienceData = {
 const platformData = {
   features: [
     {
-      icon: 'brain',
+      iconName: 'brain',
       title: 'Inventário Inteligente',
       description:
         'Controle total do parque de equipamentos, status de manutenções, histórico e gestão integrada.',
     },
     {
-      icon: 'gauge',
+      iconName: 'gauge',
       title: 'Indicadores de Performance',
       description:
         'Mais de 40 indicadores para gestão estratégica, acompanhamento contínuo e melhoria de processos.',
     },
     {
-      icon: 'shield',
+      iconName: 'shield',
       title: 'Gestão de Riscos',
       description:
         'Identificação e mitigação de riscos associados ao uso de equipamentos médicos em tempo real.',
     },
     {
-      icon: 'settings',
+      iconName: 'settings',
       title: 'Conformidade Regulatória',
       description:
         'Atendimento automático às normas ANVISA, ABNT e demais requisitos regulatórios.',
     },
     {
-      icon: 'bell',
+      iconName: 'bell',
       title: 'Alertas Automatizados',
       description:
         'Notificações preventivas para calibrações, manutenções preventivas e vencimentos.',
     },
     {
-      icon: 'monitor',
+      iconName: 'monitor',
       title: 'Dashboards Executivos',
       description:
         'Visualização estratégica dos dados críticos para tomada de decisão ágil e assertiva.',
@@ -150,25 +150,25 @@ const segmentsData = {
     'Atendemos diversos segmentos do setor de saúde com soluções personalizadas para cada necessidade específica.',
   segments: [
     {
-      icon: 'hospital',
+      iconName: 'hospital',
       value: '80+',
       label: 'Hospitais Gerais',
       description: 'Instituições de média e grande complexidade',
     },
     {
-      icon: 'heart',
+      iconName: 'heart',
       value: '35+',
       label: 'Clínicas Especializadas',
       description: 'Centros de diagnóstico, cirurgia e terapia',
     },
     {
-      icon: 'lab',
+      iconName: 'lab',
       value: '45+',
       label: 'Centros Diagnósticos',
       description: 'Laboratórios e centros de imagem',
     },
     {
-      icon: 'building',
+      iconName: 'building',
       value: '12+',
       label: 'Operadoras de Saúde',
       description: 'Planos de saúde corporativos',
@@ -186,7 +186,7 @@ const testimonialsData = {
       author: 'Dra. Maria Silva',
       role: 'Diretora Técnica',
       organization: 'Hospital Regional de São Paulo',
-      avatar: '/images/testimonial-1.jpg',
+      avatar: '/testimonial-1.svg',
     },
     {
       id: '2',
@@ -195,7 +195,7 @@ const testimonialsData = {
       author: 'Eng. João Martins',
       role: 'Gerente de Manutenção',
       organization: 'Clínica Vida Plena',
-      avatar: '/images/testimonial-2.jpg',
+      avatar: '/testimonial-2.svg',
     },
     {
       id: '3',
@@ -204,16 +204,16 @@ const testimonialsData = {
       author: 'Eng. Roberto Alves',
       role: 'Coordenador de Engenharia',
       organization: 'Centro Médico Esperança',
-      avatar: '/images/testimonial-3.jpg',
+      avatar: '/testimonial-3.svg',
     },
   ],
   clientLogos: [
-    { src: '/images/client-logo-1.png', alt: 'Cliente 1' },
-    { src: '/images/client-logo-2.png', alt: 'Cliente 2' },
-    { src: '/images/client-logo-3.png', alt: 'Cliente 3' },
-    { src: '/images/client-logo-4.png', alt: 'Cliente 4' },
-    { src: '/images/client-logo-5.png', alt: 'Cliente 5' },
-    { src: '/images/client-logo-6.png', alt: 'Cliente 6' },
+    { src: '/logo.svg', alt: 'Cliente 1' },
+    { src: '/logo.svg', alt: 'Cliente 2' },
+    { src: '/logo.svg', alt: 'Cliente 3' },
+    { src: '/logo.svg', alt: 'Cliente 4' },
+    { src: '/logo.svg', alt: 'Cliente 5' },
+    { src: '/logo.svg', alt: 'Cliente 6' },
   ],
 };
 
@@ -222,7 +222,7 @@ const headerData = {
     name: 'Praxis Engenharia Clínica',
     href: '/',
     logoAlt: 'Praxis Engenharia Clínica',
-    logoSrc: '/images/logo.png',
+    logoSrc: '/logo.svg',
   },
   links: [
     { label: 'Serviços', href: '#servicos' },
@@ -238,7 +238,7 @@ const headerData = {
 
 const footerData = {
   logo: {
-    src: '/images/logo-light.png',
+    src: '/logo-light.svg',
     alt: 'Praxis Engenharia Clínica',
   },
   description:

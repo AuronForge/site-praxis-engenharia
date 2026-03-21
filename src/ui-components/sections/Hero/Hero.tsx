@@ -31,15 +31,10 @@ export function Hero({
   stats,
   backgroundImage,
 }: HeroProps): React.ReactElement {
-  const words = title.split(' ');
-  const highlightWord = words[words.length - 1];
-  const adjustedTitle = words.slice(0, -1).join(' ');
-
   return (
     <HeroSection
-      title={adjustedTitle}
+      title={title}
       subtitle={subtitle}
-      highlightWord={highlightWord}
       description={description}
       primaryCta={{
         label: primaryCTA.text,

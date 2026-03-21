@@ -2,8 +2,19 @@ import React, { type ReactNode } from 'react';
 
 import styles from './PlatformSection.module.scss';
 
+// Icon mapping
+const iconMap: Record<string, string> = {
+  brain: '/icon-brain.svg',
+  gauge: '/icon-gauge.svg',
+  shield: '/icon-shield.svg',
+  settings: '/icon-settings.svg',
+  bell: '/icon-bell.svg',
+  monitor: '/icon-monitor.svg',
+};
+
 export interface PlatformFeature {
   icon?: ReactNode;
+  iconName?: string;
   title: string;
   description: string;
 }
@@ -43,7 +54,13 @@ export function PlatformSection({ features }: PlatformSectionProps): React.React
           {features.map((feature, index) => (
             <article key={`${feature.title}-${index}`} className={styles.card}>
               <span className={styles.icon} aria-hidden="true">
-                {feature.icon ?? '•'}
+                {feature.iconName && iconMap[feature.iconName] ? (
+                  <img src={iconMap[feature.iconName]} alt="" width="24" height="24" />
+                ) : feature.icon ? (
+                  feature.icon
+                ) : (
+                  '•'
+                )}
               </span>
               <h3 className={styles.cardTitle}>{feature.title}</h3>
               <p className={styles.cardDescription}>{feature.description}</p>

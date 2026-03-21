@@ -91,7 +91,7 @@ export function Footer({
         <div className={styles.mainContent}>
           <div className={styles.brandColumn}>
             <a href="/" className={styles.logo}>
-              <span className={styles.logoIcon}>P</span>
+              <img src={logo.src} alt={logo.alt} className={styles.logoImg} width="40" height="40" />
               <span className={styles.logoText}>{logo.alt}</span>
             </a>
             <p className={styles.description}>{description}</p>
