@@ -123,29 +123,81 @@ const experienceData = {
       title: 'Equipe Multidisciplinar',
       description:
         'Profissionais especializados e experientes com formação técnica, além de certificações e qualificações.',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       title: 'Metodologia Reconhecida',
       description:
         'Processos validados e orientados por indicadores para garantir previsibilidade e segurança operacional.',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 12l2 2 4-4"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       title: 'Tecnologia Própria',
       description:
         'Plataforma com rastreabilidade, inteligência de dados e suporte à decisão em tempo real.',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect
+            x="2"
+            y="3"
+            width="20"
+            height="14"
+            rx="2"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M8 21h8M12 17v4"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
   ],
   images: [
-    { src: '/images/experience-1.svg', alt: 'Equipe técnica trabalhando' },
-    { src: '/images/experience-2.svg', alt: 'Profissional em atendimento' },
-    { src: '/images/experience-3.svg', alt: 'Análise de equipamentos' },
+    { src: '/images/experience-1.jpg', alt: 'Equipe técnica trabalhando' },
+    { src: '/images/experience-2.jpg', alt: 'Profissional em atendimento' },
+    { src: '/images/experience-3.jpg', alt: 'Análise de equipamentos' },
+    { src: '/images/experience-4.jpg', alt: 'Tecnologia e inovação' },
   ],
-  badge: 'ISO 9001',
+  badge: 'ISO 9001\nCertificado',
   stats: [
-    { value: '150+', label: 'Clientes Ativos' },
-    { value: '60+', label: 'Cidades Atendidas' },
-    { value: '98%', label: 'Taxa de Contratos Renovados' },
-    { value: '15k+', label: 'Equipamentos Mantidos' },
+    { value: '150+', label: 'Instituições Atendidas', icon: 'building' as const },
+    { value: '60+', label: 'Profissionais Especializados', icon: 'users' as const },
+    { value: '98%', label: 'Taxa de Satisfação', icon: 'trending-up' as const },
+    { value: '15k+', label: 'Equipamentos Gerenciados', icon: 'check-circle' as const },
   ],
 };
 
