@@ -204,40 +204,38 @@ const experienceData = {
 const platformData = {
   features: [
     {
-      iconName: 'brain',
+      iconName: 'database',
       title: 'Inventário Inteligente',
       description:
-        'Controle total do parque de equipamentos, status de manutenções, histórico e gestão integrada.',
+        'Cadastro completo com histórico, documentação técnica e rastreabilidade de cada equipamento.',
     },
     {
-      iconName: 'gauge',
+      iconName: 'chart',
       title: 'Indicadores de Performance',
       description:
-        'Mais de 40 indicadores para gestão estratégica, acompanhamento contínuo e melhoria de processos.',
+        'KPIs customizados para análise de disponibilidade, custos e eficiência operacional.',
     },
     {
       iconName: 'shield',
       title: 'Gestão de Riscos',
-      description:
-        'Identificação e mitigação de riscos associados ao uso de equipamentos médicos em tempo real.',
+      description: 'Classificação e priorização baseada em criticidade para segurança do paciente.',
     },
     {
-      iconName: 'settings',
+      iconName: 'document',
       title: 'Conformidade Regulatória',
       description:
-        'Atendimento automático às normas ANVISA, ABNT e demais requisitos regulatórios.',
+        'Controle de documentação, calibrações e manutenções conforme ANVISA e normas técnicas.',
     },
     {
       iconName: 'bell',
       title: 'Alertas Automatizados',
       description:
-        'Notificações preventivas para calibrações, manutenções preventivas e vencimentos.',
+        'Notificações proativas para manutenções preventivas, calibrações e vencimentos.',
     },
     {
-      iconName: 'monitor',
+      iconName: 'gauge',
       title: 'Dashboards Executivos',
-      description:
-        'Visualização estratégica dos dados críticos para tomada de decisão ágil e assertiva.',
+      description: 'Visualização estratégica para tomada de decisão gerencial em tempo real.',
     },
   ],
 };
