@@ -86,7 +86,6 @@ export function Header({ links, cta, brand }: HeaderProps): React.ReactElement {
                 height="40"
               />
             )}
-            <span className={styles.brandName}>{brand.name}</span>
           </a>
 
           {/* Desktop Navigation Links */}

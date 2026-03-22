@@ -44,6 +44,17 @@ const servicesData = {
         'Gestão completa do parque tecnológico das instituições assistenciais, incluindo planejamento, manutenção e controle de qualidade.',
       bullets: ['Manutenção Preventiva', 'Manutenção Corretiva', 'Calibração', 'Auditoria Técnica'],
       href: '#engenharia-clinica',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M22 12h-4l-3 9L9 3l-3 9H2"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       title: 'Planejamento Tecnológico',
@@ -56,6 +67,24 @@ const servicesData = {
         'Análise de Viabilidade',
       ],
       href: '#planejamento',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 12h6M9 16h6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
       title: 'Acreditação',
@@ -63,6 +92,18 @@ const servicesData = {
         'Suporte integrado para processos de certificação (ONA, ISO, JCI) com adequação de processos e documentação técnica.',
       bullets: ['Preparação ONA', 'ISO 9001', 'Documentação Técnica', 'Auditoria'],
       href: '#acreditacao',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="2" />
+          <path
+            d="M9 13L7 22L12 19L17 22L15 13"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
   ],
   ctaBanner: {
@@ -227,7 +268,7 @@ const headerData = {
     name: 'Praxis Engenharia Clínica',
     href: '/',
     logoAlt: 'Praxis Engenharia Clínica',
-    logoSrc: '/images/logo.svg',
+    logoSrc: '/images/logo.jpg',
   },
   links: [
     { label: 'Serviços', href: '#servicos' },
