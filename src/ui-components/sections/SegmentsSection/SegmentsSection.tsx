@@ -18,10 +18,10 @@ export interface SegmentsSectionProps {
 }
 
 const segmentIconMap: Record<string, string> = {
-  hospital: '/icon-hospital.svg',
-  heart: '/icon-heart.svg',
-  lab: '/icon-lab.svg',
-  building: '/icon-building.svg',
+  hospital: '/images/icon-hospital.svg',
+  heart: '/images/icon-heart.svg',
+  lab: '/images/icon-lab.svg',
+  building: '/images/icon-building.svg',
 };
 
 function getSegmentIcon(iconName?: string): string {
@@ -62,7 +62,9 @@ export function SegmentsSection({
               </span>
               <p className={styles.value}>{segment.value}</p>
               <p className={styles.label}>{segment.label}</p>
-              {segment.description && <p className={styles.cardDescription}>{segment.description}</p>}
+              {segment.description && (
+                <p className={styles.cardDescription}>{segment.description}</p>
+              )}
             </article>
           ))}
         </div>

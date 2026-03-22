@@ -10,11 +10,15 @@ export interface CTALink {
 export interface Stat {
   value: string;
   label: string;
+  helper?: string;
+  icon?: 'trophy' | 'chart' | 'shield';
 }
 
 export interface HeroProps {
+  badge?: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  highlightWord?: string;
   description: string;
   primaryCTA: CTALink;
   secondaryCTA: CTALink;
@@ -23,8 +27,10 @@ export interface HeroProps {
 }
 
 export function Hero({
+  badge,
   title,
   subtitle,
+  highlightWord,
   description,
   primaryCTA,
   secondaryCTA,
@@ -33,8 +39,10 @@ export function Hero({
 }: HeroProps): React.ReactElement {
   return (
     <HeroSection
+      badge={badge}
       title={title}
       subtitle={subtitle}
+      highlightWord={highlightWord}
       description={description}
       primaryCta={{
         label: primaryCTA.text,
@@ -44,7 +52,7 @@ export function Hero({
         label: secondaryCTA.text,
         href: secondaryCTA.href,
       }}
-      stats={stats.map((stat) => ({ label: stat.label, value: stat.value }))}
+      stats={stats}
       backgroundImageUrl={backgroundImage}
     />
   );

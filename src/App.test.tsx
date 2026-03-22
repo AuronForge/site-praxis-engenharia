@@ -42,7 +42,7 @@ describe('App', () => {
 
   it('should render hero CTA buttons', () => {
     render(<App />);
-    expect(screen.getByText('Solicitar Orçamento')).toBeInTheDocument();
+    expect(screen.getByText('Fale com Especialistas')).toBeInTheDocument();
     expect(screen.getByText('Conheça os Serviços')).toBeInTheDocument();
   });
 

@@ -53,28 +53,72 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 .stat {
   flex: 1;
   min-width: 200px;
-  text-align: center;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: $spacing-lg;
 
   @media (max-width: $breakpoint-mobile) {
     min-width: auto;
   }
 }
 
+// Icon circle container
+.iconCircle {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 64, 175, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+// Content container for text
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  text-align: left;
+}
+
+// Icon (deprecated - kept for backwards compatibility)
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacing-xs;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 // Value (dt element)
 .value {
-  font-size: $font-display;
+  font-size: 40px;
   font-weight: 700;
   line-height: $line-height-tight;
-  margin-bottom: $spacing-sm;
+  margin: 0;
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   @media (width <= 480px) {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
 
@@ -96,7 +140,6 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 400;
   line-height: $line-height-body;
   margin: 0;
-  margin-top: $spacing-xs;
   opacity: 0.7;
 
   @media (max-width: $breakpoint-mobile) {
@@ -106,8 +149,21 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Light variant (for dark backgrounds)
 .light {
-  .value {
+  .iconCircle {
+    background: rgba(30, 64, 175, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+
+    svg {
+      color: $primary-50;
+    }
+  }
+
+  .icon {
     color: $primary-50;
+  }
+
+  .value {
+    color: $white;
   }
 
   .label {
@@ -121,6 +177,19 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Dark variant (for light backgrounds)
 .dark {
+  .iconCircle {
+    background: rgba(30, 64, 175, 0.1);
+    border-color: rgba(30, 64, 175, 0.2);
+
+    svg {
+      color: $primary-600;
+    }
+  }
+
+  .icon {
+    color: $primary-600;
+  }
+
   .value {
     color: $primary-600;
   }

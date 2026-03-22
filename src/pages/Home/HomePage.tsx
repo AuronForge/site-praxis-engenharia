@@ -11,12 +11,13 @@ import { TestimonialsSection } from '@ui-components/sections/TestimonialsSection
 
 // Mock data for sections
 const heroData = {
-  title: 'Engenharia Clínica',
-  subtitle: 'de Excelência',
+  badge: 'Certificados e Reconhecidos',
+  title: 'Engenharia Clínica de Excelência',
+  highlightWord: 'Excelência',
   description:
-    'Soluções integradas em gestão de tecnologia médico-hospitalar para instituições que buscam segurança, sustentabilidade e eficiência operacional.',
+    'Soluções integradas em gestão de tecnologia médico-hospitalar para instituições que buscam segurança, conformidade e eficiência operacional.',
   primaryCTA: {
-    text: 'Solicitar Orçamento',
+    text: 'Fale com Especialistas',
     href: '#contato',
   },
   secondaryCTA: {
@@ -24,11 +25,15 @@ const heroData = {
     href: '#servicos',
   },
   stats: [
-    { value: '25+', label: 'Anos de Experiência' },
-    { value: '500+', label: 'Equipamentos Gerenciados' },
-    { value: '100%', label: 'Conformidade Regulatória' },
+    { value: '25+', label: 'Anos de Experiência', icon: 'trophy' as const },
+    {
+      value: '500+',
+      label: 'Projetos Concluídos',
+      icon: 'chart' as const,
+    },
+    { value: '100%', label: 'Conformidade ANVISA', icon: 'shield' as const },
   ],
-  backgroundImage: '/hero-bg.svg',
+  backgroundImage: '/images/hero-bg.jpg',
 };
 
 const servicesData = {
@@ -90,9 +95,9 @@ const experienceData = {
     },
   ],
   images: [
-    { src: '/experience-1.svg', alt: 'Equipe técnica trabalhando' },
-    { src: '/experience-2.svg', alt: 'Profissional em atendimento' },
-    { src: '/experience-3.svg', alt: 'Análise de equipamentos' },
+    { src: '/images/experience-1.svg', alt: 'Equipe técnica trabalhando' },
+    { src: '/images/experience-2.svg', alt: 'Profissional em atendimento' },
+    { src: '/images/experience-3.svg', alt: 'Análise de equipamentos' },
   ],
   badge: 'ISO 9001',
   stats: [
@@ -186,7 +191,7 @@ const testimonialsData = {
       author: 'Dra. Maria Silva',
       role: 'Diretora Técnica',
       organization: 'Hospital Regional de São Paulo',
-      avatar: '/testimonial-1.svg',
+      avatar: '/images/testimonial-1.svg',
     },
     {
       id: '2',
@@ -195,7 +200,7 @@ const testimonialsData = {
       author: 'Eng. João Martins',
       role: 'Gerente de Manutenção',
       organization: 'Clínica Vida Plena',
-      avatar: '/testimonial-2.svg',
+      avatar: '/images/testimonial-2.svg',
     },
     {
       id: '3',
@@ -204,16 +209,16 @@ const testimonialsData = {
       author: 'Eng. Roberto Alves',
       role: 'Coordenador de Engenharia',
       organization: 'Centro Médico Esperança',
-      avatar: '/testimonial-3.svg',
+      avatar: '/images/testimonial-3.svg',
     },
   ],
   clientLogos: [
-    { src: '/logo.svg', alt: 'Cliente 1' },
-    { src: '/logo.svg', alt: 'Cliente 2' },
-    { src: '/logo.svg', alt: 'Cliente 3' },
-    { src: '/logo.svg', alt: 'Cliente 4' },
-    { src: '/logo.svg', alt: 'Cliente 5' },
-    { src: '/logo.svg', alt: 'Cliente 6' },
+    { src: '/images/logo.svg', alt: 'Cliente 1' },
+    { src: '/images/logo.svg', alt: 'Cliente 2' },
+    { src: '/images/logo.svg', alt: 'Cliente 3' },
+    { src: '/images/logo.svg', alt: 'Cliente 4' },
+    { src: '/images/logo.svg', alt: 'Cliente 5' },
+    { src: '/images/logo.svg', alt: 'Cliente 6' },
   ],
 };
 
@@ -222,7 +227,7 @@ const headerData = {
     name: 'Praxis Engenharia Clínica',
     href: '/',
     logoAlt: 'Praxis Engenharia Clínica',
-    logoSrc: '/logo.svg',
+    logoSrc: '/images/logo.svg',
   },
   links: [
     { label: 'Serviços', href: '#servicos' },
@@ -238,7 +243,7 @@ const headerData = {
 
 const footerData = {
   logo: {
-    src: '/logo-light.svg',
+    src: '/images/logo-light.svg',
     alt: 'Praxis Engenharia Clínica',
   },
   description:
@@ -306,11 +311,12 @@ export function HomePage(): React.ReactElement {
       <Header brand={headerData.brand} links={headerData.links} cta={headerData.cta} />
 
       {/* Main content wrapper for semantic HTML */}
-      <main role="main">
+      <main role="main" className="main">
         {/* Hero Section - Above the fold with CTA */}
         <Hero
+          badge={heroData.badge}
           title={heroData.title}
-          subtitle={heroData.subtitle}
+          highlightWord={heroData.highlightWord}
           description={heroData.description}
           primaryCTA={heroData.primaryCTA}
           secondaryCTA={heroData.secondaryCTA}

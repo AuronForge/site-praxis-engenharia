@@ -4,12 +4,12 @@ import styles from './PlatformSection.module.scss';
 
 // Icon mapping
 const iconMap: Record<string, string> = {
-  brain: '/icon-brain.svg',
-  gauge: '/icon-gauge.svg',
-  shield: '/icon-shield.svg',
-  settings: '/icon-settings.svg',
-  bell: '/icon-bell.svg',
-  monitor: '/icon-monitor.svg',
+  brain: '/images/icon-brain.svg',
+  gauge: '/images/icon-gauge.svg',
+  shield: '/images/icon-shield.svg',
+  settings: '/images/icon-settings.svg',
+  bell: '/images/icon-bell.svg',
+  monitor: '/images/icon-monitor.svg',
 };
 
 export interface PlatformFeature {

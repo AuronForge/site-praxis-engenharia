@@ -61,4 +61,50 @@ describe('PlatformSection', () => {
     expect(screen.queryByText('Alertas Automatizados')).not.toBeNull();
     expect(screen.queryByText('Dashboards Executivos')).not.toBeNull();
   });
+
+  it('renders features with iconName from map', () => {
+    const propsWithIconName: PlatformSectionProps = {
+      features: [
+        {
+          iconName: 'brain',
+          title: 'Test Feature',
+          description: 'Description',
+        },
+      ],
+    };
+    render(<PlatformSection {...propsWithIconName} />);
+
+    expect(screen.queryByText('Test Feature')).not.toBeNull();
+  });
+
+  it('renders features with custom icon element', () => {
+    const propsWithIconElement: PlatformSectionProps = {
+      features: [
+        {
+          icon: <span data-testid="custom-icon">★</span>,
+          title: 'Custom Icon Feature',
+          description: 'Description',
+        },
+      ],
+    };
+    render(<PlatformSection {...propsWithIconElement} />);
+
+    expect(screen.queryByTestId('custom-icon')).not.toBeNull();
+    expect(screen.queryByText('Custom Icon Feature')).not.toBeNull();
+  });
+
+  it('renders fallback bullet when no icon is provided', () => {
+    const propsWithoutIcon: PlatformSectionProps = {
+      features: [
+        {
+          title: 'No Icon Feature',
+          description: 'Description',
+        },
+      ],
+    };
+    const { container } = render(<PlatformSection {...propsWithoutIcon} />);
+
+    expect(screen.queryByText('No Icon Feature')).not.toBeNull();
+    expect(container.textContent).toContain('•');
+  });
 });
