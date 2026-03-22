@@ -43,7 +43,7 @@ const servicesData = {
       description:
         'Gestão completa do parque tecnológico das instituições assistenciais, incluindo planejamento, manutenção e controle de qualidade.',
       bullets: ['Manutenção Preventiva', 'Manutenção Corretiva', 'Calibração', 'Auditoria Técnica'],
-      href: '#engenharia-clinica',
+      href: '/engenharia-clinica',
     },
     {
       title: 'Planejamento Tecnológico',
@@ -252,7 +252,7 @@ const footerData = {
     {
       title: 'Serviços',
       links: [
-        { label: 'Engenharia Clínica', href: '#engenharia-clinica' },
+        { label: 'Engenharia Clínica', href: '/engenharia-clinica' },
         { label: 'Planejamento', href: '#planejamento' },
         { label: 'Acreditação', href: '#acreditacao' },
         { label: 'Consultoria', href: '#consultoria' },
