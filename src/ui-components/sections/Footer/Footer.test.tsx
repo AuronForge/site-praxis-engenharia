@@ -28,7 +28,11 @@ const mockProps: FooterProps = {
     },
   ],
   social: [
-    { platform: 'linkedin', href: 'https://linkedin.com', ariaLabel: 'LinkedIn' },
+    {
+      platform: 'linkedin',
+      href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
+      ariaLabel: 'LinkedIn',
+    },
     { platform: 'facebook', href: 'https://facebook.com', ariaLabel: 'Facebook' },
     { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Instagram' },
   ],

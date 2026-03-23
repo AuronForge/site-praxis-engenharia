@@ -241,6 +241,7 @@ const platformData = {
 };
 
 const segmentsData = {
+  pill: 'Segmentos Atendidos',
   title: 'Confiança de Instituições Líderes',
   description:
     'Atendemos diversos segmentos do setor de saúde com soluções personalizadas para cada necessidade específica.',
@@ -249,25 +250,25 @@ const segmentsData = {
       iconName: 'hospital',
       value: '80+',
       label: 'Hospitais Gerais',
-      description: 'Instituições de média e grande complexidade',
+      description: 'Instituições de médio e alto complexidade',
     },
     {
       iconName: 'heart',
       value: '35+',
-      label: 'Clínicas Especializadas',
-      description: 'Centros de diagnóstico, cirurgia e terapia',
+      label: 'Hospitais Especializados',
+      description: 'Cardiologia, oncologia, ortopedia',
     },
     {
       iconName: 'lab',
       value: '45+',
-      label: 'Centros Diagnósticos',
-      description: 'Laboratórios e centros de imagem',
+      label: 'Clínicas e Diagnósticos',
+      description: 'Centros de imagem e laboratórios',
     },
     {
       iconName: 'building',
       value: '12+',
       label: 'Operadoras de Saúde',
-      description: 'Planos de saúde corporativos',
+      description: 'Gestão de redes hospitalares',
     },
   ],
 };
@@ -334,7 +335,7 @@ const headerData = {
 
 const footerData = {
   logo: {
-    src: '/images/logo-light.svg',
+    src: '/images/logo.jpg',
     alt: 'Praxis Engenharia Clínica',
   },
   description:
@@ -372,7 +373,11 @@ const footerData = {
     },
   ],
   social: [
-    { platform: 'linkedin', href: 'https://linkedin.com', ariaLabel: 'LinkedIn' },
+    {
+      platform: 'linkedin',
+      href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
+      ariaLabel: 'LinkedIn',
+    },
     { platform: 'facebook', href: 'https://facebook.com', ariaLabel: 'Facebook' },
     { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Instagram' },
   ],
@@ -433,6 +438,7 @@ export function HomePage(): React.ReactElement {
 
         {/* Segments Section - Market segments with metrics */}
         <SegmentsSection
+          pill={segmentsData.pill}
           title={segmentsData.title}
           description={segmentsData.description}
           segments={segmentsData.segments}

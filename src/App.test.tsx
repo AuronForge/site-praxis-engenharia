@@ -5,7 +5,7 @@ import { App } from './App';
 describe('App', () => {
   it('should render the Header component with brand name', () => {
     render(<App />);
-    expect(screen.getAllByText('Praxis Engenharia Clínica').length).toBeGreaterThan(0);
+    expect(screen.getAllByAltText('Praxis Engenharia Clínica').length).toBeGreaterThan(0);
   });
 
   it('should render navigation links', () => {

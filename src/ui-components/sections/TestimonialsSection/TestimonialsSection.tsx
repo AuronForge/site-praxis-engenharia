@@ -34,7 +34,7 @@ export function TestimonialsSection({
   title,
   description,
   testimonials,
-  clientLogos,
+  // clientLogos,
   pill,
 }: TestimonialsSectionProps): React.ReactElement {
   return (
@@ -54,27 +54,17 @@ export function TestimonialsSection({
               <QuoteIcon />
               <blockquote className={styles.quote}>{testimonial.quote}</blockquote>
               <div className={styles.authorInfo}>
-                {testimonial.avatar ? (
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    className={styles.avatar}
-                  />
-                ) : (
-                  <div className={styles.avatar} />
-                )}
                 <div className={styles.authorDetails}>
                   <p className={styles.authorName}>{testimonial.author}</p>
-                  <p className={styles.authorRole}>
-                    {testimonial.role} - {testimonial.organization}
-                  </p>
+                  <p className={styles.authorRole}>{testimonial.role}</p>
+                  <p className={styles.authorOrganization}>{testimonial.organization}</p>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        {clientLogos.length > 0 && (
+        {/* {clientLogos.length > 0 && (
           <div className={styles.clientLogos}>
             <p className={styles.logosTitle}>Empresas que confiam em nós</p>
             <div className={styles.logosGrid}>
@@ -83,7 +73,7 @@ export function TestimonialsSection({
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );
