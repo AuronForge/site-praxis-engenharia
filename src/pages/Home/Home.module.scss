@@ -1,11 +1,12 @@
 .home {
   min-height: 100vh;
   padding: 0;
+  max-width: 1400px;
 }
 
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: red;
   padding: 4rem 2rem;
   text-align: center;
   min-height: 60vh;

@@ -42,7 +42,7 @@ export function ExperienceSection({
   badge,
   stats,
 }: ExperienceSectionProps): React.ReactElement {
-  const collageImages = images.slice(0, 3);
+  const collageImages = images.slice(0, 4);
 
   return (
     <section className={styles.section} aria-labelledby="experience-title">
@@ -55,7 +55,7 @@ export function ExperienceSection({
             </h2>
             <p className={styles.description}>{description}</p>
 
-            <FeatureList items={features} variant="dark" />
+            <FeatureList items={features} variant="light" />
           </div>
 
           <div className={styles.rightColumn}>
@@ -69,7 +69,12 @@ export function ExperienceSection({
                 />
               ))}
 
-              {badge ? <span className={styles.imageBadge}>{badge}</span> : null}
+              {badge ? (
+                <div className={styles.imageBadge}>
+                  <div className={styles.badgeTitle}>ISO 9001</div>
+                  <div className={styles.badgeSubtitle}>Certificado</div>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

@@ -52,4 +52,18 @@ describe('ExperienceSection', () => {
     expect(screen.queryByText('Metodologia Reconhecida')).not.toBeNull();
     expect(screen.queryByText('Tecnologia Própria')).not.toBeNull();
   });
+
+  it('renders badge when provided', () => {
+    render(<ExperienceSection {...mockProps} />);
+
+    expect(screen.queryByText('ISO 9001')).not.toBeNull();
+  });
+
+  it('does not render badge when not provided', () => {
+    const propsWithoutBadge = { ...mockProps, badge: undefined };
+    const { container } = render(<ExperienceSection {...propsWithoutBadge} />);
+
+    expect(screen.queryByText('ISO 9001')).toBeNull();
+    expect(container.querySelector('.imageBadge')).toBeNull();
+  });
 });

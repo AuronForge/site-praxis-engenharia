@@ -113,6 +113,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Badge/Pill */}
           {badge && (
             <div className={styles.badge} role="status">
+              <svg
+                className={styles.badgeIcon}
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+                <path
+                  d="M5 8.5L7 10.5L11 6.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               {badge}
             </div>
           )}

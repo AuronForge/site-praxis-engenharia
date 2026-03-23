@@ -21,9 +21,9 @@
   margin-bottom: 14px;
   padding: 8px 14px;
   border-radius: 9999px;
-  border: 1px solid rgba(147, 197, 253, 0.45);
-  background: rgba(147, 197, 253, 0.12);
-  color: #dbeafe;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(37, 99, 235, 0.25);
+  color: #e0f2fe;
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
@@ -61,14 +61,20 @@
 .icon {
   width: 42px;
   height: 42px;
-  border-radius: 9999px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(59, 130, 246, 0.2);
-  border: 1px solid rgba(147, 197, 253, 0.35);
+  background: rgba(43, 127, 255, 0.2);
   font-size: 20px;
   line-height: 1;
+  color: #51a2ff;
+}
+
+.icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
 .cardTitle {

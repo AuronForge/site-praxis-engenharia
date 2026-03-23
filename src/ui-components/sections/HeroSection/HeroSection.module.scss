@@ -76,25 +76,34 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   max-width: $breakpoint-desktop;
   width: 100%;
   margin: 0 auto;
-  padding: $spacing-3xl $spacing-2xl;
+  padding: $spacing-3xl $spacing-5xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-3xl $spacing-4xl;
+  }
 
   @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-2xl $spacing-lg;
+    padding: $spacing-2xl $spacing-2xl;
   }
 }
 
 // Content wrapper
 .content {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
   color: $white;
+
+  @media (max-width: $breakpoint-mobile) {
+    max-width: 100%;
+  }
 }
 
 // Badge/Pill
 .badge {
   display: inline-flex;
   align-items: center;
+  gap: $spacing-sm;
   padding: $spacing-sm $spacing-lg;
   background-color: rgba(239, 246, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -113,21 +122,31 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.badgeIcon {
+  flex-shrink: 0;
+  color: $primary-50;
+}
+
 // Title (H1)
 .title {
-  font-size: $font-display;
+  font-size: 64px;
   font-weight: 700;
-  line-height: $line-height-display;
-  margin-bottom: $spacing-2xl;
+  line-height: 1.15;
+  margin-bottom: $spacing-3xl;
   color: $white;
+  max-width: 800px;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 48px;
+  }
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: 36px;
-    line-height: 1.1;
+    font-size: 40px;
+    line-height: 1.2;
   }
 
   @media (width <= 480px) {
-    font-size: 32px;
+    font-size: 36px;
   }
 }
 
@@ -157,12 +176,10 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 .description {
   font-size: $font-body-large;
   font-weight: 400;
-  line-height: $line-height-body;
+  line-height: 1.7;
   margin-bottom: $spacing-4xl;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 850px;
 
   @media (max-width: $breakpoint-mobile) {
     font-size: $font-body-medium;
@@ -174,13 +191,14 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 .ctas {
   display: flex;
   gap: $spacing-lg;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: $spacing-5xl;
   flex-wrap: wrap;
 
   @media (max-width: $breakpoint-mobile) {
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
     margin-bottom: $spacing-4xl;
   }
@@ -249,11 +267,16 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Stats container
 .stats {
-  padding-top: $spacing-4xl;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: $spacing-4xl;
+
+  // Override StatsRow alignment for Hero context
+  /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+  :global(.statsRow) {
+    justify-content: flex-start;
+  }
 
   @media (max-width: $breakpoint-mobile) {
-    padding-top: $spacing-3xl;
+    margin-top: $spacing-3xl;
   }
 }
 
