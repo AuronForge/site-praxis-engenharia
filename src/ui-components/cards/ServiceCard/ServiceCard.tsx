@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import styles from './ServiceCard.module.scss';
 
@@ -18,9 +17,6 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   href,
   icon,
 }): React.ReactElement => {
-  // Check if href is an internal route (starts with /)
-  const isInternalRoute = href.startsWith('/');
-
   return (
     <article className={styles.card}>
       {icon ? <div className={styles.iconArea}>{icon}</div> : null}
@@ -36,15 +32,26 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
         ))}
       </ul>
 
-      {isInternalRoute ? (
-        <Link to={href} className={styles.link}>
-          Saiba mais
-        </Link>
-      ) : (
-        <a href={href} className={styles.link}>
-          Saiba mais
-        </a>
-      )}
+      <a href={href} className={styles.link}>
+        Saiba mais
+        <svg
+          className={styles.arrow}
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M3 8h10M10 5l3 3-3 3"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
     </article>
   );
 };

@@ -89,9 +89,9 @@ describe('SegmentsSection', () => {
   describe('Icon Handling', () => {
     it('renders icon from iconName map', () => {
       const { container } = render(<SegmentsSection {...mockProps} />);
-      const images = container.querySelectorAll('img[src="/images/icon-hospital.svg"]');
+      const svgElements = container.querySelectorAll('svg');
 
-      expect(images.length).toBeGreaterThan(0);
+      expect(svgElements.length).toBeGreaterThan(0);
     });
 
     it('renders custom icon element when provided', () => {
@@ -126,8 +126,8 @@ describe('SegmentsSection', () => {
       const { container } = render(<SegmentsSection {...propsWithInvalidIcon} />);
 
       // Check if fallback SVG is rendered (circle element)
-      const svgImages = container.querySelectorAll('img');
-      expect(svgImages.length).toBeGreaterThan(0);
+      const circles = container.querySelectorAll('circle');
+      expect(circles.length).toBeGreaterThan(0);
     });
 
     it('renders fallback icon when no iconName provided', () => {
@@ -143,8 +143,8 @@ describe('SegmentsSection', () => {
       };
       const { container } = render(<SegmentsSection {...propsWithoutIcon} />);
 
-      const svgImages = container.querySelectorAll('img');
-      expect(svgImages.length).toBeGreaterThan(0);
+      const circles = container.querySelectorAll('circle');
+      expect(circles.length).toBeGreaterThan(0);
     });
   });
 

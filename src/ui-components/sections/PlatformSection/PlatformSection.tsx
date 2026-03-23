@@ -4,12 +4,12 @@ import styles from './PlatformSection.module.scss';
 
 // Icon mapping
 const iconMap: Record<string, string> = {
-  brain: '/images/icon-brain.svg',
-  gauge: '/images/icon-gauge.svg',
+  database: '/images/icon-database.svg',
+  chart: '/images/icon-chart.svg',
   shield: '/images/icon-shield.svg',
-  settings: '/images/icon-settings.svg',
+  document: '/images/icon-document.svg',
   bell: '/images/icon-bell.svg',
-  monitor: '/images/icon-monitor.svg',
+  gauge: '/images/icon-gauge.svg',
 };
 
 export interface PlatformFeature {
@@ -45,8 +45,8 @@ export function PlatformSection({ features }: PlatformSectionProps): React.React
             Sistema de Gestão Avançado
           </h2>
           <p className={styles.description}>
-            Tecnologia proprietária desenvolvida especificamente para as necessidades de engenharia
-            clínica moderna, integrando gestão, rastreabilidade e inteligência de dados.
+            Tecnologia proprietária desenvolvida especificamente para as necessidades da engenharia
+            clínica moderna, integrando gestão, compliance e inteligência de dados.
           </p>
         </div>
 

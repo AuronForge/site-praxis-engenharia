@@ -37,15 +37,14 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // StatsRow container
 .statsRow {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: $spacing-3xl;
-  justify-content: center;
-  align-items: stretch;
+  align-items: start;
 
   @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: $spacing-2xl;
-    flex-direction: column;
   }
 }
 
@@ -74,9 +73,7 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(30, 64, 175, 0.15);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 
   svg {
     width: 28px;
@@ -178,11 +175,8 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 // Dark variant (for light backgrounds)
 .dark {
   .iconCircle {
-    background: rgba(30, 64, 175, 0.1);
-    border-color: rgba(30, 64, 175, 0.2);
-
     svg {
-      color: $primary-600;
+      color: #155dfc;
     }
   }
 
@@ -191,7 +185,7 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .value {
-    color: $primary-600;
+    color: black;
   }
 
   .label {

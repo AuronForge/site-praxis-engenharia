@@ -98,7 +98,6 @@ export function Footer({
                 width="40"
                 height="40"
               />
-              <span className={styles.logoText}>{logo.alt}</span>
             </a>
             <p className={styles.description}>{description}</p>
             <div className={styles.socialLinks}>
