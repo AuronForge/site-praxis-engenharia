@@ -99,5 +99,18 @@ describe('ServiceCard', () => {
       const link = screen.getByRole('link', { name: 'Saiba mais' });
       expect(link).toBeInTheDocument();
     });
+
+    it('does not render link when href is not provided', () => {
+      renderWithRouter(
+        <ServiceCard
+          title="Planejamento"
+          description="Consultoria especializada"
+          bullets={['Item 1', 'Item 2']}
+          variant="planning"
+        />
+      );
+
+      expect(screen.queryByRole('link', { name: 'Saiba mais' })).not.toBeInTheDocument();
+    });
   });
 });

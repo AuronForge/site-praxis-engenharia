@@ -21,64 +21,81 @@ describe('PlanejamentoTecnologicoPage', () => {
 
     it('renders the hero section with badge', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Planejamento Tecnológico')).toBeInTheDocument();
+      expect(screen.getByText('Serviço Especializado')).toBeInTheDocument();
     });
 
     it('renders the hero section with description', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText(/Oferecemos consultoria especializada/)).toBeInTheDocument();
+      expect(screen.getByText(/Assessoria estratégica para aquisição/)).toBeInTheDocument();
     });
 
-    it('renders the hero section with primary CTA', () => {
+    it('does not render hero CTAs in compact variant', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Fale com Especialistas')).toBeInTheDocument();
-    });
-
-    it('renders the hero section with secondary CTA', () => {
-      renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Nossos Serviços')).toBeInTheDocument();
+      expect(screen.queryByText('Fale com Especialistas')).not.toBeInTheDocument();
+      expect(screen.queryByText('Nossos Serviços')).not.toBeInTheDocument();
     });
 
     it('renders the services section title', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(
-        screen.getByText('Servicios Especializados em Planejamento Tecnológico')
-      ).toBeInTheDocument();
+      expect(screen.getByText('Nossos Serviços de Planejamento')).toBeInTheDocument();
     });
 
     it('renders all service cards', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Plano Diretor')).toBeInTheDocument();
-      expect(screen.getByText('Especificações Técnicas')).toBeInTheDocument();
-      expect(screen.getByText('Comissionamento')).toBeInTheDocument();
+      expect(screen.getByText('Plano Diretor de Tecnologia')).toBeInTheDocument();
+      expect(screen.getByText('Dimensionamento de Equipamentos')).toBeInTheDocument();
+      expect(screen.getByText('Especificação Técnica')).toBeInTheDocument();
       expect(screen.getByText('Análise de Viabilidade')).toBeInTheDocument();
+      expect(screen.getByText('Consultoria em Aquisições')).toBeInTheDocument();
+      expect(screen.getByText('Infraestrutura e Instalações')).toBeInTheDocument();
     });
 
-    it('renders the benefits section title', () => {
+    it('does not render service card links in planning variant', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
+      expect(screen.queryByRole('link', { name: 'Saiba mais' })).not.toBeInTheDocument();
+    });
+
+    it('renders the informative section title', () => {
+      renderWithRouter(<PlanejamentoTecnologicoPage />);
+      expect(screen.getByText('Decisões Estratégicas Baseadas em Dados')).toBeInTheDocument();
+    });
+
+    it('renders the informative section content and benefits', () => {
+      renderWithRouter(<PlanejamentoTecnologicoPage />);
+      expect(screen.getByText('Benefícios do Planejamento')).toBeInTheDocument();
+      expect(screen.getByText('Redução de custos de aquisição e operação')).toBeInTheDocument();
+      expect(screen.getByText('Alinhamento com objetivos estratégicos')).toBeInTheDocument();
+      expect(screen.getByText('Otimização do investimento em tecnologia')).toBeInTheDocument();
       expect(
-        screen.getByText('Por que escolher nosso Planejamento Tecnológico?')
+        screen.getByText('Previsibilidade orçamentária de médio/longo prazo')
       ).toBeInTheDocument();
     });
 
-    it('renders all benefit cards', () => {
+    it('renders informative metrics', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Especialização Técnica')).toBeInTheDocument();
-      expect(screen.getByText('Conformidade Regulatória')).toBeInTheDocument();
-      expect(screen.getByText('Otimização de Investimentos')).toBeInTheDocument();
-      expect(screen.getByText('Suporte Contínuo')).toBeInTheDocument();
+      expect(screen.getByText('30%')).toBeInTheDocument();
+      expect(screen.getByText('200+')).toBeInTheDocument();
+      expect(screen.getByText('15+')).toBeInTheDocument();
+      expect(screen.getByText('Redução de Custos')).toBeInTheDocument();
+      expect(screen.getByText('Projetos Realizados')).toBeInTheDocument();
+      expect(screen.getByText('Anos de Experiência')).toBeInTheDocument();
     });
 
     it('renders the process section title', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Nossa Metodologia')).toBeInTheDocument();
+      expect(screen.getByText('Nossa Metodologia de Planejamento')).toBeInTheDocument();
+      expect(
+        screen.getByText('Processo estruturado para garantir investimentos assertivos')
+      ).toBeInTheDocument();
     });
 
     it('renders all process steps', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      // Use getAllByText since there might be multiple instances in header/footer
       expect(screen.getAllByText('Diagnóstico')).toBeDefined();
-      // Use querySelector for unique process step
+      expect(screen.getByText('Análise')).toBeInTheDocument();
+      expect(screen.getAllByText('Planejamento').length).toBeGreaterThan(0);
+      expect(screen.getByText('Implementação')).toBeInTheDocument();
+      expect(screen.getByText('Revisão')).toBeInTheDocument();
       const processSection = document.querySelector('[class*="processSection"]');
       expect(processSection).toBeInTheDocument();
     });
@@ -86,13 +103,19 @@ describe('PlanejamentoTecnologicoPage', () => {
     it('renders the CTA section', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
       expect(
-        screen.getByText('Pronto para otimizar a gestão tecnológica da sua instituição?')
+        screen.getByText('Precisa Estruturar Seu Planejamento Tecnológico?')
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          'Nossa equipe está pronta para desenvolver um plano diretor customizado para as necessidades da sua instituição'
+        )
       ).toBeInTheDocument();
     });
 
-    it('renders the CTA button', () => {
+    it('renders the CTA buttons', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Falar com Especialista')).toBeInTheDocument();
+      expect(screen.getByText('Solicitar Consultoria')).toBeInTheDocument();
+      expect(screen.getByText('Voltar ao Início')).toBeInTheDocument();
     });
   });
 

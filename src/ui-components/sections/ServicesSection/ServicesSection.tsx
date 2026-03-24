@@ -12,10 +12,12 @@ export interface ServicesSectionCtaBanner {
 }
 
 export interface ServicesSectionProps {
+  sectionId?: string;
   title: string;
   description: string;
   services: ServiceCardProps[];
   ctaBanner?: ServicesSectionCtaBanner;
+  cardVariant?: ServiceCardProps['variant'];
 }
 
 /**
@@ -30,13 +32,15 @@ export interface ServicesSectionProps {
  * @param props - Services section data
  */
 export function ServicesSection({
+  sectionId,
   title,
   description,
   services,
   ctaBanner,
+  cardVariant = 'default',
 }: ServicesSectionProps): React.ReactElement {
   return (
-    <section className={styles.section} aria-labelledby="services-title">
+    <section id={sectionId} className={styles.section} aria-labelledby="services-title">
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 id="services-title" className={styles.title}>
@@ -47,7 +51,11 @@ export function ServicesSection({
 
         <div className={styles.grid}>
           {services.map((service, index) => (
-            <ServiceCard key={`${service.title}-${index}`} {...service} />
+            <ServiceCard
+              key={`${service.title}-${index}`}
+              {...service}
+              variant={service.variant ?? cardVariant}
+            />
           ))}
         </div>
 

@@ -1,11 +1,14 @@
 import React from 'react';
 
-import { ServiceCard, type ServiceCardProps } from '@ui-components/cards/ServiceCard';
 import { Header } from '@ui-components/layout/Header';
 import { Footer } from '@ui-components/sections/Footer';
 import { HeroSection } from '@ui-components/sections/HeroSection';
+import { ManagementSection } from '@ui-components/sections/ManagementSection';
+import { ServicesSection } from '@ui-components/sections/ServicesSection';
 
 import styles from './PlanejamentoTecnologico.module.scss';
+
+import type { ServiceCardProps } from '@ui-components/cards/ServiceCard';
 
 // Header data
 const headerData = {
@@ -29,40 +32,23 @@ const headerData = {
 
 // Hero data
 const heroData = {
-  badge: 'Planejamento Tecnológico',
-  title: 'Assessoria Especializada em Gestão Tecnológica',
-  highlightWord: 'Tecnológica',
+  badge: 'Serviço Especializado',
+  title: 'Planejamento Tecnológico',
   description:
-    'Oferecemos consultoria especializada para aquisição, dimensionamento e substituição tecnológica de equipamentos médico-hospitalares, garantindo investimentos assertivos e conformidade regulatória.',
-  primaryCta: {
-    label: 'Fale com Especialistas',
-    href: '#contato',
-  },
-  secondaryCta: {
-    label: 'Nossos Serviços',
-    href: '#servicos',
-  },
-  stats: [
-    { label: 'Anos de Experiência', value: '25+' },
-    { label: 'Projetos Concluídos', value: '500+' },
-    { label: 'Conformidade ANVISA', value: '100%' },
-  ],
-  backgroundImageUrl: '/images/hero-bg.jpg',
+    'Assessoria estratégica para aquisição, dimensionamento e implementação de tecnologias médicas alinhadas às necessidades e objetivos da sua instituição.',
 };
 
 // Services data
 const servicesData: ServiceCardProps[] = [
   {
-    title: 'Plano Diretor',
+    title: 'Plano Diretor de Tecnologia',
     description:
-      'Elaboração de plano diretor de tecnologia alinhado ao planejamento estratégico da instituição, com análise de ciclo de vida e horizonte de investimentos.',
+      'Planejamento estratégico de médio e longo prazo para renovação e aquisição de equipamentos médicos.',
     bullets: [
-      'Análise de demanda',
-      'Projeção de crescimento',
-      'Orçamento plurianual',
-      'Cronograma de substituição',
+      'Diagnóstico do parque atual',
+      'Projeção de investimentos 5-10 anos',
+      'Priorização baseada em criticidade',
     ],
-    href: '#contato',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
@@ -83,27 +69,19 @@ const servicesData: ServiceCardProps[] = [
     ),
   },
   {
-    title: 'Especificações Técnicas',
+    title: 'Dimensionamento de Equipamentos',
     description:
-      'Desenvolvimento de especificações técnicas detalhadas para aquisição de equipamentos, garantindo qualidade e adequação às necessidades clínicas.',
+      'Cálculo técnico da quantidade ideal de equipamentos por setor baseado em demanda, fluxo e protocolos.',
     bullets: [
-      'Termos de referência',
-      'Critérios de aceitação',
-      'Testes de performance',
-      'Análise técnica de propostas',
+      'Análise de fluxo e produção',
+      'Estudo de demanda assistencial',
+      'Otimização de recursos',
     ],
-    href: '#contato',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
         <path
-          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9 12l2 2 4-4"
+          d="M20 20l-4.2-4.2"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
@@ -113,46 +91,139 @@ const servicesData: ServiceCardProps[] = [
     ),
   },
   {
-    title: 'Comissionamento',
+    title: 'Especificação Técnica',
     description:
-      'Serviço de comissionamento completo para novos equipamentos e instalações, garantindo funcionamento adequado e segurança.',
+      'Elaboração de especificações técnicas detalhadas para processos licitatórios e aquisições diretas.',
     bullets: [
-      'Instalação supervisionada',
-      'Testes de aceitação',
-      'Treinamento de operadores',
-      'Documentação técnica',
+      'Requisitos técnicos obrigatórios',
+      'Conformidade regulatória',
+      'Análise de propostas técnicas',
     ],
-    href: '#contato',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
-          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          d="M12 8.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7Z"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+        <path
+          d="M19.4 15a1.7 1.7 0 0 0 .33 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.33 1.7 1.7 0 0 0-1.03 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.57 1.7 1.7 0 0 0-1.87.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.66 8.9a1.7 1.7 0 0 0-.33-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9.03 4.6h.14A1.7 1.7 0 0 0 10.7 3V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.55 1.7 1.7 0 0 0 1.87-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.14A1.7 1.7 0 0 0 21 10.7H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
   {
     title: 'Análise de Viabilidade',
     description:
-      'Estudos de viabilidade técnica e econômica para novos projetos e tecnologias, auxiliando na tomada de decisão.',
+      'Estudo técnico e financeiro para avaliação de viabilidade de projetos e aquisições de equipamentos.',
     bullets: [
       'Análise custo-benefício',
-      'ROI projetado',
-      'Riscos e oportunidades',
-      'Relatório técnico completo',
+      'Projeção de retorno de investimento',
+      'Impacto operacional e financeiro',
     ],
-    href: '#contato',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
-          d="M22 12h-4l-3 9L9 3l-3 9H2"
+          d="M5 15l4-4 3 3 7-7"
           stroke="currentColor"
           strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M16 7h3v3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Consultoria em Aquisições',
+    description:
+      'Assessoria completa em processos de aquisição, desde a especificação até a entrega e aceite técnico.',
+    bullets: [
+      'Suporte em licitações',
+      'Análise de propostas comerciais',
+      'Aceite técnico de equipamentos',
+    ],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M12 3C8.686 3 6 5.686 6 9c0 2.05 1.029 3.86 2.598 4.944c.53.367.902.908 1.036 1.537L9.8 16.5h4.4l.166-1.019c.134-.629.506-1.17 1.036-1.537A5.99 5.99 0 0 0 18 9c0-3.314-2.686-6-6-6Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.5 16.5h5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10 19h4"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10.5 21h3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Infraestrutura e Instalações',
+    description:
+      'Planejamento de infraestrutura física necessária para instalação de equipamentos médicos de alta complexidade.',
+    bullets: [
+      'Requisitos elétricos e hidráulicos',
+      'Adequação de ambientes',
+      'Blindagem e proteção radiológica',
+    ],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M3 21h18"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M5 21V9.5L12 4l7 5.5V21"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9 21v-5h6v5"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9 11h.01M15 11h.01"
+          stroke="currentColor"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -161,18 +232,35 @@ const servicesData: ServiceCardProps[] = [
   },
 ];
 
-// Benefits data
-const benefitsData = {
-  title: 'Por que escolher nosso Planejamento Tecnológico?',
-  items: [
+const managementData = {
+  title: 'Decisões Estratégicas Baseadas em Dados',
+  description:
+    'O planejamento tecnológico hospitalar é um processo crítico que requer análise técnica especializada, conhecimento de mercado e visão estratégica para garantir investimentos assertivos em equipamentos médicos.',
+  methodology:
+    'Nossa equipe multidisciplinar de engenheiros clínicos e consultores especializados atua desde a concepção do projeto até a implementação final, garantindo que cada decisão esteja alinhada com as necessidades assistenciais, capacidade financeira e objetivos estratégicos da instituição.',
+  whyChooseTitle: 'Benefícios do Planejamento',
+  whyChooseItems: [
+    { text: 'Redução de custos de aquisição e operação' },
+    { text: 'Alinhamento com objetivos estratégicos' },
+    { text: 'Otimização do investimento em tecnologia' },
+    { text: 'Previsibilidade orçamentária de médio/longo prazo' },
+  ],
+  metrics: [
     {
-      title: 'Especialização Técnica',
-      description:
-        'Equipe multidisciplinar com experiência em equipamentos de alta complexidade e conhecimento das normas técnicas vigentes.',
+      value: '30%',
+      label: 'Redução de Custos',
+      description: 'Economia média em aquisições com planejamento adequado',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path
-            d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+            d="M5 15l5-5 4 4 5-7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15 7h4v4"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
@@ -182,45 +270,33 @@ const benefitsData = {
       ),
     },
     {
-      title: 'Conformidade Regulatória',
-      description:
-        'Acompanhamento contínuo das normativas ANVISA e normas técnicas para garantir que todos os equipamentos estejam em conformidade.',
+      value: '200+',
+      label: 'Projetos Realizados',
+      description: 'Planos diretores e dimensionamentos implementados',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" />
+          <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+          <circle cx="12" cy="12" r="1" fill="currentColor" />
+        </svg>
+      ),
+    },
+    {
+      value: '15+',
+      label: 'Anos de Experiência',
+      description: 'Em planejamento e gestão de tecnologia médica',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path
-            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+            d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-        </svg>
-      ),
-    },
-    {
-      title: 'Otimização de Investimentos',
-      description:
-        'Análise detalhada do ciclo de vida dos equipamentos para planejamento financeiro assertivo e redução de custos operacionais.',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="10" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
           <path
-            d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      ),
-    },
-    {
-      title: 'Suporte Contínuo',
-      description:
-        'Acompanhamento permanente após a aquisição, garantindo performance ideal e suporte técnico especializado.',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path
-            d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"
+            d="M20 8v6M17 11h6"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
@@ -234,31 +310,45 @@ const benefitsData = {
 
 // Process data
 const processData = {
-  title: 'Nossa Metodologia',
-  subtitle: 'Seguimos um processo estruturado para garantir resultados assertivos em cada projeto.',
+  title: 'Nossa Metodologia de Planejamento',
+  subtitle: 'Processo estruturado para garantir investimentos assertivos',
   steps: [
     {
-      number: '01',
+      number: '1',
       title: 'Diagnóstico',
-      description: 'Análise detalhada do parque tecnológico atual e necessidades da instituição.',
+      description: 'Levantamento da situação atual e necessidades institucionais',
     },
     {
-      number: '02',
+      number: '2',
+      title: 'Análise',
+      description: 'Estudo técnico e financeiro das alternativas disponíveis',
+    },
+    {
+      number: '3',
       title: 'Planejamento',
-      description:
-        'Elaboração do plano diretor com cronograma, orçamento e priorização de investimentos.',
+      description: 'Elaboração do plano diretor com cronograma e orçamento',
     },
     {
-      number: '03',
-      title: 'Execução',
-      description: 'Acompanhamento da aquisição, instalação e comissionamento dos equipamentos.',
+      number: '4',
+      title: 'Implementação',
+      description: 'Suporte na execução do plano e aquisições',
     },
     {
-      number: '04',
-      title: 'Validação',
-      description: 'Testes de aceitação, treinamento e documentação técnica completa.',
+      number: '5',
+      title: 'Revisão',
+      description: 'Acompanhamento e atualização contínua do planejamento',
     },
   ],
+};
+
+const ctaData = {
+  title: 'Precisa Estruturar Seu Planejamento Tecnológico?',
+  description:
+    'Nossa equipe está pronta para desenvolver um plano diretor customizado para as necessidades da sua instituição',
+  primaryButtonLabel: 'Solicitar Consultoria',
+  primaryButtonHref: 'mailto:contato@praxis.com.br',
+  secondaryButtonLabel: 'Voltar ao Início',
+  secondaryButtonHref: '/',
 };
 
 // Footer data
@@ -340,73 +430,45 @@ export function PlanejamentoTecnologicoPage(): React.ReactElement {
         <HeroSection
           badge={heroData.badge}
           title={heroData.title}
-          highlightWord={heroData.highlightWord}
           description={heroData.description}
-          primaryCta={heroData.primaryCta}
-          secondaryCta={heroData.secondaryCta}
-          stats={heroData.stats}
-          backgroundImageUrl={heroData.backgroundImageUrl}
+          variant="compact"
         />
 
-        {/* Services Section */}
-        <section id="servicos" className={styles.servicesSection}>
-          <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.label}>Nossas Soluções</span>
-              <h2 className={styles.sectionTitle}>
-                Servicios Especializados em Planejamento Tecnológico
-              </h2>
-              <p className={styles.sectionDescription}>
-                Oferecemos um portfólio completo de serviços para garantir a gestão eficiente do
-                ciclo de vida dos equipamentos médico-hospitalares.
-              </p>
-            </div>
+        <ManagementSection
+          title={managementData.title}
+          description={managementData.description}
+          methodology={managementData.methodology}
+          whyChooseTitle={managementData.whyChooseTitle}
+          whyChooseItems={managementData.whyChooseItems}
+          metrics={managementData.metrics}
+        />
 
-            <div className={styles.servicesGrid}>
-              {servicesData.map((service, index) => (
-                <ServiceCard key={`${service.title}-${index}`} {...service} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className={styles.benefitsSection}>
-          <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.label}>Diferenciais</span>
-              <h2 className={styles.sectionTitle}>{benefitsData.title}</h2>
-            </div>
-
-            <div className={styles.benefitsGrid}>
-              {benefitsData.items.map((benefit, index) => (
-                <div key={`benefit-${index}`} className={styles.benefitCard}>
-                  <div className={styles.benefitIcon}>{benefit.icon}</div>
-                  <h3 className={styles.benefitTitle}>{benefit.title}</h3>
-                  <p className={styles.benefitDescription}>{benefit.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ServicesSection
+          sectionId="servicos"
+          title="Nossos Serviços de Planejamento"
+          description="Soluções completas para estruturar seu parque tecnológico"
+          services={servicesData}
+          cardVariant="planning"
+        />
 
         {/* Process Section */}
         <section className={styles.processSection}>
           <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <span className={styles.label}>Metodologia</span>
-              <h2 className={styles.sectionTitle}>{processData.title}</h2>
-              <p className={styles.sectionDescription}>{processData.subtitle}</p>
-            </div>
+            <div className={styles.processPanel}>
+              <div className={styles.processHeader}>
+                <h2 className={styles.processTitle}>{processData.title}</h2>
+                <p className={styles.processSubtitle}>{processData.subtitle}</p>
+              </div>
 
-            <div className={styles.processGrid}>
-              {processData.steps.map((step, index) => (
-                <div key={`step-${index}`} className={styles.processStep}>
-                  <span className={styles.stepNumber}>{step.number}</span>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepDescription}>{step.description}</p>
-                </div>
-              ))}
+              <div className={styles.processGrid}>
+                {processData.steps.map((step, index) => (
+                  <div key={`step-${index}`} className={styles.processStep}>
+                    <span className={styles.stepNumber}>{step.number}</span>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDescription}>{step.description}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -415,32 +477,40 @@ export function PlanejamentoTecnologicoPage(): React.ReactElement {
         <section id="contato" className={styles.ctaSection}>
           <div className={styles.container}>
             <div className={styles.ctaContent}>
-              <h2 className={styles.ctaTitle}>
-                Pronto para otimizar a gestão tecnológica da sua instituição?
-              </h2>
-              <p className={styles.ctaText}>
-                Nossa equipe está pronta para desenvolver um projeto personalizado para suas
-                necessidades. Entre em contato conosco.
-              </p>
-              <a href="mailto:contato@praxis.com.br" className={styles.ctaButton}>
-                Falar com Especialista
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
+              <h2 className={styles.ctaTitle}>{ctaData.title}</h2>
+              <p className={styles.ctaText}>{ctaData.description}</p>
+
+              <div className={styles.ctaActions}>
+                <a
+                  href={ctaData.primaryButtonHref}
+                  className={`${styles.ctaButton} ${styles.ctaPrimary}`}
                 >
-                  <path
-                    d="M4 10h12M12 6l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
+                  {ctaData.primaryButtonLabel}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 10h12M12 6l4 4-4 4"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  href={ctaData.secondaryButtonHref}
+                  className={`${styles.ctaButton} ${styles.ctaSecondary}`}
+                >
+                  {ctaData.secondaryButtonLabel}
+                </a>
+              </div>
             </div>
           </div>
         </section>

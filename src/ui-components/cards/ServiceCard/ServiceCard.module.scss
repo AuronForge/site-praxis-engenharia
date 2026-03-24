@@ -9,6 +9,10 @@
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
 }
 
+.default {
+  min-height: 100%;
+}
+
 .iconArea {
   width: 56px;
   height: 56px;
@@ -68,6 +72,57 @@
   }
 }
 
+.planning {
+  gap: 14px;
+  padding: 26px 24px 24px;
+  border-color: #dfe7f3;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+
+  .iconArea {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #dbeafe;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .title {
+    font-size: 19px;
+    line-height: 1.35;
+    color: #1f2937;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #667085;
+  }
+
+  .bullets {
+    gap: 10px;
+    margin-top: 2px;
+  }
+
+  .bulletItem {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #667085;
+    padding-left: 16px;
+
+    &::before {
+      top: 6px;
+      width: 5px;
+      height: 5px;
+      background-color: #2563eb;
+    }
+  }
+}
+
 .link {
   margin-top: auto;
   align-self: flex-end;
@@ -104,5 +159,13 @@
 
   .title {
     font-size: 20px;
+  }
+
+  .planning {
+    padding: 22px 20px;
+
+    .title {
+      font-size: 18px;
+    }
   }
 }

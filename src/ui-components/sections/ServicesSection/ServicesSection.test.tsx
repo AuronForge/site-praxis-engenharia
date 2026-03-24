@@ -6,6 +6,8 @@ import { ServicesSection } from './ServicesSection';
 import type { ServicesSectionProps } from './ServicesSection';
 
 const mockProps: ServicesSectionProps = {
+  title: 'Nossos Serviços',
+  description: 'Descrição da seção',
   services: [
     {
       title: 'Gestão de Equipamentos',
@@ -51,5 +53,11 @@ describe('ServicesSection', () => {
 
     const buttonLink = screen.getByRole('link', { name: 'Solicitar Proposta' });
     expect(buttonLink).toHaveAttribute('href', '#proposta');
+  });
+
+  it('renders section id when provided', () => {
+    const { container } = renderWithRouter(<ServicesSection {...mockProps} sectionId="servicos" />);
+
+    expect(container.querySelector('#servicos')).toBeInTheDocument();
   });
 });
