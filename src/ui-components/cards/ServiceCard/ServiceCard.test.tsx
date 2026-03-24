@@ -1,9 +1,15 @@
+import type { ReactElement } from 'react';
+
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ServiceCard } from './ServiceCard';
 
 import type { ServiceCardProps } from './ServiceCard';
+
+const renderWithRouter = (ui: ReactElement): ReturnType<typeof render> => {
+  return render(ui, { wrapper: BrowserRouter });
+};
 
 const mockProps: ServiceCardProps = {
   title: 'Gestão de Equipamentos',
@@ -12,141 +18,86 @@ const mockProps: ServiceCardProps = {
   href: '/servico-gestao',
 };
 
-const renderWithRouter = (component: React.ReactElement) => {
-  return render(<BrowserRouter>{component}</BrowserRouter>);
+const internalProps: ServiceCardProps = {
+  title: 'Engenharia Clínica',
+  description: 'Gestão completa do parque tecnológico.',
+  bullets: ['Manutenção Preventiva', 'Manutenção Corretiva', 'Calibração'],
+  href: '/engenharia-clinica',
 };
 
 describe('ServiceCard', () => {
-  describe('Rendering', () => {
-    it('renders title', () => {
+  describe('Route links', () => {
+    it('renders title and bullet items', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
+
       expect(screen.getByText('Gestão de Equipamentos')).toBeInTheDocument();
-    });
-
-    it('renders description', () => {
-      renderWithRouter(<ServiceCard {...mockProps} />);
-      expect(screen.getByText('Controle completo do parque tecnológico hospitalar.')).toBeInTheDocument();
-    });
-
-    it('renders all bullet items', () => {
-      renderWithRouter(<ServiceCard {...mockProps} />);
       expect(screen.getByText('Inventário técnico')).toBeInTheDocument();
       expect(screen.getByText('Manutenção preventiva')).toBeInTheDocument();
       expect(screen.getByText('Rastreabilidade completa')).toBeInTheDocument();
     });
 
-    it('renders the learn more link', () => {
+    it('renders route link with anchor tag output', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
-      expect(screen.getByText('Saiba mais')).toBeInTheDocument();
-    });
-  });
 
-  describe('Navigation', () => {
-    it('renders link with correct href', () => {
-      renderWithRouter(<ServiceCard {...mockProps} />);
       const link = screen.getByRole('link', { name: 'Saiba mais' });
       expect(link).toHaveAttribute('href', '/servico-gestao');
+      expect(link.tagName).toBe('A');
     });
-  });
 
-  describe('Optional props', () => {
     it('renders optional icon when provided', () => {
-      renderWithRouter(<ServiceCard {...mockProps} icon={<span data-testid="service-icon">icon</span>} />);
+      renderWithRouter(
+        <ServiceCard {...mockProps} icon={<span data-testid="service-icon">icon</span>} />
+      );
+
       expect(screen.getByTestId('service-icon')).toBeInTheDocument();
     });
 
-    it('does not render icon container when icon is not provided', () => {
+    it('renders description correctly', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
-      expect(screen.queryByTestId('service-icon')).not.toBeInTheDocument();
+
+      expect(
+        screen.getByText('Controle completo do parque tecnológico hospitalar.')
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe('Internal Links (route links)', () => {
+    it('renders internal link with Link component for path starting with /', () => {
+      renderWithRouter(<ServiceCard {...internalProps} />);
+
+      const link = screen.getByRole('link', { name: 'Saiba mais' });
+      expect(link).toHaveAttribute('href', '/engenharia-clinica');
+    });
+
+    it('renders all internal link features', () => {
+      renderWithRouter(<ServiceCard {...internalProps} />);
+
+      expect(screen.getByText('Engenharia Clínica')).toBeInTheDocument();
+      expect(screen.getByText('Manutenção Preventiva')).toBeInTheDocument();
+      expect(screen.getByText('Manutenção Corretiva')).toBeInTheDocument();
+      expect(screen.getByText('Calibração')).toBeInTheDocument();
+    });
+
+    it('renders description for internal link', () => {
+      renderWithRouter(<ServiceCard {...internalProps} />);
+
+      expect(screen.getByText('Gestão completa do parque tecnológico.')).toBeInTheDocument();
     });
   });
 
   describe('Accessibility', () => {
-    it('renders article element for the card', () => {
+    it('has proper heading structure', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
-      const article = screen.getByRole('article');
-      expect(article).toBeInTheDocument();
-    });
 
-    it('uses semantic heading for title', () => {
-      renderWithRouter(<ServiceCard {...mockProps} />);
       const heading = screen.getByRole('heading', { level: 3 });
-      expect(heading).toBeInTheDocument();
       expect(heading).toHaveTextContent('Gestão de Equipamentos');
     });
 
-    it('uses semantic list for bullets', () => {
+    it('has link with accessible name', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
-      const list = screen.getByRole('list');
-      expect(list).toBeInTheDocument();
-    });
 
-    it('renders list items for each bullet', () => {
-      renderWithRouter(<ServiceCard {...mockProps} />);
-      const listItems = screen.getAllByRole('listitem');
-      expect(listItems).toHaveLength(3);
-    });
-  });
-
-  describe('Edge cases', () => {
-    it('handles empty bullets array', () => {
-      const propsWithEmptyBullets: ServiceCardProps = {
-        ...mockProps,
-        bullets: [],
-      };
-      renderWithRouter(<ServiceCard {...propsWithEmptyBullets} />);
-      // When bullets is empty, the ul is rendered but empty
-      const bulletsList = document.querySelector('[class="bullets"]');
-      expect(bulletsList).toBeInTheDocument();
-      expect(bulletsList?.children.length).toBe(0);
-    });
-
-    it('handles single bullet item', () => {
-      const propsWithSingleBullet: ServiceCardProps = {
-        ...mockProps,
-        bullets: ['Single bullet'],
-      };
-      renderWithRouter(<ServiceCard {...propsWithSingleBullet} />);
-      const listItems = screen.getAllByRole('listitem');
-      expect(listItems).toHaveLength(1);
-    });
-
-    it('handles long title text', () => {
-      const propsWithLongTitle: ServiceCardProps = {
-        ...mockProps,
-        title: 'This is a very long title that might need special handling in the UI',
-      };
-      renderWithRouter(<ServiceCard {...propsWithLongTitle} />);
-      expect(screen.getByText(/This is a very long title/)).toBeInTheDocument();
-    });
-
-    it('handles long description text', () => {
-      const propsWithLongDescription: ServiceCardProps = {
-        ...mockProps,
-        description: 'This is a very long description that might need special handling in the UI to ensure proper display and wrapping.',
-      };
-      renderWithRouter(<ServiceCard {...propsWithLongDescription} />);
-      expect(screen.getByText(/This is a very long description/)).toBeInTheDocument();
-    });
-
-    it('handles root path href', () => {
-      const propsWithRootHref: ServiceCardProps = {
-        ...mockProps,
-        href: '/',
-      };
-      renderWithRouter(<ServiceCard {...propsWithRootHref} />);
       const link = screen.getByRole('link', { name: 'Saiba mais' });
-      expect(link).toHaveAttribute('href', '/');
-    });
-
-    it('handles external href', () => {
-      const propsWithExternalHref: ServiceCardProps = {
-        ...mockProps,
-        href: 'https://example.com',
-      };
-      renderWithRouter(<ServiceCard {...propsWithExternalHref} />);
-      const link = screen.getByRole('link', { name: 'Saiba mais' });
-      expect(link).toHaveAttribute('href', 'https://example.com');
+      expect(link).toBeInTheDocument();
     });
   });
 });

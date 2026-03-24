@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 
 import styles from './ServiceCard.module.scss';
@@ -7,7 +8,7 @@ export interface ServiceCardProps {
   title: string;
   description: string;
   bullets: string[];
-  href: string;
+  href?: string;
   icon?: React.ReactNode;
 }
 

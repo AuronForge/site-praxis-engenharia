@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+
 import { PlanejamentoTecnologicoPage } from './PlanejamentoTecnologicoPage';
 
-const renderWithRouter = (component: React.ReactElement) => {
+const renderWithRouter = (component: Parameters<typeof render>[0]): ReturnType<typeof render> => {
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
@@ -41,7 +41,9 @@ describe('PlanejamentoTecnologicoPage', () => {
 
     it('renders the services section title', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Servicios Especializados em Planejamento Tecnológico')).toBeInTheDocument();
+      expect(
+        screen.getByText('Servicios Especializados em Planejamento Tecnológico')
+      ).toBeInTheDocument();
     });
 
     it('renders all service cards', () => {
@@ -54,7 +56,9 @@ describe('PlanejamentoTecnologicoPage', () => {
 
     it('renders the benefits section title', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Por que escolher nosso Planejamento Tecnológico?')).toBeInTheDocument();
+      expect(
+        screen.getByText('Por que escolher nosso Planejamento Tecnológico?')
+      ).toBeInTheDocument();
     });
 
     it('renders all benefit cards', () => {
@@ -81,7 +85,9 @@ describe('PlanejamentoTecnologicoPage', () => {
 
     it('renders the CTA section', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('Pronto para otimizar a gestão tecnológica da sua instituição?')).toBeInTheDocument();
+      expect(
+        screen.getByText('Pronto para otimizar a gestão tecnológica da sua instituição?')
+      ).toBeInTheDocument();
     });
 
     it('renders the CTA button', () => {
@@ -131,7 +137,9 @@ describe('PlanejamentoTecnologicoPage', () => {
   describe('Footer', () => {
     it('renders the footer with copyright', () => {
       renderWithRouter(<PlanejamentoTecnologicoPage />);
-      expect(screen.getByText('© 2026 Praxis Engenharia Clínica. Todos os direitos reservados.')).toBeInTheDocument();
+      expect(
+        screen.getByText('© 2026 Praxis Engenharia Clínica. Todos os direitos reservados.')
+      ).toBeInTheDocument();
     });
 
     it('renders footer section titles', () => {

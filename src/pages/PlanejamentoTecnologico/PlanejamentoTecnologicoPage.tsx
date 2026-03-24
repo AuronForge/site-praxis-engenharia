@@ -1,9 +1,9 @@
 import React from 'react';
 
+import { ServiceCard, type ServiceCardProps } from '@ui-components/cards/ServiceCard';
 import { Header } from '@ui-components/layout/Header';
 import { Footer } from '@ui-components/sections/Footer';
 import { HeroSection } from '@ui-components/sections/HeroSection';
-import { ServiceCard, type ServiceCardProps } from '@ui-components/cards/ServiceCard';
 
 import styles from './PlanejamentoTecnologico.module.scss';
 
@@ -64,12 +64,7 @@ const servicesData: ServiceCardProps[] = [
     ],
     href: '#contato',
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
           stroke="currentColor"
@@ -99,12 +94,7 @@ const servicesData: ServiceCardProps[] = [
     ],
     href: '#contato',
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
           stroke="currentColor"
@@ -134,12 +124,7 @@ const servicesData: ServiceCardProps[] = [
     ],
     href: '#contato',
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
           d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
           stroke="currentColor"
@@ -163,12 +148,7 @@ const servicesData: ServiceCardProps[] = [
     ],
     href: '#contato',
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
           d="M22 12h-4l-3 9L9 3l-3 9H2"
           stroke="currentColor"
@@ -190,12 +170,7 @@ const benefitsData = {
       description:
         'Equipe multidisciplinar com experiência em equipamentos de alta complexidade e conhecimento das normas técnicas vigentes.',
       icon: (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path
             d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
             stroke="currentColor"
@@ -211,12 +186,7 @@ const benefitsData = {
       description:
         'Acompanhamento contínuo das normativas ANVISA e normas técnicas para garantir que todos os equipamentos estejam em conformidade.',
       icon: (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path
             d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
             stroke="currentColor"
@@ -232,12 +202,7 @@ const benefitsData = {
       description:
         'Análise detalhada do ciclo de vida dos equipamentos para planejamento financeiro assertivo e redução de custos operacionais.',
       icon: (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path
             d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"
             stroke="currentColor"
@@ -253,12 +218,7 @@ const benefitsData = {
       description:
         'Acompanhamento permanente após a aquisição, garantindo performance ideal e suporte técnico especializado.',
       icon: (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path
             d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"
             stroke="currentColor"
@@ -275,14 +235,12 @@ const benefitsData = {
 // Process data
 const processData = {
   title: 'Nossa Metodologia',
-  subtitle:
-    'Seguimos um processo estruturado para garantir resultados assertivos em cada projeto.',
+  subtitle: 'Seguimos um processo estruturado para garantir resultados assertivos em cada projeto.',
   steps: [
     {
       number: '01',
       title: 'Diagnóstico',
-      description:
-        'Análise detalhada do parque tecnológico atual e necessidades da instituição.',
+      description: 'Análise detalhada do parque tecnológico atual e necessidades da instituição.',
     },
     {
       number: '02',
@@ -293,14 +251,12 @@ const processData = {
     {
       number: '03',
       title: 'Execução',
-      description:
-        'Acompanhamento da aquisição, instalação e comissionamento dos equipamentos.',
+      description: 'Acompanhamento da aquisição, instalação e comissionamento dos equipamentos.',
     },
     {
       number: '04',
       title: 'Validação',
-      description:
-        'Testes de aceitação, treinamento e documentação técnica completa.',
+      description: 'Testes de aceitação, treinamento e documentação técnica completa.',
     },
   ],
 };
@@ -401,8 +357,8 @@ export function PlanejamentoTecnologicoPage(): React.ReactElement {
                 Servicios Especializados em Planejamento Tecnológico
               </h2>
               <p className={styles.sectionDescription}>
-                Oferecemos um portfólio completo de serviços para garantir a gestão eficiente
-                do ciclo de vida dos equipamentos médico-hospitalares.
+                Oferecemos um portfólio completo de serviços para garantir a gestão eficiente do
+                ciclo de vida dos equipamentos médico-hospitalares.
               </p>
             </div>
 
@@ -463,8 +419,8 @@ export function PlanejamentoTecnologicoPage(): React.ReactElement {
                 Pronto para otimizar a gestão tecnológica da sua instituição?
               </h2>
               <p className={styles.ctaText}>
-                Nossa equipe está pronta para desenvolver um projeto personalizado para
-                suas necessidades. Entre em contato conosco.
+                Nossa equipe está pronta para desenvolver um projeto personalizado para suas
+                necessidades. Entre em contato conosco.
               </p>
               <a href="mailto:contato@praxis.com.br" className={styles.ctaButton}>
                 Falar com Especialista

@@ -34,7 +34,7 @@ const mockProps: ServicesSectionProps = {
   },
 };
 
-const renderWithRouter = (component: React.ReactElement) => {
+const renderWithRouter = (component: Parameters<typeof render>[0]): ReturnType<typeof render> => {
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
