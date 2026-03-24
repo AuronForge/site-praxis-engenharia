@@ -37,21 +37,26 @@ export interface HeroSectionProps {
    */
   description: string;
   /**
-   * Primary CTA button
+   * Primary CTA button (optional)
    */
-  primaryCta: CTAButton;
+  primaryCta?: CTAButton;
   /**
-   * Secondary CTA button
+   * Secondary CTA button (optional)
    */
-  secondaryCta: CTAButton;
+  secondaryCta?: CTAButton;
   /**
-   * Statistics/metrics to display
+   * Statistics/metrics to display (optional)
    */
-  stats: Stat[];
+  stats?: Stat[];
   /**
    * Background image URL
    */
   backgroundImageUrl?: string;
+  /**
+   * Hero variant - controls height
+   * @default 'full'
+   */
+  variant?: 'full' | 'compact';
 }
 
 /**
@@ -79,6 +84,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   secondaryCta,
   stats,
   backgroundImageUrl,
+  variant = 'full',
 }): React.ReactElement => {
   /**
    * Renders the title with optional highlighted word
@@ -100,13 +106,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section
-      className={styles.hero}
+      className={variant === 'compact' ? `${styles.hero} ${styles.heroCompact}` : styles.hero}
       style={{
         backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
       }}
     >
       {/* Dark overlay gradient */}
-      <div className={styles.overlay} />
+      <div className={backgroundImageUrl ? styles.overlay : styles.overlaySolid} />
 
       <div className={styles.container}>
         <div className={styles.content}>
@@ -115,21 +121,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className={styles.badge} role="status">
               <svg
                 className={styles.badgeIcon}
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
-                <path
-                  d="M5 8.5L7 10.5L11 6.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.028 7.028 0 0 0-1.63-.94l-.36-2.54A.488.488 0 0 0 13.9 2h-3.8a.488.488 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.55-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.71 8.48a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.65-.06.94s.02.63.06.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.13.22.39.31.6.22l2.39-.96c.5.39 1.05.71 1.63.94l.36 2.54c.05.24.25.42.49.42h3.8c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.55 1.63-.94l2.39.96c.22.09.47 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58ZM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7Z" />
               </svg>
               {badge}
             </div>
@@ -145,25 +144,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <p className={styles.description}>{description}</p>
 
           {/* CTAs */}
-          <div className={styles.ctas}>
-            <a
-              href={primaryCta.href}
-              className={`${styles.cta} ${styles.ctaPrimary}`}
-              aria-label={primaryCta.label}
-            >
-              {primaryCta.label}
-            </a>
-            <a
-              href={secondaryCta.href}
-              className={`${styles.cta} ${styles.ctaSecondary}`}
-              aria-label={secondaryCta.label}
-            >
-              {secondaryCta.label}
-            </a>
-          </div>
+          {(primaryCta ?? secondaryCta) && (
+            <div className={styles.ctas}>
+              {primaryCta && (
+                <a
+                  href={primaryCta.href}
+                  className={`${styles.cta} ${styles.ctaPrimary}`}
+                  aria-label={primaryCta.label}
+                >
+                  {primaryCta.label}
+                </a>
+              )}
+              {secondaryCta && (
+                <a
+                  href={secondaryCta.href}
+                  className={`${styles.cta} ${styles.ctaSecondary}`}
+                  aria-label={secondaryCta.label}
+                >
+                  {secondaryCta.label}
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Stats */}
-          {stats.length > 0 && (
+          {stats && stats.length > 0 && (
             <div className={styles.stats}>
               <StatsRow items={stats} variant="light" />
             </div>

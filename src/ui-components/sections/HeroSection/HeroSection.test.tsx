@@ -177,4 +177,52 @@ describe('HeroSection', () => {
       expect(screen.getByText('Anos')).toBeInTheDocument();
     });
   });
+
+  describe('Simple Variant', () => {
+    it('should render without CTAs when not provided', () => {
+      const simpleProps = {
+        title: 'Engenharia Clínica',
+        description: 'Gestão completa e especializada',
+      };
+      render(<HeroSection {...simpleProps} />);
+
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Engenharia Clínica');
+      expect(screen.getByText('Gestão completa e especializada')).toBeInTheDocument();
+      expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    });
+
+    it('should render without stats when not provided', () => {
+      const simpleProps = {
+        title: 'Test Title',
+        description: 'Test Description',
+      };
+      const { container } = render(<HeroSection {...simpleProps} />);
+
+      // Stats section should not be rendered at all
+      expect(container.querySelector('.stats')).not.toBeInTheDocument();
+    });
+
+    it('should render with only primaryCta', () => {
+      const propsWithPrimaryCta = {
+        title: 'Test',
+        description: 'Test',
+        primaryCta: { label: 'Primary', href: '#primary' },
+      };
+      render(<HeroSection {...propsWithPrimaryCta} />);
+
+      expect(screen.getByRole('link', { name: 'Primary' })).toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Secondary' })).not.toBeInTheDocument();
+    });
+
+    it('should render with only secondaryCta', () => {
+      const propsWithSecondaryCta = {
+        title: 'Test',
+        description: 'Test',
+        secondaryCta: { label: 'Secondary', href: '#secondary' },
+      };
+      render(<HeroSection {...propsWithSecondaryCta} />);
+
+      expect(screen.getByRole('link', { name: 'Secondary' })).toBeInTheDocument();
+    });
+  });
 });

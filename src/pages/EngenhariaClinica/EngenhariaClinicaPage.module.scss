@@ -1,0 +1,718 @@
+// EngenhariaClinicaPage Styles - Based on Praxis Design System
+
+// Colors from design system
+$primary-700: #1e3a8a;
+$primary-600: #1e40af;
+$primary-500: #3b82f6;
+$primary-50: #eff6ff;
+$gray-900: #121826;
+$gray-800: #1f2937;
+$gray-700: #374151;
+$gray-600: #4b5563;
+$gray-500: #6b7280;
+$gray-400: #9ca3af;
+$gray-300: #d1d5db;
+$gray-200: #e5e7eb;
+$gray-100: #f3f4f6;
+$gray-50: #f9fafb;
+$white: #fff;
+$success: #10b981;
+
+// Typography from design system (Inter font)
+$font-display: 48px;
+$font-h1: 56px;
+$font-h2: 40px;
+$font-h3: 32px;
+$font-h4: 24px;
+$font-body-large: 20px;
+$font-body-medium: 18px;
+$font-body: 16px;
+$font-body-small: 14px;
+$line-height-display: 1.15;
+$line-height-h2: 1.2;
+$line-height-h3: 1.3;
+$line-height-body: 1.6;
+$line-height-body-large: 1.7;
+
+// Spacing scale
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+$spacing-4xl: 40px;
+$spacing-5xl: 48px;
+$spacing-6xl: 64px;
+$spacing-7xl: 80px;
+$spacing-8xl: 96px;
+
+// Border radius
+$radius-small: 4px;
+$radius-medium: 8px;
+$radius-large: 12px;
+$radius-xl: 16px;
+$radius-2xl: 24px;
+$radius-full: 9999px;
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1280px;
+
+// Transitions
+$transition-speed: 0.3s;
+$transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Main container
+.main {
+  min-height: 100vh;
+}
+
+// Hero Section
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background-color: $gray-900;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(18, 24, 38, 0.95) 0%, rgba(30, 58, 138, 0.9) 100%);
+  z-index: 1;
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 2;
+  max-width: $breakpoint-desktop;
+  width: 100%;
+  margin: 0 auto;
+  padding: $spacing-7xl $spacing-5xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-6xl $spacing-4xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-5xl $spacing-2xl;
+  }
+}
+
+.heroContent {
+  max-width: 850px;
+  color: $white;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background-color: rgba(239, 246, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $radius-full;
+  font-size: $font-body-small;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: $primary-50;
+  margin-bottom: $spacing-3xl;
+  backdrop-filter: blur(8px);
+  transition: all $transition-speed $transition-ease;
+
+  &:hover {
+    background-color: rgba(239, 246, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.heroTitle {
+  font-size: $font-h1;
+  font-weight: 700;
+  line-height: $line-height-display;
+  margin: 0 0 $spacing-3xl;
+  color: $white;
+  max-width: 800px;
+
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 44px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+}
+
+.heroDescription {
+  font-size: $font-body-large;
+  font-weight: 400;
+  line-height: $line-height-body-large;
+  margin: 0 0 $spacing-5xl;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 750px;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-body-medium;
+    margin-bottom: $spacing-4xl;
+  }
+}
+
+.heroStats {
+  display: flex;
+  gap: $spacing-5xl;
+  flex-wrap: wrap;
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: $spacing-3xl;
+    flex-direction: column;
+  }
+}
+
+.heroStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroStatValue {
+  font-size: $font-h3;
+  font-weight: 700;
+  color: $white;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-h4;
+  }
+}
+
+.heroStatLabel {
+  font-size: $font-body-small;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: $spacing-xs;
+}
+
+// Container
+.container {
+  max-width: 1216px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $spacing-5xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0 $spacing-3xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// Section Header
+.sectionHeader {
+  text-align: center;
+  margin-bottom: $spacing-5xl;
+}
+
+.sectionTitle {
+  font-size: $font-h2;
+  font-weight: 700;
+  line-height: $line-height-h2;
+  color: $gray-900;
+  margin: 0 0 $spacing-lg;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 32px;
+  }
+}
+
+.sectionDescription {
+  font-size: $font-body-medium;
+  line-height: $line-height-body;
+  color: $gray-600;
+  max-width: 700px;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: $font-body;
+  }
+}
+
+// Services Section
+.services {
+  padding: $spacing-4xl 0;
+  background: $white;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-5xl 0;
+  }
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-3xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+.serviceCard {
+  border-radius: $radius-xl;
+  background: $gray-50;
+  border: 1px solid $gray-200;
+  transition: all $transition-speed $transition-ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-color: $gray-200;
+  }
+}
+
+.serviceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: $radius-large;
+  background: linear-gradient(135deg, $primary-600 0%, $primary-700 100%);
+  color: $white;
+  margin-bottom: $spacing-2xl;
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.serviceTitle {
+  font-size: $font-h4;
+  font-weight: 700;
+  line-height: $line-height-h3;
+  color: $gray-900;
+  margin: 0 0 $spacing-lg;
+}
+
+.serviceDescription {
+  font-size: $font-body;
+  line-height: $line-height-body;
+  color: $gray-600;
+  margin: 0 0 $spacing-2xl;
+}
+
+.serviceFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.serviceFeature {
+  position: relative;
+  padding-left: $spacing-2xl;
+  font-size: $font-body-small;
+  color: $gray-700;
+  line-height: 1.8;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $primary-500;
+  }
+}
+
+// Process Section
+.process {
+  padding: $spacing-4xl 0 $spacing-4xl;
+  background: $white;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-4xl 0 $spacing-4xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-3xl 0 $spacing-3xl;
+  }
+}
+
+.processContainer {
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0;
+  }
+}
+
+.processPanel {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 46px 0 30px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  border: 1px solid #edf3ff;
+  border-radius: 24px;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 42px 0 32px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 38px 0 30px;
+    border-radius: 20px;
+  }
+}
+
+.processHeader {
+  text-align: center;
+  margin-bottom: 44px;
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-bottom: 36px;
+  }
+}
+
+.processTitle {
+  margin: 0 0 10px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $gray-900;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 32px;
+  }
+}
+
+.processDescription {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 21px;
+  line-height: 1.5;
+  color: #667085;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 18px;
+  }
+}
+
+.processSteps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+  align-items: start;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-3xl;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+.processStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  font-size: 20px;
+  font-weight: 700;
+  color: $white;
+  background: linear-gradient(180deg, #2f6df6 0%, #1f5eea 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 18px rgba(47, 109, 246, 0.22);
+  margin-bottom: 18px;
+}
+
+.stepTitle {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: $gray-900;
+  margin: 0 0 10px;
+}
+
+.stepDescription {
+  max-width: 240px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #667085;
+}
+
+// Benefits Section
+.benefits {
+  padding: $spacing-4xl 0;
+  background: $white;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: $spacing-6xl 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-5xl 0;
+  }
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-3xl;
+
+  @media (max-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefitCard {
+  padding: $spacing-3xl;
+  background: $gray-50;
+  border-radius: $radius-xl;
+  text-align: center;
+  transition: all $transition-speed $transition-ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.benefitIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto $spacing-2xl;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $primary-50 0%, rgba(239, 246, 255, 0.5) 100%);
+  color: $primary-600;
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.benefitTitle {
+  font-size: $font-body-medium;
+  font-weight: 700;
+  line-height: $line-height-h3;
+  color: $gray-900;
+  margin: 0 0 $spacing-md;
+}
+
+.benefitDescription {
+  font-size: $font-body-small;
+  line-height: $line-height-body;
+  color: $gray-600;
+  margin: 0;
+}
+
+// CTA Section
+.cta {
+  padding: 24px 0 64px;
+  background: $white;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 24px 0 56px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 20px 0 48px;
+  }
+}
+
+.ctaContainer {
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.ctaPanel {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 0 32px;
+  background: linear-gradient(90deg, #2f6df6 0%, #2545bb 100%);
+  border-radius: 18px;
+  box-shadow: none;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 24px 0;
+    border-radius: 16px;
+  }
+}
+
+.ctaContent {
+  text-align: center;
+  color: $white;
+}
+
+.ctaTitle {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $white;
+  margin: 0 0 10px;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 22px;
+  }
+}
+
+.ctaDescription {
+  max-width: 520px;
+  margin: 0 auto 24px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.88);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $breakpoint-mobile) {
+    max-width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}
+
+.ctaActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
+}
+
+.ctaButtonPrimary,
+.ctaButtonSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 144px;
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all $transition-speed $transition-ease;
+  border: 1px solid transparent;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.ctaButtonPrimary {
+  gap: 6px;
+  background: $white;
+  color: #2f6df6;
+  box-shadow: 0 10px 22px rgba(18, 24, 38, 0.16);
+
+  &:hover {
+    background: #f8fbff;
+    transform: translateY(-1px);
+  }
+
+  svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.ctaButtonSecondary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.96);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .ctaButtonPrimary,
+  .ctaButtonSecondary {
+    border-width: 3px;
+    font-weight: 700;
+  }
+
+  .heroBadge {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .serviceCard,
+  .processStep,
+  .benefitCard,
+  .ctaButtonPrimary,
+  .ctaButtonSecondary,
+  .heroBadge {
+    transition: none;
+  }
+
+  .serviceCard:hover,
+  .processStep:hover,
+  .benefitCard:hover,
+  .ctaButtonPrimary:hover,
+  .ctaButtonSecondary:hover {
+    transform: none;
+  }
+}
