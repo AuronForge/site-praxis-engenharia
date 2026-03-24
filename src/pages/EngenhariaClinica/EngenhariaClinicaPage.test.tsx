@@ -1,11 +1,20 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 
 import { EngenhariaClinicaPage } from './EngenhariaClinicaPage';
+
+const renderWithRouter = (): ReturnType<typeof render> => {
+  return render(
+    <MemoryRouter>
+      <EngenhariaClinicaPage />
+    </MemoryRouter>
+  );
+};
 
 describe('EngenhariaClinicaPage', () => {
   describe('Hero Section', () => {
     beforeEach(() => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
     });
 
     it('renders hero badge', () => {
@@ -27,7 +36,7 @@ describe('EngenhariaClinicaPage', () => {
 
   describe('Services Section', () => {
     beforeEach(() => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
     });
 
     it('renders services section title', () => {
@@ -53,7 +62,7 @@ describe('EngenhariaClinicaPage', () => {
 
   describe('Process Section', () => {
     beforeEach(() => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
     });
 
     it('renders process section title', () => {
@@ -74,7 +83,7 @@ describe('EngenhariaClinicaPage', () => {
 
   describe('CTA Section', () => {
     beforeEach(() => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
     });
 
     it('renders CTA title', () => {
@@ -94,7 +103,7 @@ describe('EngenhariaClinicaPage', () => {
 
   describe('Navigation', () => {
     it('renders header with navigation links', () => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
 
       expect(screen.getByRole('link', { name: 'Serviços' }));
       expect(screen.getByRole('link', { name: 'Experiência' }));
@@ -104,7 +113,7 @@ describe('EngenhariaClinicaPage', () => {
     });
 
     it('renders footer with contact information', () => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
 
       expect(screen.getByText('+55 11 3000-0000'));
       expect(screen.getByText('contato@praxis.com.br'));
@@ -113,14 +122,14 @@ describe('EngenhariaClinicaPage', () => {
 
   describe('Accessibility', () => {
     it('has proper main landmark', () => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
 
       const main = document.querySelector('main[role="main"]');
       expect(main);
     });
 
     it('has proper heading hierarchy', () => {
-      render(<EngenhariaClinicaPage />);
+      renderWithRouter();
 
       const h1 = screen.getByRole('heading', { level: 1 });
       expect(h1).toHaveTextContent('Engenharia Clínica');

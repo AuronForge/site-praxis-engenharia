@@ -61,17 +61,6 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
-// Compact variant - shorter hero height
-.heroCompact {
-  min-height: 375px;
-  height: 375px;
-
-  @media (max-width: $breakpoint-mobile) {
-    min-height: 320px;
-    height: auto;
-  }
-}
-
 // Dark overlay gradient - for heroes with background image
 .overlay {
   position: absolute;
@@ -201,6 +190,52 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   @media (max-width: $breakpoint-mobile) {
     font-size: $font-body-medium;
     margin-bottom: $spacing-3xl;
+  }
+}
+
+// Compact variant - shorter hero height
+.heroCompact {
+  min-height: 375px;
+  height: 375px;
+
+  .content {
+    max-width: 980px;
+  }
+
+  .title {
+    max-width: none;
+    margin-bottom: $spacing-2xl;
+    font-size: 56px;
+    white-space: nowrap;
+  }
+
+  .description {
+    max-width: 980px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    .title {
+      font-size: 48px;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    min-height: 320px;
+    height: auto;
+
+    .content {
+      max-width: 100%;
+    }
+
+    .title {
+      font-size: 40px;
+      white-space: normal;
+    }
+
+    .description {
+      max-width: 100%;
+    }
   }
 }
 

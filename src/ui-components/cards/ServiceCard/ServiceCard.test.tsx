@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -5,8 +7,7 @@ import { ServiceCard } from './ServiceCard';
 
 import type { ServiceCardProps } from './ServiceCard';
 
-// Wrap component with Router for Link testing
-const renderWithRouter = (ui: React.ReactElement) => {
+const renderWithRouter = (ui: ReactElement): ReturnType<typeof render> => {
   return render(ui, { wrapper: BrowserRouter });
 };
 
@@ -14,7 +15,7 @@ const mockProps: ServiceCardProps = {
   title: 'Gestão de Equipamentos',
   description: 'Controle completo do parque tecnológico hospitalar.',
   bullets: ['Inventário técnico', 'Manutenção preventiva', 'Rastreabilidade completa'],
-  href: '#servico-gestao',
+  href: '/servico-gestao',
 };
 
 const internalProps: ServiceCardProps = {
@@ -25,7 +26,7 @@ const internalProps: ServiceCardProps = {
 };
 
 describe('ServiceCard', () => {
-  describe('External Links (hash links)', () => {
+  describe('Route links', () => {
     it('renders title and bullet items', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
 
@@ -35,11 +36,11 @@ describe('ServiceCard', () => {
       expect(screen.getByText('Rastreabilidade completa')).toBeInTheDocument();
     });
 
-    it('renders external link with anchor tag for hash href', () => {
+    it('renders route link with anchor tag output', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
 
       const link = screen.getByRole('link', { name: 'Saiba mais' });
-      expect(link).toHaveAttribute('href', '#servico-gestao');
+      expect(link).toHaveAttribute('href', '/servico-gestao');
       expect(link.tagName).toBe('A');
     });
 
@@ -54,7 +55,9 @@ describe('ServiceCard', () => {
     it('renders description correctly', () => {
       renderWithRouter(<ServiceCard {...mockProps} />);
 
-      expect(screen.getByText('Controle completo do parque tecnológico hospitalar.')).toBeInTheDocument();
+      expect(
+        screen.getByText('Controle completo do parque tecnológico hospitalar.')
+      ).toBeInTheDocument();
     });
   });
 
@@ -95,6 +98,19 @@ describe('ServiceCard', () => {
 
       const link = screen.getByRole('link', { name: 'Saiba mais' });
       expect(link).toBeInTheDocument();
+    });
+
+    it('does not render link when href is not provided', () => {
+      renderWithRouter(
+        <ServiceCard
+          title="Planejamento"
+          description="Consultoria especializada"
+          bullets={['Item 1', 'Item 2']}
+          variant="planning"
+        />
+      );
+
+      expect(screen.queryByRole('link', { name: 'Saiba mais' })).not.toBeInTheDocument();
     });
   });
 });

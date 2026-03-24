@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { HomePage } from './HomePage';
 
-const renderWithRouter = (ui: React.ReactElement) => {
+const renderWithRouter = (ui: Parameters<typeof render>[0]): ReturnType<typeof render> => {
   return render(ui, { wrapper: BrowserRouter });
 };
 

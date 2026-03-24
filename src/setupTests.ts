@@ -1,10 +1,22 @@
+import { TextDecoder as NodeTextDecoder, TextEncoder as NodeTextEncoder } from 'node:util';
+
 import '@testing-library/jest-dom';
 
 // Polyfills for jsdom environment
-if (typeof TextEncoder === 'undefined') {
-  const { TextEncoder, TextDecoder } = require('util');
-  global.TextEncoder = TextEncoder;
-  global.TextDecoder = TextDecoder;
+if (typeof globalThis.TextEncoder === 'undefined') {
+  Object.defineProperty(globalThis, 'TextEncoder', {
+    configurable: true,
+    writable: true,
+    value: NodeTextEncoder,
+  });
+}
+
+if (typeof globalThis.TextDecoder === 'undefined') {
+  Object.defineProperty(globalThis, 'TextDecoder', {
+    configurable: true,
+    writable: true,
+    value: NodeTextDecoder,
+  });
 }
 
 // Mock window.matchMedia

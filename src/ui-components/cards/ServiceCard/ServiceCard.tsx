@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import styles from './ServiceCard.module.scss';
 
 export interface ServiceCardProps {
@@ -8,6 +10,7 @@ export interface ServiceCardProps {
   bullets: string[];
   href?: string;
   icon?: React.ReactNode;
+  variant?: 'default' | 'planning';
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -16,9 +19,10 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   bullets,
   href,
   icon,
+  variant = 'default',
 }): React.ReactElement => {
   return (
-    <article className={styles.card}>
+    <article className={`${styles.card} ${styles[variant]}`}>
       {icon ? <div className={styles.iconArea}>{icon}</div> : null}
 
       <h3 className={styles.title}>{title}</h3>
@@ -33,7 +37,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       </ul>
 
       {href ? (
-        <a href={href} className={styles.link}>
+        <Link to={href} className={styles.link}>
           Saiba mais
           <svg
             className={styles.arrow}
@@ -52,7 +56,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
               strokeLinejoin="round"
             />
           </svg>
-        </a>
+        </Link>
       ) : null}
     </article>
   );
