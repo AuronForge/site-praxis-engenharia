@@ -1,11 +1,16 @@
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { HomePage } from './HomePage';
+
+const renderWithRouter = (component: React.ReactElement) => {
+  return render(<BrowserRouter>{component}</BrowserRouter>);
+};
 
 describe('HomePage', () => {
   it('should render all sections', () => {
     // Arrange & Act
-    render(<HomePage />);
+    renderWithRouter(<HomePage />);
 
     // Assert - Check that main sections are present
     // TODO: Update these assertions once sections are implemented
@@ -16,7 +21,7 @@ describe('HomePage', () => {
 
   it('should render hero section', () => {
     // Arrange & Act
-    render(<HomePage />);
+    renderWithRouter(<HomePage />);
 
     // Assert
     // TODO: Add specific hero section assertions
@@ -26,7 +31,7 @@ describe('HomePage', () => {
 
   it('should have proper semantic HTML structure', () => {
     // Arrange & Act
-    const { container } = render(<HomePage />);
+    const { container } = renderWithRouter(<HomePage />);
 
     // Assert - Check semantic HTML elements
     const header = container.querySelector('header');
@@ -40,7 +45,7 @@ describe('HomePage', () => {
 
   it('should render services section', () => {
     // Arrange & Act
-    render(<HomePage />);
+    renderWithRouter(<HomePage />);
 
     // Assert
     // TODO: Check for services section heading once implemented
@@ -50,7 +55,7 @@ describe('HomePage', () => {
 
   it('should render all 8 sections in correct order', () => {
     // Arrange & Act
-    const { container } = render(<HomePage />);
+    const { container } = renderWithRouter(<HomePage />);
 
     // Assert - Verify structural order
     // 1. Header (outside main)

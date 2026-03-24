@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { ServicesSection } from './ServicesSection';
 
@@ -10,19 +11,19 @@ const mockProps: ServicesSectionProps = {
       title: 'Gestão de Equipamentos',
       description: 'Controle completo do parque tecnológico.',
       bullets: ['Inventário técnico', 'Planos preventivos', 'Rastreabilidade'],
-      href: '#servico-1',
+      href: '/servico-1',
     },
     {
       title: 'Engenharia de Processos',
       description: 'Padronização e eficiência operacional.',
       bullets: ['Mapeamento', 'SLA por criticidade', 'Indicadores de desempenho'],
-      href: '#servico-2',
+      href: '/servico-2',
     },
     {
       title: 'Conformidade Regulatória',
       description: 'Adequação técnica para auditorias e normas.',
       bullets: ['ANVISA', 'RDC 509', 'Planos de ação'],
-      href: '#servico-3',
+      href: '/servico-3',
     },
   ],
   ctaBanner: {
@@ -33,16 +34,20 @@ const mockProps: ServicesSectionProps = {
   },
 };
 
+const renderWithRouter = (component: React.ReactElement) => {
+  return render(<BrowserRouter>{component}</BrowserRouter>);
+};
+
 describe('ServicesSection', () => {
   it('renders 3 cards', () => {
-    const { container } = render(<ServicesSection {...mockProps} />);
+    const { container } = renderWithRouter(<ServicesSection {...mockProps} />);
 
     const cards = container.querySelectorAll('article');
     expect(cards).toHaveLength(3);
   });
 
   it('renders banner button', () => {
-    render(<ServicesSection {...mockProps} />);
+    renderWithRouter(<ServicesSection {...mockProps} />);
 
     const buttonLink = screen.getByRole('link', { name: 'Solicitar Proposta' });
     expect(buttonLink).toHaveAttribute('href', '#proposta');
