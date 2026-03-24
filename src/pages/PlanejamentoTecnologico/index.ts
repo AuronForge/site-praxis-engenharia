@@ -1,0 +1,1 @@
+export { PlanejamentoTecnologicoPage } from './PlanejamentoTecnologicoPage';

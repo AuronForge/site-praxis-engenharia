@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './ServiceCard.module.scss';
 
@@ -32,7 +33,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
         ))}
       </ul>
 
-      <a href={href} className={styles.link}>
+      <Link to={href} className={styles.link}>
         Saiba mais
         <svg
           className={styles.arrow}
@@ -51,7 +52,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             strokeLinejoin="round"
           />
         </svg>
-      </a>
+      </Link>
     </article>
   );
 };
