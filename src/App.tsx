@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { HomePage } from '@pages/Home';
 import { EngenhariaClinicaPage } from '@pages/EngenhariaClinica';
+import { HomePage } from '@pages/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import './App.css';
 
 export const App: React.FC = (): JSX.Element => {

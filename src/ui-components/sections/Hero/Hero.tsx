@@ -20,10 +20,11 @@ export interface HeroProps {
   subtitle?: string;
   highlightWord?: string;
   description: string;
-  primaryCTA: CTALink;
-  secondaryCTA: CTALink;
-  stats: Stat[];
+  primaryCTA?: CTALink;
+  secondaryCTA?: CTALink;
+  stats?: Stat[];
   backgroundImage?: string;
+  variant?: 'full' | 'compact';
 }
 
 export function Hero({
@@ -36,7 +37,11 @@ export function Hero({
   secondaryCTA,
   stats,
   backgroundImage,
+  variant,
 }: HeroProps): React.ReactElement {
+  // Auto-detect compact variant if no CTAs and stats
+  const effectiveVariant = variant ?? (!primaryCTA && !secondaryCTA && !stats ? 'compact' : 'full');
+
   return (
     <HeroSection
       badge={badge}
@@ -44,16 +49,25 @@ export function Hero({
       subtitle={subtitle}
       highlightWord={highlightWord}
       description={description}
-      primaryCta={{
-        label: primaryCTA.text,
-        href: primaryCTA.href,
-      }}
-      secondaryCta={{
-        label: secondaryCTA.text,
-        href: secondaryCTA.href,
-      }}
+      primaryCta={
+        primaryCTA
+          ? {
+              label: primaryCTA.text,
+              href: primaryCTA.href,
+            }
+          : undefined
+      }
+      secondaryCta={
+        secondaryCTA
+          ? {
+              label: secondaryCTA.text,
+              href: secondaryCTA.href,
+            }
+          : undefined
+      }
       stats={stats}
       backgroundImageUrl={backgroundImage}
+      variant={effectiveVariant}
     />
   );
 }

@@ -13,20 +13,15 @@ describe('EngenhariaClinicaPage', () => {
     });
 
     it('renders hero title', () => {
-      expect(screen.getByText('Gestão Completa de Tecnologia Hospitalar'));
+      expect(screen.getByRole('heading', { level: 1 }));
     });
 
     it('renders hero description', () => {
-      expect(screen.getByText(/Oferecemos soluções integradas para gestão do parque tecnológico/i));
-    });
-
-    it('renders hero stats', () => {
-      expect(screen.getByText('15.000+'));
-      expect(screen.getByText('Equipamentos Mantidos'));
-      expect(screen.getByText('98%'));
-      expect(screen.getByText('Disponibilidade Média'));
-      expect(screen.getByText('25+'));
-      expect(screen.getByText('Anos de Experiência'));
+      expect(
+        screen.getByText(
+          /Gestão completa e especializada do parque tecnológico hospitalar, garantindo segurança/i
+        )
+      );
     });
   });
 
@@ -36,21 +31,23 @@ describe('EngenhariaClinicaPage', () => {
     });
 
     it('renders services section title', () => {
-      expect(screen.getByText('Nossos Serviços'));
+      expect(screen.getByText('Nossos Serviços de Engenharia Clínica'));
     });
 
     it('renders all service cards', () => {
       expect(screen.getByText('Manutenção Preventiva'));
       expect(screen.getByText('Manutenção Corretiva'));
-      expect(screen.getByText('Calibração'));
-      expect(screen.getByText('Auditoria Técnica'));
+      expect(screen.getByText('Calibração e Metrologia'));
+      expect(screen.getByText('Inventário Técnico'));
+      expect(screen.getByText('Gestão de Riscos'));
+      expect(screen.getByText('Treinamento de Equipes'));
     });
 
     it('renders service features', () => {
-      expect(screen.getByText('Cronogramas personalizados por equipamento'));
-      expect(screen.getByText('Suporte técnico 24/7'));
-      expect(screen.getByText('Calibração acreditada RBC'));
-      expect(screen.getByText('Laudos técnicos detalhados'));
+      expect(screen.getByText('Cronograma customizado por equipamento'));
+      expect(screen.getByText('Central de atendimento dedicada'));
+      expect(screen.getByText('Laboratório próprio credenciado'));
+      expect(screen.getByText('Cadastro completo de equipamentos'));
     });
   });
 
@@ -60,40 +57,18 @@ describe('EngenhariaClinicaPage', () => {
     });
 
     it('renders process section title', () => {
-      expect(screen.getByText('Nossa Metodologia'));
+      expect(screen.getByText('Nossa Metodologia de Trabalho'));
     });
 
     it('renders all process steps', () => {
-      expect(screen.getByText('01'));
-      expect(screen.getByText('02'));
-      expect(screen.getByText('03'));
-      expect(screen.getByText('04'));
+      expect(screen.getByText('1'));
+      expect(screen.getByText('2'));
+      expect(screen.getByText('3'));
+      expect(screen.getByText('4'));
       expect(screen.getAllByText('Diagnóstico').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Planejamento').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Execução').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Monitoramento').length).toBeGreaterThan(0);
-    });
-  });
-
-  describe('Benefits Section', () => {
-    beforeEach(() => {
-      render(<EngenhariaClinicaPage />);
-    });
-
-    it('renders benefits section title', () => {
-      expect(screen.getByText('Benefícios da Gestão Profissional'));
-    });
-
-    it('renders all benefit cards', () => {
-      expect(screen.getByText('Conformidade Regulatória'));
-      expect(screen.getByText('Redução de Custos'));
-      expect(screen.getByText('Maior Disponibilidade'));
-      expect(screen.getByText('Decisões Baseadas em Dados'));
-    });
-
-    it('renders benefit descriptions', () => {
-      expect(screen.getByText(/Garantia de atendimento às normas ANVISA/i));
-      expect(screen.getByText(/Otimização do ciclo de vida dos equipamentos/i));
     });
   });
 
@@ -103,13 +78,17 @@ describe('EngenhariaClinicaPage', () => {
     });
 
     it('renders CTA title', () => {
-      expect(screen.getByText('Pronto para transformar a gestão da sua tecnologia hospitalar?'));
+      expect(screen.getByText('Pronto para Otimizar Sua Engenharia Clínica?'));
     });
 
-    it('renders CTA button', () => {
-      const ctaButton = screen.getByRole('link', { name: 'Fale com um Especialista' });
-      expect(ctaButton);
-      expect(ctaButton).toHaveAttribute('href', '#contato');
+    it('renders CTA buttons', () => {
+      const primaryButton = screen.getByRole('link', { name: /Solicitar Proposta/i });
+      const secondaryButton = screen.getByRole('link', { name: 'Voltar ao Início' });
+
+      expect(primaryButton);
+      expect(primaryButton).toHaveAttribute('href', '#contato');
+      expect(secondaryButton);
+      expect(secondaryButton).toHaveAttribute('href', '/');
     });
   });
 
@@ -144,7 +123,7 @@ describe('EngenhariaClinicaPage', () => {
       render(<EngenhariaClinicaPage />);
 
       const h1 = screen.getByRole('heading', { level: 1 });
-      expect(h1).toHaveTextContent('Gestão Completa de Tecnologia Hospitalar');
+      expect(h1).toHaveTextContent('Engenharia Clínica');
     });
   });
 });

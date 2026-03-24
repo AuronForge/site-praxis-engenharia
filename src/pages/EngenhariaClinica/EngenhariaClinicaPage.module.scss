@@ -201,7 +201,7 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Container
 .container {
-  max-width: $breakpoint-desktop;
+  max-width: 1216px;
   width: 100%;
   margin: 0 auto;
   padding: 0 $spacing-5xl;
@@ -237,7 +237,6 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   font-size: $font-body-medium;
   line-height: $line-height-body;
   color: $gray-600;
-  margin: 0;
   max-width: 700px;
   margin: 0 auto;
 
@@ -248,11 +247,11 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Services Section
 .services {
-  padding: $spacing-8xl 0;
+  padding: $spacing-4xl 0;
   background: $white;
 
   @media (max-width: $breakpoint-tablet) {
-    padding: $spacing-6xl 0;
+    padding: 0;
   }
 
   @media (max-width: $breakpoint-mobile) {
@@ -272,7 +271,6 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .serviceCard {
-  padding: $spacing-4xl;
   border-radius: $radius-xl;
   background: $gray-50;
   border: 1px solid $gray-200;
@@ -344,76 +342,143 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Process Section
 .process {
-  padding: $spacing-8xl 0;
-  background: $gray-50;
+  padding: $spacing-4xl 0 $spacing-4xl;
+  background: $white;
 
   @media (max-width: $breakpoint-tablet) {
-    padding: $spacing-6xl 0;
+    padding: $spacing-4xl 0 $spacing-4xl;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-5xl 0;
+    padding: $spacing-3xl 0 $spacing-3xl;
+  }
+}
+
+.processContainer {
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 0;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 0;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0;
+  }
+}
+
+.processPanel {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 46px 0 30px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  border: 1px solid #edf3ff;
+  border-radius: 24px;
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 42px 0 32px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 38px 0 30px;
+    border-radius: 20px;
+  }
+}
+
+.processHeader {
+  text-align: center;
+  margin-bottom: 44px;
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-bottom: 36px;
+  }
+}
+
+.processTitle {
+  margin: 0 0 10px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $gray-900;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 32px;
+  }
+}
+
+.processDescription {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 21px;
+  line-height: 1.5;
+  color: #667085;
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 18px;
   }
 }
 
 .processSteps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: $spacing-3xl;
+  gap: 36px;
+  align-items: start;
 
   @media (max-width: $breakpoint-tablet) {
     grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-3xl;
   }
 
   @media (max-width: $breakpoint-mobile) {
     grid-template-columns: 1fr;
+    gap: $spacing-2xl;
   }
 }
 
 .processStep {
-  position: relative;
-  padding: $spacing-3xl;
-  background: $white;
-  border-radius: $radius-xl;
-  border: 1px solid $gray-200;
-  transition: all $transition-speed $transition-ease;
-
-  &:hover {
-    border-color: $gray-300;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
-  }
-
-  @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-2xl;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .stepNumber {
-  display: inline-block;
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  font-size: 20px;
   font-weight: 700;
-  color: $primary-600;
-  margin-bottom: $spacing-lg;
+  color: $white;
+  background: linear-gradient(180deg, #2f6df6 0%, #1f5eea 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 18px rgba(47, 109, 246, 0.22);
+  margin-bottom: 18px;
 }
 
 .stepTitle {
-  font-size: $font-body-large;
+  font-size: 21px;
   font-weight: 700;
-  line-height: $line-height-h3;
+  line-height: 1.4;
   color: $gray-900;
-  margin: 0 0 $spacing-md;
+  margin: 0 0 10px;
 }
 
 .stepDescription {
-  font-size: $font-body-small;
-  line-height: $line-height-body;
-  color: $gray-600;
+  max-width: 240px;
   margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #667085;
 }
 
 // Benefits Section
 .benefits {
-  padding: $spacing-8xl 0;
+  padding: $spacing-4xl 0;
   background: $white;
 
   @media (max-width: $breakpoint-tablet) {
@@ -486,15 +551,37 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // CTA Section
 .cta {
-  padding: $spacing-8xl 0;
-  background: linear-gradient(135deg, $primary-600 0%, $primary-700 100%);
+  padding: 24px 0 64px;
+  background: $white;
 
   @media (max-width: $breakpoint-tablet) {
-    padding: $spacing-6xl 0;
+    padding: 24px 0 56px;
   }
 
   @media (max-width: $breakpoint-mobile) {
-    padding: $spacing-5xl 0;
+    padding: 20px 0 48px;
+  }
+}
+
+.ctaContainer {
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.ctaPanel {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 0 32px;
+  background: linear-gradient(90deg, #2f6df6 0%, #2545bb 100%);
+  border-radius: 18px;
+  box-shadow: none;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 24px 0;
+    border-radius: 16px;
   }
 }
 
@@ -504,69 +591,103 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ctaTitle {
-  font-size: $font-h2;
+  font-size: 26px;
   font-weight: 700;
-  line-height: $line-height-h2;
+  line-height: 1.2;
   color: $white;
-  margin: 0 0 $spacing-lg;
+  margin: 0 0 10px;
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: 28px;
+    font-size: 22px;
   }
 }
 
 .ctaDescription {
-  font-size: $font-body-medium;
-  line-height: $line-height-body;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 $spacing-4xl;
-  max-width: 600px;
+  max-width: 520px;
+  margin: 0 auto 24px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.88);
   margin-left: auto;
   margin-right: auto;
 
   @media (max-width: $breakpoint-mobile) {
-    font-size: $font-body;
+    max-width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 }
 
-.ctaButton {
+.ctaActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
+}
+
+.ctaButtonPrimary,
+.ctaButtonSecondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: $spacing-lg $spacing-4xl;
-  font-size: $font-body-medium;
+  min-width: 144px;
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 13px;
   font-weight: 600;
-  border-radius: $radius-medium;
+  line-height: 1;
+  border-radius: 8px;
   text-decoration: none;
-  background: $white;
-  color: $primary-700;
   transition: all $transition-speed $transition-ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid transparent;
+
+  @media (max-width: $breakpoint-mobile) {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.ctaButtonPrimary {
+  gap: 6px;
+  background: $white;
+  color: #2f6df6;
+  box-shadow: 0 10px 22px rgba(18, 24, 38, 0.16);
 
   &:hover {
-    background: $gray-50;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background: #f8fbff;
+    transform: translateY(-1px);
   }
 
-  &:active {
-    transform: translateY(0);
+  svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.ctaButtonSecondary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.96);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
   }
 
   &:focus-visible {
     outline: 3px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
   }
-
-  @media (max-width: $breakpoint-mobile) {
-    width: 100%;
-    padding: $spacing-lg $spacing-2xl;
-  }
 }
 
 // High contrast mode support
 @media (prefers-contrast: high) {
-  .ctaButton {
+  .ctaButtonPrimary,
+  .ctaButtonSecondary {
     border-width: 3px;
     font-weight: 700;
   }
@@ -581,7 +702,8 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   .serviceCard,
   .processStep,
   .benefitCard,
-  .ctaButton,
+  .ctaButtonPrimary,
+  .ctaButtonSecondary,
   .heroBadge {
     transition: none;
   }
@@ -589,7 +711,8 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   .serviceCard:hover,
   .processStep:hover,
   .benefitCard:hover,
-  .ctaButton:hover {
+  .ctaButtonPrimary:hover,
+  .ctaButtonSecondary:hover {
     transform: none;
   }
 }

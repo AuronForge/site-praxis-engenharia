@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Header } from '@ui-components/layout/Header';
 import { Footer } from '@ui-components/sections/Footer';
+import { Hero } from '@ui-components/sections/Hero';
+import { ManagementSection } from '@ui-components/sections/ManagementSection';
+import { ServicesSection } from '@ui-components/sections/ServicesSection';
 
 import styles from './EngenhariaClinicaPage.module.scss';
 
@@ -11,7 +14,7 @@ const headerData = {
     name: 'Praxis Engenharia Clínica',
     href: '/',
     logoAlt: 'Praxis Engenharia Clínica',
-    logoSrc: '/images/logo.svg',
+    logoSrc: '/images/logo.jpg',
   },
   links: [
     { label: 'Serviços', href: '#servicos' },
@@ -26,148 +29,274 @@ const headerData = {
 };
 
 const heroData = {
-  badge: 'Engenharia Clínica',
-  title: 'Gestão Completa de Tecnologia Hospitalar',
+  badge: 'Serviço Especializado',
+  title: 'Engenharia Clínica',
   description:
-    'Oferecemos soluções integradas para gestão do parque tecnológico de instituições de saúde, garantindo segurança, conformidade regulatória e eficiência operacional.',
-  stats: [
-    { value: '15.000+', label: 'Equipamentos Mantidos' },
-    { value: '98%', label: 'Disponibilidade Média' },
-    { value: '25+', label: 'Anos de Experiência' },
+    'Gestão completa e especializada do parque tecnológico hospitalar, garantindo segurança, disponibilidade e conformidade regulatória dos equipamentos médicos.',
+};
+
+const managementData = {
+  title: 'Gestão Profissional de Tecnologia Médico-Hospitalar',
+  description:
+    'Nossa equipe de engenheiros clínicos e técnicos especializados atua de forma integrada na gestão do ciclo de vida dos equipamentos médico-hospitalares, desde o planejamento de aquisição até o descarte final.',
+  methodology:
+    'Com metodologia baseada em normas nacionais e internacionais (ABNT, ANVISA, IEC), garantimos que sua instituição opere com máxima eficiência, segurança e conformidade regulatória.',
+  whyChooseTitle: 'Por que escolher a Praxis?',
+  whyChooseItems: [
+    { text: 'Equipe certificada e continuamente atualizada' },
+    { text: 'Sistema próprio de gestão tecnológica' },
+    { text: 'Atendimento 24/7 para situações emergenciais' },
+    { text: 'Experiência com mais de 15.000 equipamentos' },
+  ],
+  metrics: [
+    {
+      value: '98%',
+      label: 'Disponibilidade Média',
+      description: 'Taxa de disponibilidade dos equipamentos críticos sob gestão',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline
+            points="3 17 9 11 13 15 21 7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
+    },
+    {
+      value: '4h',
+      label: 'Tempo Médio de Resposta',
+      description: 'Para atendimento de chamados corretivos',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+          <path d="M12 6v6l4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      ),
+    },
+    {
+      value: '100%',
+      label: 'Conformidade',
+      description: 'Atendimento às normas ANVISA e requisitos de acreditação',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6l-8-4z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9 12l2 2 4-4"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
+    },
   ],
 };
 
 const servicesData = {
-  title: 'Nossos Serviços',
-  description:
-    'Comprehensive solutions for clinical engineering management, from preventive maintenance to regulatory compliance.',
+  title: 'Nossos Serviços de Engenharia Clínica',
+  description: 'Soluções completas para todas as necessidades do seu parque tecnológico',
   services: [
     {
-      icon: 'wrench',
       title: 'Manutenção Preventiva',
       description:
-        'Programas de manutenção planejados para maximizar a vida útil dos equipamentos e evitar falhas inesperadas.',
-      features: [
-        'Cronogramas personalizados por equipamento',
-        'Checklists detalhados de inspeção',
-        'Relatórios de execução',
-        'Gestão de peças de reposição',
+        'Programa estruturado de manutenções preventivas conforme recomendações dos fabricantes e criticidade dos equipamentos.',
+      bullets: [
+        'Cronograma customizado por equipamento',
+        'Registro detalhado de todas as intervenções',
+        'Redução de falhas inesperadas',
       ],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
+          <path
+            d="M12 1v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32l2.12 2.12M1 12h3m14 0h3M4.22 19.78l2.12-2.12m11.32-11.32l2.12-2.12"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+      ),
     },
     {
-      icon: 'tools',
       title: 'Manutenção Corretiva',
       description:
-        'Resposta rápida e eficiente para reparos emergenciais, minimizando o tempo de inatividade dos equipamentos.',
-      features: [
-        'Suporte técnico 24/7',
-        'Diagnóstico remoto e presencial',
-        'Reparos com peças originais',
-        'Garantia estendida',
+        'Atendimento ágil e eficiente para resolução de falhas e problemas técnicos, minimizando tempo de inatividade.',
+      bullets: [
+        'Central de atendimento dedicada',
+        'Técnicos especializados por área',
+        'Gestão de peças e componentes',
       ],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
-      icon: 'gauge',
-      title: 'Calibração',
+      title: 'Calibração e Metrologia',
       description:
-        'Serviços de calibração rastreáveis para garantir a precisão e confiabilidade das medições.',
-      features: [
-        'Calibração acreditada RBC',
-        'Certificados rastreáveis',
-        'Ajuste e regulagem',
-        'Laudos técnicos completos',
+        'Serviços de calibração rastreável à RBC, garantindo precisão e conformidade dos equipamentos de medição.',
+      bullets: [
+        'Laboratório próprio credenciado',
+        'Certificados rastreáveis à RBC',
+        'Controle de vencimentos',
       ],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M14 2v6h6M16 13H8m8 4H8m2-8H8"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
     {
-      icon: 'clipboard',
-      title: 'Auditoria Técnica',
+      title: 'Inventário Técnico',
       description:
-        'Avaliação completa do estado técnico dos equipamentos e conformidade com normas regulamentadoras.',
-      features: [
-        'Laudos técnicos detalhados',
-        'Avaliação de conformidade ANVISA',
-        'Recomendações de melhoria',
-        'Plano de ação corretiva',
+        'Levantamento completo do parque tecnológico com catalogação, classificação e documentação técnica.',
+      bullets: [
+        'Cadastro completo de equipamentos',
+        'Classificação de risco e criticidade',
+        'Organização de documentação técnica',
       ],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M14 2v6h6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: 'Gestão de Riscos',
+      description:
+        'Análise e gestão de riscos associados ao uso de tecnologias médicas, priorizando a segurança do paciente.',
+      bullets: [
+        'Classificação de criticidade',
+        'Planos de contingência',
+        'Matriz de risco atualizada',
+      ],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: 'Treinamento de Equipes',
+      description:
+        'Capacitação de equipes assistenciais e técnicas para uso seguro e eficiente dos equipamentos médicos.',
+      bullets: [
+        'Treinamentos in loco',
+        'Materiais didáticos customizados',
+        'Certificados de participação',
+      ],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
+          <path
+            d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
     },
   ],
 };
 
 const processData = {
-  title: 'Nossa Metodologia',
-  description:
-    'Processos estruturados e baseados em evidências para garantir resultados consistentes e previsíveis.',
+  title: 'Nossa Metodologia de Trabalho',
+  description: 'Processo estruturado para garantir excelência operacional',
   steps: [
     {
-      number: '01',
+      number: '1',
       title: 'Diagnóstico',
-      description:
-        'Avaliação detalhada do parque tecnológico, identificando necessidades e oportunidades de melhoria.',
+      description: 'Análise completa do parque tecnológico e necessidades da instituição',
     },
     {
-      number: '02',
+      number: '2',
       title: 'Planejamento',
-      description:
-        'Desenvolvimento de plano de gestão personalizado com cronograma, recursos e indicadores de sucesso.',
+      description: 'Desenvolvimento de plano de gestão customizado e cronogramas',
     },
     {
-      number: '03',
+      number: '3',
       title: 'Execução',
-      description:
-        'Implementação das atividades de manutenção, calibração e treinamento conforme planejado.',
+      description: 'Implementação dos serviços com equipe dedicada e sistemas integrados',
     },
     {
-      number: '04',
+      number: '4',
       title: 'Monitoramento',
-      description:
-        'Acompanhamento contínuo através de indicadores e relatórios gerenciais em tempo real.',
-    },
-  ],
-};
-
-const benefitsData = {
-  title: 'Benefícios da Gestão Profissional',
-  description:
-    'Transforme a gestão da sua tecnologia hospitalar com uma parceria estratégica.',
-  benefits: [
-    {
-      icon: 'shield',
-      title: 'Conformidade Regulatória',
-      description:
-        'Garantia de atendimento às normas ANVISA, ABNT e requisitos de acreditação (ONA, ISO, JCI).',
-    },
-    {
-      icon: 'chart',
-      title: 'Redução de Custos',
-      description:
-        'Otimização do ciclo de vida dos equipamentos e redução de despesas com substituições emergenciais.',
-    },
-    {
-      icon: 'pulse',
-      title: 'Maior Disponibilidade',
-      description:
-        'Aumento do tempo de operação dos equipamentos através de manutenção preventiva efetiva.',
-    },
-    {
-      icon: 'brain',
-      title: 'Decisões Baseadas em Dados',
-      description:
-        'Plataforma digital com indicadores estratégicos para gestão e planejamento assertivo.',
+      description: 'Acompanhamento contínuo com indicadores e relatórios gerenciais',
     },
   ],
 };
 
 const ctaData = {
-  title: 'Pronto para transformar a gestão da sua tecnologia hospitalar?',
+  title: 'Pronto para Otimizar Sua Engenharia Clínica?',
   description:
-    'Nossa equipe está pronta para desenvolver uma solução personalizada para sua instituição.',
-  buttonLabel: 'Fale com um Especialista',
-  buttonHref: '#contato',
+    'Entre em contato com nossos especialistas e conheça como podemos ajudar sua instituição a alcançar excelência operacional',
+  primaryButtonLabel: 'Solicitar Proposta',
+  primaryButtonHref: '#contato',
+  secondaryButtonLabel: 'Voltar ao Início',
+  secondaryButtonHref: '/',
 };
 
 const footerData = {
   logo: {
-    src: '/images/logo-light.svg',
+    src: '/images/logo.jpg',
     alt: 'Praxis Engenharia Clínica',
   },
   description:
@@ -176,7 +305,7 @@ const footerData = {
     {
       title: 'Serviços',
       links: [
-        { label: 'Engenharia Clínica', href: '#engenharia-clinica' },
+        { label: 'Engenharia Clínica', href: '/engenharia-clinica' },
         { label: 'Planejamento', href: '#planejamento' },
         { label: 'Acreditação', href: '#acreditacao' },
         { label: 'Consultoria', href: '#consultoria' },
@@ -205,7 +334,11 @@ const footerData = {
     },
   ],
   social: [
-    { platform: 'linkedin', href: 'https://linkedin.com', ariaLabel: 'LinkedIn' },
+    {
+      platform: 'linkedin',
+      href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
+      ariaLabel: 'LinkedIn',
+    },
     { platform: 'facebook', href: 'https://facebook.com', ariaLabel: 'Facebook' },
     { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Instagram' },
   ],
@@ -238,20 +371,39 @@ export function EngenhariaClinicaPage(): React.ReactElement {
       {/* Main content wrapper */}
       <main role="main" className={styles.main}>
         {/* Hero Section */}
-        <section className={styles.hero}>
-          <div className={styles.heroOverlay} />
-          <div className={styles.heroContainer}>
-            <div className={styles.heroContent}>
-              {heroData.badge && (
-                <span className={styles.heroBadge}>{heroData.badge}</span>
-              )}
-              <h1 className={styles.heroTitle}>{heroData.title}</h1>
-              <p className={styles.heroDescription}>{heroData.description}</p>
-              <div className={styles.heroStats}>
-                {heroData.stats.map((stat, index) => (
-                  <div key={index} className={styles.heroStat}>
-                    <span className={styles.heroStatValue}>{stat.value}</span>
-                    <span className={styles.heroStatLabel}>{stat.label}</span>
+        <Hero badge={heroData.badge} title={heroData.title} description={heroData.description} />
+
+        {/* Management Section */}
+        <ManagementSection
+          title={managementData.title}
+          description={managementData.description}
+          methodology={managementData.methodology}
+          whyChooseTitle={managementData.whyChooseTitle}
+          whyChooseItems={managementData.whyChooseItems}
+          metrics={managementData.metrics}
+        />
+
+        {/* Services Section */}
+        <ServicesSection
+          title={servicesData.title}
+          description={servicesData.description}
+          services={servicesData.services}
+        />
+
+        {/* Process Section */}
+        <section className={styles.process}>
+          <div className={styles.processContainer}>
+            <div className={styles.processPanel}>
+              <div className={styles.processHeader}>
+                <h2 className={styles.processTitle}>{processData.title}</h2>
+                <p className={styles.processDescription}>{processData.description}</p>
+              </div>
+              <div className={styles.processSteps}>
+                {processData.steps.map((step, index) => (
+                  <div key={index} className={styles.processStep}>
+                    <span className={styles.stepNumber}>{step.number}</span>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDescription}>{step.description}</p>
                   </div>
                 ))}
               </div>
@@ -259,83 +411,42 @@ export function EngenhariaClinicaPage(): React.ReactElement {
           </div>
         </section>
 
-        {/* Services Section */}
-        <section className={styles.services} id="servicos">
-          <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>{servicesData.title}</h2>
-              <p className={styles.sectionDescription}>{servicesData.description}</p>
-            </div>
-            <div className={styles.servicesGrid}>
-              {servicesData.services.map((service, index) => (
-                <article key={index} className={styles.serviceCard}>
-                  <div className={styles.serviceIcon}>
-                    <ServiceIcon name={service.icon} />
-                  </div>
-                  <h3 className={styles.serviceTitle}>{service.title}</h3>
-                  <p className={styles.serviceDescription}>{service.description}</p>
-                  <ul className={styles.serviceFeatures}>
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className={styles.serviceFeature}>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className={styles.process}>
-          <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>{processData.title}</h2>
-              <p className={styles.sectionDescription}>{processData.description}</p>
-            </div>
-            <div className={styles.processSteps}>
-              {processData.steps.map((step, index) => (
-                <div key={index} className={styles.processStep}>
-                  <span className={styles.stepNumber}>{step.number}</span>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepDescription}>{step.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className={styles.benefits}>
-          <div className={styles.container}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>{benefitsData.title}</h2>
-              <p className={styles.sectionDescription}>{benefitsData.description}</p>
-            </div>
-            <div className={styles.benefitsGrid}>
-              {benefitsData.benefits.map((benefit, index) => (
-                <div key={index} className={styles.benefitCard}>
-                  <div className={styles.benefitIcon}>
-                    <BenefitIcon name={benefit.icon} />
-                  </div>
-                  <h3 className={styles.benefitTitle}>{benefit.title}</h3>
-                  <p className={styles.benefitDescription}>{benefit.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
         <section className={styles.cta}>
-          <div className={styles.container}>
-            <div className={styles.ctaContent}>
-              <h2 className={styles.ctaTitle}>{ctaData.title}</h2>
-              <p className={styles.ctaDescription}>{ctaData.description}</p>
-              <a href={ctaData.buttonHref} className={styles.ctaButton}>
-                {ctaData.buttonLabel}
-              </a>
+          <div className={styles.ctaContainer}>
+            <div className={styles.ctaPanel}>
+              <div className={styles.ctaContent}>
+                <h2 className={styles.ctaTitle}>{ctaData.title}</h2>
+                <p className={styles.ctaDescription}>{ctaData.description}</p>
+                <div className={styles.ctaActions}>
+                  <a href={ctaData.primaryButtonHref} className={styles.ctaButtonPrimary}>
+                    <span>{ctaData.primaryButtonLabel}</span>
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 12H19"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M12 5L19 12L12 19"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <a href={ctaData.secondaryButtonHref} className={styles.ctaButtonSecondary}>
+                    {ctaData.secondaryButtonLabel}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -352,74 +463,6 @@ export function EngenhariaClinicaPage(): React.ReactElement {
       />
     </>
   );
-}
-
-/**
- * ServiceIcon Component
- * Renders appropriate icon based on service type
- */
-function ServiceIcon({ name }: { name: string }): React.ReactElement {
-  const icons: Record<string, React.ReactNode> = {
-    wrench: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-      </svg>
-    ),
-    tools: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        <path d="M12 2v6" />
-        <path d="M12 22v-6" />
-      </svg>
-    ),
-    gauge: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
-    clipboard: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-        <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-      </svg>
-    ),
-  };
-
-  return <>{icons[name] || icons.wrench}</>;
-}
-
-/**
- * BenefitIcon Component
- * Renders appropriate icon based on benefit type
- */
-function BenefitIcon({ name }: { name: string }): React.ReactElement {
-  const icons: Record<string, React.ReactNode> = {
-    shield: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    chart: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
-        <path d="M22 12A10 10 0 0 0 12 2v10z" />
-      </svg>
-    ),
-    pulse: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
-    brain: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
-        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
-      </svg>
-    ),
-  };
-
-  return <>{icons[name] || icons.shield}</>;
 }
 
 EngenhariaClinicaPage.displayName = 'EngenhariaClinicaPage';
