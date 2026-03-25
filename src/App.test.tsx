@@ -13,6 +13,7 @@ describe('App', () => {
     expect(screen.getAllByText('Engenharia Clinica').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Planejamento Tecnoloógico').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Acreditação').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Trabalhe Conosco').length).toBeGreaterThan(0);
   });
 
   it('should render hero section with title', () => {

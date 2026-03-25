@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { CarreirasPage } from './CarreirasPage';
@@ -16,211 +16,155 @@ describe('CarreirasPage', () => {
 
     it('renders the hero section with title', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Faça Parte do Nosso Time' })
+      ).toBeInTheDocument();
     });
 
     it('renders the hero section with badge', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText('Junte-se à Nossa Equipe')).toBeInTheDocument();
+      expect(screen.getByRole('status')).toHaveTextContent('Trabalhe Conosco');
     });
 
     it('renders the hero section with description', () => {
       renderWithRouter(<CarreirasPage />);
       expect(
-        screen.getByText(/Trabalho em uma empresa referência em engenharia clínica no Brasil/)
+        screen.getByText(/Venha construir sua carreira em uma empresa líder em engenharia clínica/)
       ).toBeInTheDocument();
     });
 
-    it('renders hero CTAs', () => {
+    it('does not render hero CTAs', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(screen.getByRole('link', { name: 'Ver Vagas' })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: 'Nos conheça melhor' })).toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Ver Vagas' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Nos conheça melhor' })).not.toBeInTheDocument();
     });
 
-    it('renders hero CTA with correct href', () => {
+    it('renders the why-work section title', () => {
       renderWithRouter(<CarreirasPage />);
-      const vagasLink = screen.getByRole('link', { name: 'Ver Vagas' });
-      expect(vagasLink).toHaveAttribute('href', '#vagas');
+      expect(screen.getByText('Por Que Trabalhar na Praxis?')).toBeInTheDocument();
     });
 
-    it('renders the benefits section title', () => {
+    it('renders the why-work section description', () => {
+      renderWithRouter(<CarreirasPage />);
+      expect(screen.getByText(/Somos uma empresa que valoriza pessoas/)).toBeInTheDocument();
+    });
+
+    it('renders all why-work pillars', () => {
+      renderWithRouter(<CarreirasPage />);
+      expect(screen.getByText('Crescimento')).toBeInTheDocument();
+      expect(screen.getByText('Desenvolvimento')).toBeInTheDocument();
+      expect(screen.getByText('Inovação')).toBeInTheDocument();
+      expect(screen.getByText('Propósito')).toBeInTheDocument();
+    });
+
+    it('renders why-work pillar descriptions', () => {
+      renderWithRouter(<CarreirasPage />);
+      expect(
+        screen.getByText(/Plano de carreira estruturado com oportunidades reais/)
+      ).toBeInTheDocument();
+      expect(screen.getByText(/Investimento contínuo em capacitação/)).toBeInTheDocument();
+      expect(screen.getByText(/Trabalhe com tecnologias de ponta/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Contribua para salvar vidas garantindo segurança/)
+      ).toBeInTheDocument();
+    });
+
+    it('renders the benefits panel title', () => {
       renderWithRouter(<CarreirasPage />);
       expect(screen.getByText('Benefícios e Vantagens')).toBeInTheDocument();
     });
 
-    it('renders the benefits section description', () => {
+    it('renders all benefits panel items', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(
-        screen.getByText(/Oferecemos um pacote de benefícios completo/)
-      ).toBeInTheDocument();
-    });
-
-    it('renders all benefit cards', () => {
-      renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText('Plano de Carreira')).toBeInTheDocument();
+      expect(screen.getByText('Remuneração Competitiva')).toBeInTheDocument();
+      expect(screen.getByText('Vale Refeição/Alimentação')).toBeInTheDocument();
+      expect(screen.getByText('Vale Transporte')).toBeInTheDocument();
       expect(screen.getByText('Plano de Saúde')).toBeInTheDocument();
-      expect(screen.getByText('Vale Alimentação')).toBeInTheDocument();
-      expect(screen.getByText('Horário Flexível')).toBeInTheDocument();
-      expect(screen.getByText('Home Office')).toBeInTheDocument();
-      expect(screen.getByText('Gympass')).toBeInTheDocument();
+      expect(screen.getByText('Treinamentos Técnicos')).toBeInTheDocument();
+      expect(screen.getByText('Ambiente Colaborativo')).toBeInTheDocument();
     });
 
-    it('renders benefit descriptions', () => {
+    it('renders the areas section title and description', () => {
       renderWithRouter(<CarreirasPage />);
+      expect(screen.getByText('Áreas de Atuação')).toBeInTheDocument();
       expect(
-        screen.getByText('Desenvolvimento profissional com plano de crescimento claro e estruturado.')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Plano de saúde abrangente para você e sua família com cobertura nacional.')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Cartão alimentaçao para suas compras do mês com flexibilidade.')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Flexibilidade de horário para melhor qualidade de vida e produtividade.')
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('Política de trabalho híbrido para equilibrar vida pessoal e profissional.')
-      ).toBeInTheDocument();
-      expect(screen.getByText('Acesso a academias e centros esportivos em todo o Brasil.')).toBeInTheDocument();
-    });
-
-    it('renders the culture section title', () => {
-      renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText('Cultura e Valores')).toBeInTheDocument();
-    });
-
-    it('renders the culture section description', () => {
-      renderWithRouter(<CarreirasPage />);
-      expect(
-        screen.getByText(/Nossa cultura é construída sobre pilares sólidos/)
+        screen.getByText(/Buscamos profissionais para diferentes áreas de especialização/)
       ).toBeInTheDocument();
     });
 
-    it('renders all culture items', () => {
+    it('renders all areas cards', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText('Excelência Técnica')).toBeInTheDocument();
-      expect(screen.getByText('Inovação Contínua')).toBeInTheDocument();
-      expect(screen.getByText('Compromisso com o Cliente')).toBeInTheDocument();
-      expect(screen.getByText('Desenvolvimento Humano')).toBeInTheDocument();
-    });
+      const areasSection = document.querySelector('[class*="areasSection"]');
+      expect(areasSection).toBeInTheDocument();
 
-    it('renders the culture item descriptions', () => {
-      renderWithRouter(<CarreirasPage />);
+      const areasScope = within(areasSection as HTMLElement);
       expect(
-        screen.getByText(/Buscamos sempre o mais alto padrão de qualidade/)
+        areasScope.getByRole('heading', { level: 3, name: 'Engenharia Clínica' })
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/Inovamos constantemente nossos processos/)
+        areasScope.getByRole('heading', { level: 3, name: 'Gestão e Planejamento' })
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/Colocamos as necessidades dos clientes/)
+        areasScope.getByRole('heading', { level: 3, name: 'Qualidade e Acreditação' })
       ).toBeInTheDocument();
       expect(
-        screen.getByText(/Investimos no crescimento e desenvolvimento/)
+        areasScope.getByRole('heading', { level: 3, name: 'Comercial e Relacionamento' })
       ).toBeInTheDocument();
-    });
-
-    it('renders the open positions section title', () => {
-      renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText('Vagas Abertas')).toBeInTheDocument();
-    });
-
-    it('renders the open positions section description', () => {
-      renderWithRouter(<CarreirasPage />);
       expect(
-        screen.getByText('Estamos em busca de talentos para compor nosso time.')
+        areasScope.getByRole('heading', { level: 3, name: 'Tecnologia da Informação' })
+      ).toBeInTheDocument();
+      expect(
+        areasScope.getByRole('heading', { level: 3, name: 'Administrativo' })
       ).toBeInTheDocument();
     });
 
-    it('renders all position cards', () => {
+    it('renders send curriculum section title and description', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText('Engenheiro Clínico Sênior')).toBeInTheDocument();
-      expect(screen.getByText('Técnico de Manutenção de Equipamentos')).toBeInTheDocument();
-      expect(screen.getByText('Analista de Qualidade')).toBeInTheDocument();
-      expect(screen.getByText('Coordenador de Projetos')).toBeInTheDocument();
-    });
-
-    it('renders position metadata (location)', () => {
-      renderWithRouter(<CarreirasPage />);
-      // getAllByText because location appears for each position
-      const locations = screen.getAllByText('São Paulo, SP');
-      expect(locations.length).toBe(4);
-    });
-
-    it('renders position type badges', () => {
-      renderWithRouter(<CarreirasPage />);
-      // All positions are CLT type
-      const typeBadges = screen.getAllByText('CLT');
-      expect(typeBadges.length).toBe(4);
-    });
-
-    it('renders position department', () => {
-      renderWithRouter(<CarreirasPage />);
-      // Using getAllByText for departments as they appear in position cards
-      // Note: "Engenharia Clínica" appears in position card and "Engenharia Clinica" in header (without accent)
-      expect(screen.getAllByText('Manutenção').length).toBeGreaterThanOrEqual(1);
-      expect(screen.getAllByText('Qualidade').length).toBeGreaterThanOrEqual(1);
-      expect(screen.getAllByText('Gestão de Projetos').length).toBeGreaterThanOrEqual(1);
-    });
-
-    it('renders position descriptions', () => {
-      renderWithRouter(<CarreirasPage />);
+      expect(screen.getByText('Como Enviar Seu Currículo')).toBeInTheDocument();
       expect(
-        screen.getByText(/Responsável pela gestão técnica de equipamentos médico-hospitalares/)
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(/Executar manutenção preventiva e corretiva/)
+        screen.getByText(/Interessado em fazer parte do nosso time\? Siga as instruções abaixo/)
       ).toBeInTheDocument();
     });
 
-    it('renders position requirements section', () => {
+    it('renders send curriculum instructions', () => {
       renderWithRouter(<CarreirasPage />);
-      const requirementsTitles = screen.getAllByText('Requisitos:');
-      expect(requirementsTitles.length).toBe(4); // One for each position
+      expect(screen.getByText('Prepare seu currículo')).toBeInTheDocument();
+      expect(screen.getByText('Envie para o e-mail')).toBeInTheDocument();
+      expect(screen.getByText('Use o assunto correto')).toBeInTheDocument();
+      expect(screen.getByText('Anexe seu currículo')).toBeInTheDocument();
+      expect(screen.getByText('carreiras@praxisengenharia.com.br')).toBeInTheDocument();
+      expect(screen.getByText('Trabalhe Conosco - CV')).toBeInTheDocument();
     });
 
-    it('renders position requirement items', () => {
+    it('renders send curriculum CTA with correct href', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(screen.getByText(/Formação em Engenharia Biomédica/)).toBeInTheDocument();
-      expect(screen.getByText(/Experiência mínima de 5 anos/)).toBeInTheDocument();
+      const sendCvButton = screen.getByRole('link', { name: 'Enviar Currículo Agora' });
+      expect(sendCvButton).toHaveAttribute(
+        'href',
+        'mailto:carreiras@praxisengenharia.com.br?subject=Trabalhe%20Conosco%20-%20CV'
+      );
     });
 
-    it('renders apply buttons for all positions', () => {
+    it('renders representative roles in areas section', () => {
       renderWithRouter(<CarreirasPage />);
-      const applyButtons = screen.getAllByRole('link', { name: 'Candidatar-se' });
-      expect(applyButtons.length).toBe(4); // One for each position
+      expect(screen.getByText('Engenheiros clínicos')).toBeInTheDocument();
+      expect(screen.getByText('Consultores técnicos')).toBeInTheDocument();
+      expect(screen.getByText('Analistas de qualidade')).toBeInTheDocument();
+      expect(screen.getByText('Executivos de contas')).toBeInTheDocument();
+      expect(screen.getByText('Desenvolvedores de software')).toBeInTheDocument();
+      expect(screen.getByText('Assistentes administrativos')).toBeInTheDocument();
     });
 
-    it('renders apply buttons with correct href', () => {
+    it('does not render the removed CTA section', () => {
       renderWithRouter(<CarreirasPage />);
-      const firstApplyButton = screen.getAllByRole('link', { name: 'Candidatar-se' })[0];
-      expect(firstApplyButton).toHaveAttribute('href', '/contato');
+      expect(screen.queryByText('Não encontrou a vaga ideal?')).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Enviar Currículo' })).not.toBeInTheDocument();
     });
 
-    it('renders the CTA section', () => {
+    it('does not render the removed open positions section', () => {
       renderWithRouter(<CarreirasPage />);
-      expect(
-        screen.getByText('Não encontrou a vaga ideal?')
-      ).toBeInTheDocument();
-    });
-
-    it('renders the CTA description', () => {
-      renderWithRouter(<CarreirasPage />);
-      expect(
-        screen.getByText(/Envie seu currículo para nosso banco de talentos/)
-      ).toBeInTheDocument();
-    });
-
-    it('renders the CTA button', () => {
-      renderWithRouter(<CarreirasPage />);
-      expect(screen.getByRole('link', { name: 'Enviar Currículo' })).toBeInTheDocument();
-    });
-
-    it('renders the CTA button with correct href', () => {
-      renderWithRouter(<CarreirasPage />);
-      const ctaButton = screen.getByRole('link', { name: 'Enviar Currículo' });
-      expect(ctaButton).toHaveAttribute('href', '/contato');
+      expect(screen.queryByText('Vagas Abertas')).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Candidatar-se' })).not.toBeInTheDocument();
     });
   });
 
@@ -238,6 +182,7 @@ describe('CarreirasPage', () => {
       expect(screen.getAllByText('Engenharia Clinica')).toBeDefined();
       expect(screen.getAllByText('Planejamento Tecnoloógico')).toBeDefined();
       expect(screen.getAllByText('Acreditação')).toBeDefined();
+      expect(screen.getAllByText('Trabalhe Conosco')).toBeDefined();
     });
 
     it('renders the header with CTA button', () => {
@@ -264,25 +209,25 @@ describe('CarreirasPage', () => {
       renderWithRouter(<CarreirasPage />);
       // Check sections are present
       const sections = document.querySelectorAll('section');
-      expect(sections.length).toBeGreaterThanOrEqual(5); // Benefits, Culture, Positions, CTA
+      expect(sections.length).toBeGreaterThanOrEqual(4);
     });
 
-    it('benefits section has proper heading', () => {
+    it('why-work section has proper heading', () => {
       renderWithRouter(<CarreirasPage />);
-      const benefitsSection = document.querySelector('[class*="benefitsSection"]');
-      expect(benefitsSection).toBeInTheDocument();
+      const whyWorkSection = document.querySelector('[class*="whyWorkSection"]');
+      expect(whyWorkSection).toBeInTheDocument();
     });
 
-    it('culture section has proper heading', () => {
+    it('areas section has proper heading', () => {
       renderWithRouter(<CarreirasPage />);
-      const cultureSection = document.querySelector('[class*="cultureSection"]');
-      expect(cultureSection).toBeInTheDocument();
+      const areasSection = document.querySelector('[class*="areasSection"]');
+      expect(areasSection).toBeInTheDocument();
     });
 
-    it('positions section has proper heading', () => {
+    it('send curriculum section has proper heading', () => {
       renderWithRouter(<CarreirasPage />);
-      const positionsSection = document.querySelector('[class*="positionsSection"]');
-      expect(positionsSection).toBeInTheDocument();
+      const sendCurriculumSection = document.querySelector('[class*="sendCurriculumSection"]');
+      expect(sendCurriculumSection).toBeInTheDocument();
     });
   });
 
@@ -317,31 +262,34 @@ describe('CarreirasPage', () => {
   });
 
   describe('Data Integrity', () => {
-    it('has correct number of benefits', () => {
+    it('has correct number of why-work pillars', () => {
       renderWithRouter(<CarreirasPage />);
-      const benefitCards = document.querySelectorAll('[class*="benefitCard"]');
-      expect(benefitCards.length).toBe(6);
+      const pillarCards = document.querySelectorAll('[class*="whyWorkCard"]');
+      expect(pillarCards.length).toBe(4);
     });
 
-    it('has correct number of culture items', () => {
+    it('has correct number of benefits panel items', () => {
       renderWithRouter(<CarreirasPage />);
-      const cultureCards = document.querySelectorAll('[class*="cultureCard"]');
-      expect(cultureCards.length).toBe(4);
+      const benefitIcons = document.querySelectorAll('[class*="benefitsPanelIcon"]');
+      expect(benefitIcons.length).toBe(6);
     });
 
-    it('has correct number of positions', () => {
+    it('has correct number of areas cards', () => {
+      renderWithRouter(<CarreirasPage />);
+      const areaCards = document.querySelectorAll('[class*="areaCard"]');
+      expect(areaCards.length).toBe(6);
+    });
+
+    it('has correct number of send curriculum steps', () => {
+      renderWithRouter(<CarreirasPage />);
+      const steps = document.querySelectorAll('[class*="sendCurriculumStepNumber"]');
+      expect(steps.length).toBe(4);
+    });
+
+    it('does not render position cards', () => {
       renderWithRouter(<CarreirasPage />);
       const positionCards = document.querySelectorAll('[class*="positionCard"]');
-      expect(positionCards.length).toBe(4);
-    });
-
-    it('each position has correct number of requirements', () => {
-      renderWithRouter(<CarreirasPage />);
-      // Check first position has 4 requirements
-      const positionCards = document.querySelectorAll('[class*="positionCard"]');
-      const firstPosition = positionCards[0];
-      const requirementItems = firstPosition?.querySelectorAll('[class*="requirementItem"]');
-      expect(requirementItems?.length).toBe(4);
+      expect(positionCards.length).toBe(0);
     });
   });
 });

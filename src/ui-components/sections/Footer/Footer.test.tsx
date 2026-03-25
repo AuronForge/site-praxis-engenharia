@@ -95,6 +95,31 @@ describe('Footer', () => {
       expect(screen.queryByText('Política de Privacidade')).toBeNull();
       expect(screen.queryByText('Termos de Uso')).toBeNull();
     });
+
+    it('hides specific links from Empresa section', () => {
+      const propsWithEmpresa: FooterProps = {
+        ...mockProps,
+        sections: [
+          ...mockProps.sections,
+          {
+            title: 'Empresa',
+            links: [
+              { label: 'Sobre Nós', href: '#sobre' },
+              { label: 'Equipe', href: '#equipe' },
+              { label: 'Blog', href: '#blog' },
+              { label: 'Carreiras', href: '/carreiras' },
+            ],
+          },
+        ],
+      };
+
+      render(<Footer {...propsWithEmpresa} />);
+
+      expect(screen.queryByText('Sobre Nós')).toBeNull();
+      expect(screen.queryByText('Equipe')).toBeNull();
+      expect(screen.queryByText('Blog')).toBeNull();
+      expect(screen.queryByText('Carreiras')).not.toBeNull();
+    });
   });
 
   describe('Social Links', () => {

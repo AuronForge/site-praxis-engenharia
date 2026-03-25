@@ -269,6 +269,28 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.contentCentered {
+  text-align: center;
+  align-items: center;
+
+  .badge {
+    align-self: center;
+  }
+
+  .title,
+  .description {
+    max-width: 980px;
+  }
+
+  .ctas {
+    justify-content: center;
+
+    @media (max-width: $breakpoint-mobile) {
+      align-items: center;
+    }
+  }
+}
+
 // CTA base styles
 .cta {
   display: inline-flex;

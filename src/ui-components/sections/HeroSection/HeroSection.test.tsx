@@ -146,6 +146,12 @@ describe('HeroSection', () => {
   });
 
   describe('Background Image', () => {
+    it('should apply centered content class when contentAlignment is center', () => {
+      const { container } = render(<HeroSection {...mockProps} contentAlignment="center" />);
+      const content = container.querySelector('[class*="content"]');
+      expect(content?.className).toContain('contentCentered');
+    });
+
     it('should apply background image when provided', () => {
       const { container } = render(<HeroSection {...mockProps} />);
       const section = container.querySelector('section');
