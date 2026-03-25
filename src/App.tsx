@@ -2,6 +2,7 @@ import './App.css';
 
 import React from 'react';
 
+import { AcreditacaoPage } from '@pages/Acreditacao';
 import { EngenhariaClinicaPage } from '@pages/EngenhariaClinica';
 import { HomePage } from '@pages/Home';
 import { PlanejamentoTecnologicoPage } from '@pages/PlanejamentoTecnologico';
@@ -14,6 +15,7 @@ export const App: React.FC = (): JSX.Element => {
         <Route path="/" element={<HomePage />} />
         <Route path="/engenharia-clinica" element={<EngenhariaClinicaPage />} />
         <Route path="/planejamento-tecnologico" element={<PlanejamentoTecnologicoPage />} />
+        <Route path="/acreditacao" element={<AcreditacaoPage />} />
       </Routes>
     </BrowserRouter>
   );

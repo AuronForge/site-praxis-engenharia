@@ -1,0 +1,1 @@
+export { AcreditacaoPage } from './AcreditacaoPage';

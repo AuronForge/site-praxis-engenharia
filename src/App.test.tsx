@@ -23,8 +23,8 @@ describe('App', () => {
   it('should render services section', () => {
     render(<App />);
     // Services section should be present on home page
-    const servicesHeading = screen.queryByRole('heading', { name: /serviços/i });
-    expect(servicesHeading ?? screen.getByRole('main')).toBeTruthy();
+    const servicesHeadings = screen.getAllByRole('heading', { name: /serviços/i });
+    expect(servicesHeadings.length).toBeGreaterThan(0);
   });
 
   it('should render experience section', () => {

@@ -91,7 +91,7 @@ const servicesData = {
       description:
         'Suporte integrado para processos de certificação (ONA, ISO, JCI) com adequação de processos e documentação técnica.',
       bullets: ['Preparação ONA', 'ISO 9001', 'Documentação Técnica', 'Auditoria'],
-      href: '#acreditacao',
+      href: '/acreditacao',
       icon: (
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="2" />
@@ -421,7 +421,12 @@ export function HomePage(): React.ReactElement {
         />
 
         {/* Services Section - 3 service cards + CTA banner */}
-        <ServicesSection services={servicesData.services} ctaBanner={servicesData.ctaBanner} />
+        <ServicesSection
+          title="Nossos Serviços"
+          description="Soluções completas para gestão de tecnologia médico-hospitalar"
+          services={servicesData.services}
+          ctaBanner={servicesData.ctaBanner}
+        />
 
         {/* Experience Section - Company history + features + stats */}
         <ExperienceSection
