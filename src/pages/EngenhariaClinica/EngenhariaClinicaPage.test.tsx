@@ -108,6 +108,7 @@ describe('EngenhariaClinicaPage', () => {
       expect(screen.getByRole('link', { name: 'Engenharia Clinica' }));
       expect(screen.getByRole('link', { name: 'Planejamento Tecnoloógico' }));
       expect(screen.getAllByRole('link', { name: 'Acreditação' }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('link', { name: 'Trabalhe Conosco' }).length).toBeGreaterThan(0);
       expect(screen.getAllByRole('link', { name: 'Contato' }).length).toBeGreaterThan(0);
     });
 

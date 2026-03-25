@@ -62,6 +62,11 @@ export interface HeroSectionProps {
    */
   variant?: 'full' | 'compact';
   /**
+   * Horizontal alignment of hero content
+   * @default 'left'
+   */
+  contentAlignment?: 'left' | 'center';
+  /**
    * Optional scroll hint shown below hero stats
    */
   scrollIndicator?: CTAButton;
@@ -94,6 +99,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   singleLineStatLabels = false,
   backgroundImageUrl,
   variant = 'full',
+  contentAlignment = 'left',
   scrollIndicator,
 }): React.ReactElement => {
   /**
@@ -122,6 +128,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     .filter(Boolean)
     .join(' ');
 
+  const contentClassName = [
+    styles.content,
+    contentAlignment === 'center' ? styles.contentCentered : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <section
       className={heroClassName}
@@ -133,7 +146,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       <div className={backgroundImageUrl ? styles.overlay : styles.overlaySolid} />
 
       <div className={styles.container}>
-        <div className={styles.content}>
+        <div className={contentClassName}>
           {/* Badge/Pill */}
           {badge && (
             <div className={styles.badge} role="status">

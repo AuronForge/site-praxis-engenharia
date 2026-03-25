@@ -1,12 +1,14 @@
+@use 'sass:color';
+
 // Variables
-$color-primary: #0066cc;
+$color-primary: #06c;
 $color-primary-dark: #0052a3;
 $color-primary-light: #e6f0fa;
 $color-secondary: #1a1a2e;
-$color-text: #333333;
-$color-text-light: #666666;
-$color-text-muted: #999999;
-$color-background: #ffffff;
+$color-text: #333;
+$color-text-light: #666;
+$color-text-muted: #999;
+$color-background: #fff;
 $color-background-alt: #f8f9fa;
 $color-background-dark: #1a1a2e;
 $color-border: #e0e0e0;
@@ -22,7 +24,14 @@ $spacing-2xl: 48px;
 $spacing-3xl: 64px;
 
 // Typography
-$font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+$font-family:
+  'Inter',
+  -apple-system,
+  blinkmacsystemfont,
+  'Segoe UI',
+  roboto,
+  oxygen,
+  ubuntu,
   sans-serif;
 $font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
@@ -63,12 +72,16 @@ $breakpoint-xl: 1200px;
 
 @mixin container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 $spacing-lg;
 
-  @include respond-to('lg') {
-    padding: 0 $spacing-xl;
+  @media (max-width: $breakpoint-lg) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-md;
   }
 }
 
@@ -101,106 +114,220 @@ $breakpoint-xl: 1200px;
   line-height: 1.6;
 }
 
-// Benefits Section
-.benefitsSection {
+// Why Work Section
+.whyWorkSection {
   padding: $spacing-3xl 0;
-  background-color: $color-background;
+  background-color: #f5f6f8;
 }
 
-.benefitsGrid {
+.whyWorkGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $spacing-lg;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-3xl;
 
   @include respond-to('md') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @include respond-to('lg') {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-.benefitCard {
-  background: $color-background;
-  border: 1px solid $color-border;
-  border-radius: 12px;
-  padding: $spacing-xl;
+.whyWorkCard {
   text-align: center;
-  transition: all 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
-  }
 }
 
-.benefitIcon {
+.whyWorkIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  background: $color-primary-light;
+  width: 48px;
+  height: 48px;
   border-radius: 12px;
+  background: #dce8f7;
+  color: #2563eb;
   margin-bottom: $spacing-md;
 
   svg {
-    width: 28px;
-    height: 28px;
-    color: $color-primary;
+    width: 24px;
+    height: 24px;
   }
 }
 
-.benefitTitle {
+.whyWorkTitle {
   font-size: $font-size-lg;
-  font-weight: 600;
+  font-weight: 700;
   color: $color-secondary;
-  margin: 0 0 $spacing-sm;
+  margin: 0 0 $spacing-xs;
 }
 
-.benefitDescription {
-  font-size: $font-size-sm;
+.whyWorkDescription {
+  font-size: $font-size-lg;
   color: $color-text-light;
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
+
+  @include respond-to('lg') {
+    font-size: $font-size-base;
+  }
 }
 
-// Culture Section
-.cultureSection {
-  padding: $spacing-3xl 0;
-  background-color: $color-background-alt;
+.benefitsPanel {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: #eff1f4;
+  padding: $spacing-2xl $spacing-xl;
+
+  @include respond-to('md') {
+    padding: $spacing-2xl;
+  }
 }
 
-.cultureGrid {
+.benefitsPanelTitle {
+  margin: 0 0 $spacing-xl;
+  text-align: center;
+  font-size: $font-size-3xl;
+  line-height: 1.1;
+  font-weight: 700;
+  color: $color-secondary;
+
+  @include respond-to('md') {
+    font-size: 38px;
+  }
+
+  @include respond-to('lg') {
+    font-size: 42px;
+  }
+}
+
+.benefitsPanelGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacing-lg;
 
   @include respond-to('md') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: $spacing-xl;
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.cultureCard {
-  background: $color-background;
-  border-radius: 12px;
-  padding: $spacing-xl;
-  border-left: 4px solid $color-primary;
+.benefitsPanelItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
 }
 
-.cultureTitle {
+.benefitsPanelIcon {
+  color: #2563eb;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefitsPanelItemTitle {
+  margin: 0 0 2px;
   font-size: $font-size-lg;
-  font-weight: 600;
+  font-weight: 700;
   color: $color-secondary;
-  margin: 0 0 $spacing-sm;
+
+  @include respond-to('lg') {
+    font-size: $font-size-base;
+  }
 }
 
-.cultureDescription {
-  font-size: $font-size-base;
-  color: $color-text-light;
+.benefitsPanelItemDescription {
   margin: 0;
-  line-height: 1.6;
+  color: $color-text-light;
+  font-size: $font-size-base;
+  line-height: 1.5;
+
+  @include respond-to('lg') {
+    font-size: $font-size-sm;
+  }
+}
+
+// Areas Section
+.areasSection {
+  padding: $spacing-3xl 0;
+  background-color: #f5f6f8;
+}
+
+.areasGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.areaCard {
+  border: 1px solid #d9dee7;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  padding: $spacing-xl;
+}
+
+.areaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #dce8f7;
+  color: #2563eb;
+  margin-bottom: $spacing-md;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.areaTitle {
+  margin: 0 0 $spacing-sm;
+  color: $color-secondary;
+  font-size: $font-size-xl;
+  font-weight: 700;
+}
+
+.areaList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.areaItem {
+  position: relative;
+  padding-left: 12px;
+  color: #5a6678;
+  font-size: $font-size-base;
+  line-height: 1.5;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2563eb;
+  }
 }
 
 // Positions Section
@@ -330,37 +457,215 @@ $breakpoint-xl: 1200px;
   }
 }
 
-.positionButton {
+// Send Curriculum Section
+.sendCurriculumSection {
+  padding: $spacing-3xl 0;
+  background-color: #f5f6f8;
+}
+
+.sendCurriculumContent {
+  border-radius: 20px;
+  padding: 34px 28px 32px;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  text-align: center;
+  color: #fff;
+
+  @include respond-to('md') {
+    padding: 36px 40px 34px;
+  }
+}
+
+.sendCurriculumIcon {
   display: inline-flex;
   align-items: center;
-  gap: $spacing-sm;
-  padding: $spacing-sm $spacing-lg;
-  background: $color-primary;
-  color: $color-background;
-  font-size: $font-size-sm;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: $spacing-lg;
 
   svg {
-    transition: transform 0.2s ease;
+    width: 30px;
+    height: 30px;
   }
+}
+
+.sendCurriculumTitle {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.15;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 34px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 28px;
+  }
+}
+
+.sendCurriculumDescription {
+  margin: $spacing-md auto 0;
+  max-width: 760px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: $font-size-xl;
+  line-height: 1.5;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-lg;
+  }
+}
+
+.sendCurriculumSteps {
+  margin: $spacing-xl auto 0;
+  max-width: 940px;
+  border-radius: 14px;
+  padding: $spacing-xl;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: left;
+  display: grid;
+  gap: $spacing-md;
+}
+
+.sendCurriculumStep {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.sendCurriculumStepNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  color: #2563eb;
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.sendCurriculumStepTitle {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 18px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 17px;
+  }
+}
+
+.sendCurriculumStepText {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  line-height: 1.5;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 14px;
+  }
+}
+
+.sendCurriculumCodeBlock {
+  margin-top: 8px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sendCurriculumCodeLabel {
+  display: block;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.sendCurriculumCodeValue {
+  margin: 0;
+  color: #fff;
+  font-size: 31px;
+  line-height: 1.35;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 21px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 17px;
+  }
+}
+
+.sendCurriculumEmailValue {
+  font-size: 18px;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 17px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 16px;
+  }
+}
+
+.sendCurriculumSubjectValue {
+  font-size: 18px;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 17px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 16px;
+  }
+}
+
+.sendCurriculumButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: $spacing-xl;
+  min-height: 52px;
+  padding: 0 $spacing-xl;
+  border-radius: 12px;
+  background: #fff;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: $font-size-xl;
+  font-weight: 700;
+  transition: transform 0.2s ease;
 
   &:hover {
-    background: $color-primary-dark;
-    text-decoration: none;
-
-    svg {
-      transform: translateX(4px);
-    }
+    transform: translateY(-2px);
   }
+}
+
+.sendCurriculumNote {
+  margin: $spacing-md 0 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: $font-size-base;
+  line-height: 1.4;
 }
 
 // CTA Section
 .ctaSection {
   padding: $spacing-3xl 0;
-  background: linear-gradient(135deg, $color-secondary 0%, darken($color-secondary, 10%) 100%);
+  background: linear-gradient(
+    135deg,
+    $color-secondary 0%,
+    color.adjust($color-secondary, $lightness: -10%) 100%
+  );
 }
 
 .ctaContent {

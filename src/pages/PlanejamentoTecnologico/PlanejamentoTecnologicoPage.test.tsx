@@ -136,6 +136,7 @@ describe('PlanejamentoTecnologicoPage', () => {
       expect(screen.getAllByText('Engenharia Clinica')).toBeDefined();
       expect(screen.getAllByText('Planejamento Tecnoloógico')).toBeDefined();
       expect(screen.getAllByText('Acreditação')).toBeDefined();
+      expect(screen.getAllByText('Trabalhe Conosco')).toBeDefined();
     });
 
     it('renders the header with CTA button', () => {

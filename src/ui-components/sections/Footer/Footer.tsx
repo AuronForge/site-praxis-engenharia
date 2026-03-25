@@ -101,6 +101,15 @@ const ContactIcon: React.FC<{ type?: string }> = ({ type }) => {
   return icons[type ?? 'location'] || icons.location;
 };
 
+const HIDDEN_EMPRESA_LINKS = new Set(['sobre nos', 'equipe', 'blog']);
+
+const normalizeLabel = (value: string): string =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase();
+
 export function Footer({
   logo,
   description,
@@ -108,10 +117,6 @@ export function Footer({
   social,
   copyright,
 }: FooterProps): React.ReactElement {
-  const visibleSections = sections.filter(
-    (section) => section.title.trim().toLowerCase() !== 'empresa'
-  );
-
   return (
     <footer className={styles.footer} role="contentinfo">
       <div className={styles.container}>
@@ -143,24 +148,32 @@ export function Footer({
             </div>
           </div>
 
-          {visibleSections.map((section, index) => (
+          {sections.map((section, index) => (
             <div key={`section-${index}`} className={styles.linkColumn}>
               <h3 className={styles.columnTitle}>{section.title}</h3>
               <ul className={styles.linkList}>
-                {section.links.map((link, linkIndex) => (
-                  <li key={`link-${index}-${linkIndex}`} className={styles.linkItem}>
-                    {link.icon ? (
-                      <a href={link.href} className={styles.contactLink}>
-                        <ContactIcon type={link.icon} />
-                        {link.label}
-                      </a>
-                    ) : (
-                      <a href={link.href} className={styles.link}>
-                        {link.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
+                {section.links
+                  .filter((link) => {
+                    if (section.title.trim().toLowerCase() !== 'empresa') {
+                      return true;
+                    }
+
+                    return !HIDDEN_EMPRESA_LINKS.has(normalizeLabel(link.label));
+                  })
+                  .map((link, linkIndex) => (
+                    <li key={`link-${index}-${linkIndex}`} className={styles.linkItem}>
+                      {link.icon ? (
+                        <a href={link.href} className={styles.contactLink}>
+                          <ContactIcon type={link.icon} />
+                          {link.label}
+                        </a>
+                      ) : (
+                        <a href={link.href} className={styles.link}>
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  ))}
               </ul>
             </div>
           ))}

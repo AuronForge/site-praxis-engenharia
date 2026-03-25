@@ -329,6 +329,7 @@ const headerData = {
     { label: 'Engenharia Clinica', href: '/engenharia-clinica' },
     { label: 'Planejamento Tecnoloógico', href: '/planejamento-tecnologico' },
     { label: 'Acreditação', href: '/acreditacao' },
+    { label: 'Trabalhe Conosco', href: '/carreiras' },
   ],
   cta: {
     label: 'Contato',
