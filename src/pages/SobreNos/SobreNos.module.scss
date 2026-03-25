@@ -1,0 +1,507 @@
+@use 'sass:color';
+
+// Variables
+$color-primary: #06c;
+$color-primary-dark: #0052a3;
+$color-primary-light: #e6f0fa;
+$color-secondary: #1a1a2e;
+$color-text: #333;
+$color-text-light: #666;
+$color-text-muted: #999;
+$color-background: #fff;
+$color-background-alt: #f8f9fa;
+$color-background-dark: #1a1a2e;
+$color-border: #e0e0e0;
+$color-success: #28a745;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+
+// Typography
+$font-family:
+  'Inter',
+  -apple-system,
+  blinkmacsystemfont,
+  'Segoe UI',
+  roboto,
+  oxygen,
+  ubuntu,
+  sans-serif;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+$font-size-4xl: 2.5rem;
+$font-size-5xl: 3rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @media (max-width: $breakpoint-lg) {
+    padding: 0 $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $spacing-md;
+  }
+}
+
+// Base styles
+.container {
+  @include container;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+}
+
+.sectionTitle {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $color-secondary;
+  margin: 0 0 $spacing-md;
+
+  @include respond-to('md') {
+    font-size: $font-size-4xl;
+  }
+}
+
+.sectionDescription {
+  font-size: $font-size-lg;
+  color: $color-text-light;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+// Mission, Vision, Values Section
+.missionSection {
+  padding: $spacing-3xl 0;
+  background-color: #f5f6f8;
+}
+
+.missionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-3xl;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.missionCard {
+  background: $color-background;
+  border-radius: 16px;
+  padding: $spacing-xl;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.missionTitle {
+  margin: 0 0 $spacing-md;
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.missionDescription {
+  margin: 0;
+  font-size: $font-size-lg;
+  color: $color-text-light;
+  line-height: 1.6;
+}
+
+.valuesSection {
+  text-align: center;
+}
+
+.valuesTitle {
+  margin: 0 0 $spacing-xl;
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: $spacing-xl;
+  }
+}
+
+.valueItem {
+  background: $color-background;
+  border-radius: 14px;
+  padding: $spacing-lg;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.valueTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.valueDescription {
+  margin: 0;
+  font-size: $font-size-base;
+  color: $color-text-light;
+  line-height: 1.5;
+}
+
+// History Section
+.historySection {
+  padding: $spacing-3xl 0;
+  background-color: $color-background;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e5e7eb;
+    display: none;
+
+    @include respond-to('md') {
+      display: block;
+    }
+  }
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  position: relative;
+
+  @include respond-to('md') {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: $spacing-xl;
+  }
+}
+
+.timelineYear {
+  display: flex;
+  justify-content: flex-start;
+
+  @include respond-to('md') {
+    justify-content: flex-end;
+  }
+}
+
+.yearBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xs $spacing-md;
+  background: #2563eb;
+  color: $color-background;
+  font-size: $font-size-base;
+  font-weight: 700;
+  border-radius: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.timelineContent {
+  padding-left: $spacing-xl;
+  position: relative;
+
+  @include respond-to('md') {
+    padding-left: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background: #2563eb;
+    border-radius: 50%;
+    border: 2px solid $color-background;
+    display: none;
+
+    @include respond-to('md') {
+      display: block;
+      left: -36px;
+    }
+  }
+}
+
+.timelineTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.timelineDescription {
+  margin: 0;
+  font-size: $font-size-base;
+  color: $color-text-light;
+  line-height: 1.6;
+}
+
+// Diferenciais Section
+.diferenciaisSection {
+  padding: $spacing-3xl 0;
+  background-color: #f5f6f8;
+}
+
+.diferenciaisGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.diferencialCard {
+  background: $color-background;
+  border-radius: 14px;
+  padding: $spacing-xl;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.diferencialIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: #dce8f7;
+  color: #2563eb;
+  margin-bottom: $spacing-md;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.diferencialTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.diferencialDescription {
+  margin: 0;
+  font-size: $font-size-base;
+  color: $color-text-light;
+  line-height: 1.5;
+}
+
+// Team Section
+.teamSection {
+  padding: $spacing-3xl 0;
+  background-color: $color-background;
+}
+
+.teamStats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  margin-bottom: $spacing-2xl;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+  }
+}
+
+.teamStat {
+  text-align: center;
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  border-radius: 14px;
+  color: $color-background;
+}
+
+.statValue {
+  display: block;
+  font-size: $font-size-4xl;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: $spacing-xs;
+
+  @include respond-to('md') {
+    font-size: $font-size-3xl;
+  }
+}
+
+.statLabel {
+  display: block;
+  font-size: $font-size-base;
+  opacity: 0.9;
+}
+
+.teamFeatures {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.teamFeature {
+  background: #f5f6f8;
+  border-radius: 14px;
+  padding: $spacing-xl;
+}
+
+.featureTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-secondary;
+}
+
+.featureDescription {
+  margin: 0;
+  font-size: $font-size-base;
+  color: $color-text-light;
+  line-height: 1.5;
+}
+
+// CTA Section
+.ctaSection {
+  padding: $spacing-3xl 0;
+  background: linear-gradient(
+    135deg,
+    $color-secondary 0%,
+    color.adjust($color-secondary, $lightness: -10%) 100%
+  );
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $color-background;
+  margin: 0 0 $spacing-md;
+
+  @include respond-to('md') {
+    font-size: $font-size-4xl;
+  }
+}
+
+.ctaText {
+  font-size: $font-size-lg;
+  color: rgba($color-background, 0.8);
+  margin: 0 0 $spacing-xl;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background: $color-background;
+  color: $color-secondary;
+  font-size: $font-size-base;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: $color-primary;
+    color: $color-background;
+    text-decoration: none;
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}

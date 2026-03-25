@@ -2,6 +2,7 @@ import './App.css';
 
 import React from 'react';
 
+import { SobreNosPage } from '@pages/SobreNos';
 import { AcreditacaoPage } from '@pages/Acreditacao';
 import { CarreirasPage } from '@pages/Carreiras';
 import { ContatoPage } from '@pages/Contato';
@@ -15,6 +16,7 @@ export const App: React.FC = (): JSX.Element => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/sobre-nos" element={<SobreNosPage />} />
         <Route path="/contato" element={<ContatoPage />} />
         <Route path="/engenharia-clinica" element={<EngenhariaClinicaPage />} />
         <Route path="/planejamento-tecnologico" element={<PlanejamentoTecnologicoPage />} />
