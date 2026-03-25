@@ -31,6 +31,11 @@ export interface StatsRowProps {
    * @default "light"
    */
   variant?: 'light' | 'dark';
+  /**
+   * Prevent metric labels from wrapping on larger screens
+   * @default false
+   */
+  singleLineLabels?: boolean;
 }
 
 /**
@@ -313,9 +318,15 @@ const StatIcon: React.FC<{
 export const StatsRow: React.FC<StatsRowProps> = ({
   items,
   variant = 'light',
+  singleLineLabels = false,
 }): React.ReactElement => {
   return (
-    <div className={`${styles.statsRow} ${styles[variant]}`}>
+    <div
+      className={`${styles.statsRow} ${styles[variant]} ${singleLineLabels ? styles.singleLineLabels : ''}`}
+      style={
+        { '--stats-columns': String(Math.max(1, Math.min(items.length, 4))) } as React.CSSProperties
+      }
+    >
       {items.map((item, index) => (
         <dl key={index} className={styles.stat}>
           {item.icon && (

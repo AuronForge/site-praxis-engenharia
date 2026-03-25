@@ -25,6 +25,10 @@ const mockProps: HeroSectionProps = {
     { value: '100%', label: 'Conformidade ANVISA' },
   ],
   backgroundImageUrl: '/images/hero-background.jpg',
+  scrollIndicator: {
+    label: 'Role para baixo',
+    href: '#servicos',
+  },
 };
 
 describe('HeroSection', () => {
@@ -93,6 +97,13 @@ describe('HeroSection', () => {
       expect(screen.getByText('Projetos Concluídos')).toBeInTheDocument();
       expect(screen.getByText('100%')).toBeInTheDocument();
       expect(screen.getByText('Conformidade ANVISA')).toBeInTheDocument();
+    });
+
+    it('should render scroll indicator when provided', () => {
+      render(<HeroSection {...mockProps} />);
+      const indicator = screen.getByRole('link', { name: 'Role para baixo' });
+      expect(indicator).toBeInTheDocument();
+      expect(indicator).toHaveAttribute('href', '#servicos');
     });
 
     it('should render stat helper text when provided', () => {
@@ -200,6 +211,16 @@ describe('HeroSection', () => {
 
       // Stats section should not be rendered at all
       expect(container.querySelector('.stats')).not.toBeInTheDocument();
+    });
+
+    it('should not render scroll indicator when not provided', () => {
+      const simpleProps = {
+        title: 'Test Title',
+        description: 'Test Description',
+      };
+      render(<HeroSection {...simpleProps} />);
+
+      expect(screen.queryByRole('link', { name: 'Role para baixo' })).not.toBeInTheDocument();
     });
 
     it('should render with only primaryCta', () => {

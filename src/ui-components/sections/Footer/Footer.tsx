@@ -59,18 +59,42 @@ const socialIcons: Record<string, JSX.Element> = {
 const ContactIcon: React.FC<{ type?: string }> = ({ type }) => {
   const icons: Record<string, JSX.Element> = {
     phone: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.161 15.161 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1A11.36 11.36 0 018.56 3.98c.94.36 1.92.6 2.95.7 1.03.1 2.06.1 3.09.1.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.56.11.34.03.74-.25 1.02l-2.2 2.2c-.28.28-.68.35-1.03.2-1.08-.48-2.07-1.14-2.91-2.06-.84-.92-1.58-1.83-2.06-2.91-.15-.35-.08-.75.2-1.03l2.2-2.2c.28-.28.68-.36 1.02-.25 1.12.37 2.31.57 3.56.57.55 0 1 .45 1 1v3.5c0 .55-.45 1-1 1z" />
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+        <path d="M6.62 10.79A15.053 15.053 0 0 0 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.24 8.7 6.45 9.07 7.57C9.18 7.92 9.09 8.32 8.82 8.59L6.62 10.79Z" />
       </svg>
     ),
     email: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+        <rect
+          x="2"
+          y="5"
+          width="20"
+          height="14"
+          rx="2"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M22 7L12 14L2 7"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     location: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" />
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+        <path
+          d="M12 22C16 17.9 20 14.32 20 9.5C20 5.36 16.42 2 12 2C7.58 2 4 5.36 4 9.5C4 14.32 8 17.9 12 22Z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" strokeWidth="2" />
       </svg>
     ),
   };
@@ -83,8 +107,11 @@ export function Footer({
   sections,
   social,
   copyright,
-  legalLinks,
 }: FooterProps): React.ReactElement {
+  const visibleSections = sections.filter(
+    (section) => section.title.trim().toLowerCase() !== 'empresa'
+  );
+
   return (
     <footer className={styles.footer} role="contentinfo">
       <div className={styles.container}>
@@ -116,7 +143,7 @@ export function Footer({
             </div>
           </div>
 
-          {sections.map((section, index) => (
+          {visibleSections.map((section, index) => (
             <div key={`section-${index}`} className={styles.linkColumn}>
               <h3 className={styles.columnTitle}>{section.title}</h3>
               <ul className={styles.linkList}>
@@ -141,13 +168,6 @@ export function Footer({
 
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>{copyright}</p>
-          <div className={styles.legalLinks}>
-            {legalLinks.map((link, index) => (
-              <a key={`legal-${index}`} href={link.href} className={styles.legalLink}>
-                {link.label}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

@@ -17,10 +17,9 @@ const headerData = {
     logoSrc: '/images/logo.jpg',
   },
   links: [
-    { label: 'Serviços', href: '#servicos' },
-    { label: 'Experiência', href: '#experiencia' },
-    { label: 'Gestão', href: '#plataforma' },
-    { label: 'Clientes', href: '#clientes' },
+    { label: 'Engenharia Clinica', href: '/engenharia-clinica' },
+    { label: 'Planejamento Tecnoloógico', href: '/planejamento-tecnologico' },
+    { label: 'Acreditação', href: '/acreditacao' },
   ],
   cta: {
     label: 'Contato',
@@ -289,7 +288,7 @@ const ctaData = {
   description:
     'Entre em contato com nossos especialistas e conheça como podemos ajudar sua instituição a alcançar excelência operacional',
   primaryButtonLabel: 'Solicitar Proposta',
-  primaryButtonHref: '#contato',
+  primaryButtonHref: '/contato',
   secondaryButtonLabel: 'Voltar ao Início',
   secondaryButtonHref: '/',
 };
@@ -306,9 +305,9 @@ const footerData = {
       title: 'Serviços',
       links: [
         { label: 'Engenharia Clínica', href: '/engenharia-clinica' },
-        { label: 'Planejamento', href: '#planejamento' },
+        { label: 'Planejamento Tecnológico', href: '/planejamento-tecnologico' },
         { label: 'Acreditação', href: '#acreditacao' },
-        { label: 'Consultoria', href: '#consultoria' },
+        { label: 'Contato', href: '/contato' },
       ],
     },
     {
@@ -323,10 +322,14 @@ const footerData = {
     {
       title: 'Contato',
       links: [
-        { label: '+55 11 3000-0000', href: 'tel:+551130000000', icon: 'phone' },
-        { label: 'contato@praxis.com.br', href: 'mailto:contato@praxis.com.br', icon: 'email' },
+        { label: '11-2609-7511', href: 'tel:+551126097511', icon: 'phone' },
         {
-          label: 'Av. Paulista, 1000 - São Paulo, SP - CEP 01310-100',
+          label: 'contato@praxisengenharia.com.br',
+          href: 'mailto:contato@praxisengenharia.com.br',
+          icon: 'email',
+        },
+        {
+          label: 'Rua Roma, 620 - Lapa, São Paulo - SP, 05050-090',
           href: '#',
           icon: 'location',
         },
@@ -339,8 +342,11 @@ const footerData = {
       href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
       ariaLabel: 'LinkedIn',
     },
-    { platform: 'facebook', href: 'https://facebook.com', ariaLabel: 'Facebook' },
-    { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Instagram' },
+    {
+      platform: 'instagram',
+      href: 'https://www.instagram.com/praxisengenhariaclinica/',
+      ariaLabel: 'Instagram',
+    },
   ],
   copyright: '© 2026 Praxis Engenharia Clínica. Todos os direitos reservados.',
   legalLinks: [

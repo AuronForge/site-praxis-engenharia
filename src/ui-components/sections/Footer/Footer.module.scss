@@ -10,8 +10,9 @@
 }
 
 .mainContent {
-  display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 40px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -19,6 +20,8 @@
 
 .brandColumn {
   min-width: 0;
+  flex: 0 0 400px;
+  max-width: 400px;
 }
 
 .logo {
@@ -31,7 +34,8 @@
 }
 
 .logoImg {
-  width: 256px;
+  width: 100%;
+  max-width: 400px;
   height: auto;
   object-fit: contain;
   border-radius: 8px;
@@ -88,6 +92,7 @@
 
 .linkColumn {
   min-width: 0;
+  flex: 0 1 280px;
 }
 
 .columnTitle {
@@ -122,12 +127,12 @@
 .contactLink {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 12px;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 14px;
   line-height: 1.5;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   transition: color 0.2s ease;
 
   &:hover {
@@ -136,9 +141,10 @@
 
   svg {
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    margin-top: 2px;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    color: #4fa3ff;
   }
 }
 
@@ -174,11 +180,16 @@
 
 @media (width <= 1024px) {
   .mainContent {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
   }
 
   .brandColumn {
-    grid-column: 1 / -1;
+    flex-basis: 100%;
+    max-width: none;
+  }
+
+  .linkColumn {
+    flex: 1 1 calc(50% - 20px);
   }
 }
 
@@ -188,8 +199,13 @@
   }
 
   .mainContent {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 32px;
+  }
+
+  .brandColumn,
+  .linkColumn {
+    flex: 1 1 100%;
   }
 
   .bottomBar {

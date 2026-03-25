@@ -25,6 +25,10 @@ export interface HeroProps {
   stats?: Stat[];
   backgroundImage?: string;
   variant?: 'full' | 'compact';
+  scrollIndicator?: {
+    label: string;
+    href: string;
+  };
 }
 
 export function Hero({
@@ -38,6 +42,7 @@ export function Hero({
   stats,
   backgroundImage,
   variant,
+  scrollIndicator,
 }: HeroProps): React.ReactElement {
   // Auto-detect compact variant if no CTAs and stats
   const effectiveVariant = variant ?? (!primaryCTA && !secondaryCTA && !stats ? 'compact' : 'full');
@@ -66,8 +71,10 @@ export function Hero({
           : undefined
       }
       stats={stats}
+      singleLineStatLabels={Boolean(scrollIndicator)}
       backgroundImageUrl={backgroundImage}
       variant={effectiveVariant}
+      scrollIndicator={scrollIndicator}
     />
   );
 }

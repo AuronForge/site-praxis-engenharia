@@ -27,6 +27,9 @@ $spacing-2xl: 24px;
 $spacing-3xl: 32px;
 $spacing-4xl: 40px;
 
+// Border radius
+$radius-full: 9999px;
+
 // Breakpoints
 $breakpoint-mobile: 768px;
 $breakpoint-tablet: 1024px;
@@ -37,10 +40,13 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 // StatsRow container
 .statsRow {
+  --stats-columns: 4;
+
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: $spacing-3xl;
+  grid-template-columns: repeat(var(--stats-columns), minmax(0, 1fr));
+  gap: $spacing-4xl;
   align-items: start;
+  max-width: 1100px;
 
   @media (max-width: $breakpoint-mobile) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -51,7 +57,7 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 // Individual stat (using dl element)
 .stat {
   flex: 1;
-  min-width: 200px;
+  min-width: 0;
   margin: 0;
   padding: 0;
   display: flex;
@@ -64,20 +70,21 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-// Icon circle container
+// Icon container
 .iconCircle {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   backdrop-filter: blur(8px);
 
   svg {
-    width: 28px;
-    height: 28px;
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -86,7 +93,7 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: $spacing-xs;
+  gap: 6px;
   text-align: left;
 }
 
@@ -131,6 +138,16 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+.singleLineLabels {
+  .label {
+    white-space: nowrap;
+
+    @media (max-width: $breakpoint-mobile) {
+      white-space: normal;
+    }
+  }
+}
+
 // Helper text (dd element)
 .helper {
   font-size: $font-small;
@@ -147,11 +164,13 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 // Light variant (for dark backgrounds)
 .light {
   .iconCircle {
-    background: rgba(30, 64, 175, 0.2);
+    background: rgba(43, 127, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.15);
+    width: 48px;
+    height: 48px;
 
     svg {
-      color: $primary-50;
+      color: rgb(142, 197, 255);
     }
   }
 
@@ -175,6 +194,9 @@ $transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 // Dark variant (for light backgrounds)
 .dark {
   .iconCircle {
+    background: rgba(21, 93, 252, 0.1);
+    border: 1px solid rgba(21, 93, 252, 0.14);
+
     svg {
       color: #155dfc;
     }

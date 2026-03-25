@@ -15,14 +15,18 @@ const mockProps: FooterProps = {
       title: 'Serviços',
       links: [
         { label: 'Engenharia Clínica', href: '#engenharia' },
-        { label: 'Planejamento', href: '#planejamento' },
+        { label: 'Planejamento Tecnológico', href: '/planejamento-tecnologico' },
       ],
     },
     {
       title: 'Contato',
       links: [
         { label: '(11) 1234-5678', href: 'tel:1112345678', icon: 'phone' },
-        { label: 'contato@praxis.com.br', href: 'mailto:contato@praxis.com.br', icon: 'email' },
+        {
+          label: 'contato@praxisengenharia.com.br',
+          href: 'mailto:contato@praxisengenharia.com.br',
+          icon: 'email',
+        },
         { label: 'São Paulo, SP', href: '#', icon: 'location' },
       ],
     },
@@ -33,8 +37,11 @@ const mockProps: FooterProps = {
       href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
       ariaLabel: 'LinkedIn',
     },
-    { platform: 'facebook', href: 'https://facebook.com', ariaLabel: 'Facebook' },
-    { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Instagram' },
+    {
+      platform: 'instagram',
+      href: 'https://www.instagram.com/praxisengenhariaclinica/',
+      ariaLabel: 'Instagram',
+    },
   ],
   copyright: '© 2026 Praxis Engenharia Clínica. Todos os direitos reservados.',
   legalLinks: [
@@ -71,7 +78,7 @@ describe('Footer', () => {
       render(<Footer {...mockProps} />);
 
       expect(screen.queryByText('Engenharia Clínica')).not.toBeNull();
-      expect(screen.queryByText('Planejamento')).not.toBeNull();
+      expect(screen.queryByText('Planejamento Tecnológico')).not.toBeNull();
     });
 
     it('renders copyright', () => {
@@ -82,11 +89,11 @@ describe('Footer', () => {
       ).not.toBeNull();
     });
 
-    it('renders legal links', () => {
+    it('does not render legal links', () => {
       render(<Footer {...mockProps} />);
 
-      expect(screen.queryByText('Política de Privacidade')).not.toBeNull();
-      expect(screen.queryByText('Termos de Uso')).not.toBeNull();
+      expect(screen.queryByText('Política de Privacidade')).toBeNull();
+      expect(screen.queryByText('Termos de Uso')).toBeNull();
     });
   });
 
@@ -95,14 +102,13 @@ describe('Footer', () => {
       const { container } = render(<Footer {...mockProps} />);
       const socialLinks = container.querySelectorAll('.socialLink');
 
-      expect(socialLinks).toHaveLength(3);
+      expect(socialLinks).toHaveLength(2);
     });
 
     it('renders social links with correct aria-labels', () => {
       render(<Footer {...mockProps} />);
 
       expect(screen.queryByLabelText('LinkedIn')).not.toBeNull();
-      expect(screen.queryByLabelText('Facebook')).not.toBeNull();
       expect(screen.queryByLabelText('Instagram')).not.toBeNull();
     });
 
@@ -144,7 +150,7 @@ describe('Footer', () => {
     it('renders contact links with email icon', () => {
       render(<Footer {...mockProps} />);
 
-      expect(screen.queryByText('contato@praxis.com.br')).not.toBeNull();
+      expect(screen.queryByText('contato@praxisengenharia.com.br')).not.toBeNull();
     });
 
     it('renders contact links with location icon', () => {

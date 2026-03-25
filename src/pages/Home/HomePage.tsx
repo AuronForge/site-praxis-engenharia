@@ -18,7 +18,7 @@ const heroData = {
     'Soluções integradas em gestão de tecnologia médico-hospitalar para instituições que buscam segurança, conformidade e eficiência operacional.',
   primaryCTA: {
     text: 'Fale com Especialistas',
-    href: '#contato',
+    href: '/contato',
   },
   secondaryCTA: {
     text: 'Conheça os Serviços',
@@ -34,6 +34,10 @@ const heroData = {
     { value: '100%', label: 'Conformidade ANVISA', icon: 'shield' as const },
   ],
   backgroundImage: '/images/hero-bg.jpg',
+  scrollIndicator: {
+    label: 'Role para baixo',
+    href: '#servicos',
+  },
 };
 
 const servicesData = {
@@ -110,7 +114,7 @@ const servicesData = {
     title: 'Precisa de uma solução personalizada?',
     text: 'Nossa equipe está pronta para desenvolver um projeto sob medida para sua instituição.',
     buttonLabel: 'Solicitar Proposta',
-    href: '#contato',
+    href: '/contato',
   },
 };
 
@@ -322,14 +326,13 @@ const headerData = {
     logoSrc: '/images/logo.jpg',
   },
   links: [
-    { label: 'Serviços', href: '#servicos' },
-    { label: 'Experiência', href: '#experiencia' },
-    { label: 'Gestão', href: '#plataforma' },
-    { label: 'Clientes', href: '#clientes' },
+    { label: 'Engenharia Clinica', href: '/engenharia-clinica' },
+    { label: 'Planejamento Tecnoloógico', href: '/planejamento-tecnologico' },
+    { label: 'Acreditação', href: '/acreditacao' },
   ],
   cta: {
     label: 'Contato',
-    href: '#contato',
+    href: '/contato',
   },
 };
 
@@ -345,9 +348,9 @@ const footerData = {
       title: 'Serviços',
       links: [
         { label: 'Engenharia Clínica', href: '/engenharia-clinica' },
-        { label: 'Planejamento', href: '#planejamento' },
+        { label: 'Planejamento Tecnológico', href: '/planejamento-tecnologico' },
         { label: 'Acreditação', href: '#acreditacao' },
-        { label: 'Consultoria', href: '#consultoria' },
+        { label: 'Contato', href: '/contato' },
       ],
     },
     {
@@ -362,10 +365,14 @@ const footerData = {
     {
       title: 'Contato',
       links: [
-        { label: '+55 11 3000-0000', href: 'tel:+551130000000', icon: 'phone' },
-        { label: 'contato@praxis.com.br', href: 'mailto:contato@praxis.com.br', icon: 'email' },
+        { label: '11-2609-7511', href: 'tel:+551126097511', icon: 'phone' },
         {
-          label: 'Av. Paulista, 1000 - São Paulo, SP - CEP 01310-100',
+          label: 'contato@praxisengenharia.com.br',
+          href: 'mailto:contato@praxisengenharia.com.br',
+          icon: 'email',
+        },
+        {
+          label: 'Rua Roma, 620 - Lapa, São Paulo - SP, 05050-090',
           href: '#',
           icon: 'location',
         },
@@ -378,8 +385,11 @@ const footerData = {
       href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
       ariaLabel: 'LinkedIn',
     },
-    { platform: 'facebook', href: 'https://facebook.com', ariaLabel: 'Facebook' },
-    { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Instagram' },
+    {
+      platform: 'instagram',
+      href: 'https://www.instagram.com/praxisengenhariaclinica/',
+      ariaLabel: 'Instagram',
+    },
   ],
   copyright: '© 2026 Praxis Engenharia Clínica. Todos os direitos reservados.',
   legalLinks: [
@@ -418,10 +428,12 @@ export function HomePage(): React.ReactElement {
           secondaryCTA={heroData.secondaryCTA}
           stats={heroData.stats}
           backgroundImage={heroData.backgroundImage}
+          scrollIndicator={heroData.scrollIndicator}
         />
 
         {/* Services Section - 3 service cards + CTA banner */}
         <ServicesSection
+          sectionId="servicos"
           title="Nossos Serviços"
           description="Soluções completas para gestão de tecnologia médico-hospitalar"
           services={servicesData.services}

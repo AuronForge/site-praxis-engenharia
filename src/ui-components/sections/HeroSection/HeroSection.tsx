@@ -49,6 +49,10 @@ export interface HeroSectionProps {
    */
   stats?: Stat[];
   /**
+   * Prevent stat labels from wrapping on larger screens
+   */
+  singleLineStatLabels?: boolean;
+  /**
    * Background image URL
    */
   backgroundImageUrl?: string;
@@ -57,6 +61,10 @@ export interface HeroSectionProps {
    * @default 'full'
    */
   variant?: 'full' | 'compact';
+  /**
+   * Optional scroll hint shown below hero stats
+   */
+  scrollIndicator?: CTAButton;
 }
 
 /**
@@ -83,8 +91,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   primaryCta,
   secondaryCta,
   stats,
+  singleLineStatLabels = false,
   backgroundImageUrl,
   variant = 'full',
+  scrollIndicator,
 }): React.ReactElement => {
   /**
    * Renders the title with optional highlighted word
@@ -104,9 +114,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     );
   };
 
+  const heroClassName = [
+    styles.hero,
+    variant === 'compact' ? styles.heroCompact : '',
+    scrollIndicator && variant !== 'compact' ? styles.heroWithScrollIndicator : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <section
-      className={variant === 'compact' ? `${styles.hero} ${styles.heroCompact}` : styles.hero}
+      className={heroClassName}
       style={{
         backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
       }}
@@ -121,14 +139,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className={styles.badge} role="status">
               <svg
                 className={styles.badgeIcon}
-                width="18"
-                height="18"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
               >
-                <path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.028 7.028 0 0 0-1.63-.94l-.36-2.54A.488.488 0 0 0 13.9 2h-3.8a.488.488 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.55-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.71 8.48a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.65-.06.94s.02.63.06.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.13.22.39.31.6.22l2.39-.96c.5.39 1.05.71 1.63.94l.36 2.54c.05.24.25.42.49.42h3.8c.24 0 .44-.18.49-.42l.36-2.54c.59-.24 1.13-.55 1.63-.94l2.39.96c.22.09.47 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58ZM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7Z" />
+                <path
+                  d="M12 3.25L18 5.9V11.66C18 16.38 14.78 19.29 12 20.62C9.22 19.29 6 16.38 6 11.66V5.9L12 3.25Z"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
               {badge}
             </div>
@@ -170,11 +194,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Stats */}
           {stats && stats.length > 0 && (
             <div className={styles.stats}>
-              <StatsRow items={stats} variant="light" />
+              <StatsRow items={stats} variant="light" singleLineLabels={singleLineStatLabels} />
             </div>
           )}
         </div>
       </div>
+
+      {scrollIndicator && (
+        <a
+          href={scrollIndicator.href}
+          className={styles.scrollIndicator}
+          aria-label={scrollIndicator.label}
+        >
+          <span className={styles.scrollLabel}>{scrollIndicator.label}</span>
+          <span className={styles.scrollMouse} aria-hidden="true">
+            <span className={styles.scrollWheel} />
+          </span>
+        </a>
+      )}
     </section>
   );
 };
