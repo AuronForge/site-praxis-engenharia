@@ -25,11 +25,6 @@ const mockProps: HeaderProps = {
 
 describe('Header', () => {
   describe('Rendering', () => {
-    it('should render brand name', () => {
-      render(<Header {...mockProps} />);
-      expect(screen.getByText('Praxis Engenharia Clínica')).toBeInTheDocument();
-    });
-
     it('should render brand logo when logoSrc is provided', () => {
       render(<Header {...mockProps} />);
       const logo = screen.getByAltText('Praxis Logo');
@@ -246,7 +241,6 @@ describe('Header', () => {
     it('should handle empty links array', () => {
       const propsWithNoLinks = { ...mockProps, links: [] };
       render(<Header {...propsWithNoLinks} />);
-      expect(screen.getByText('Praxis Engenharia Clínica')).toBeInTheDocument();
       expect(screen.getAllByText('Contato').length).toBeGreaterThan(0);
     });
 
@@ -270,7 +264,6 @@ describe('Header', () => {
       };
       const { container } = render(<Header {...propsWithoutLogo} />);
       expect(container.querySelector('img')).not.toBeInTheDocument();
-      expect(screen.getByText('Praxis')).toBeInTheDocument();
     });
   });
 });

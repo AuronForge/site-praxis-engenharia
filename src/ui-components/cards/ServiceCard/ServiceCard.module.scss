@@ -9,21 +9,30 @@
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
 }
 
+.default {
+  min-height: 100%;
+}
+
 .iconArea {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background-color: #eff6ff;
-  color: #1e40af;
+  background-color: #dbeafe;
+  color: #155dfc;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .title {
   margin: 0;
-  font-size: 24px;
-  line-height: 1.3;
+  font-size: 20px;
+  line-height: 28px;
   font-weight: 700;
   color: #121826;
 }
@@ -31,13 +40,14 @@
 .description {
   margin: 0;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 26px;
   color: #4b5563;
 }
 
 .bullets {
   margin: 0;
-  padding-left: 20px;
+  padding-left: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -45,20 +55,94 @@
 }
 
 .bulletItem {
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 20px;
+  padding-left: 20px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #155dfc;
+  }
+}
+
+.planning {
+  gap: 14px;
+  padding: 26px 24px 24px;
+  border-color: #dfe7f3;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+
+  .iconArea {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #dbeafe;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .title {
+    font-size: 19px;
+    line-height: 1.35;
+    color: #1f2937;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #667085;
+  }
+
+  .bullets {
+    gap: 10px;
+    margin-top: 2px;
+  }
+
+  .bulletItem {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #667085;
+    padding-left: 16px;
+
+    &::before {
+      top: 6px;
+      width: 5px;
+      height: 5px;
+      background-color: #2563eb;
+    }
+  }
 }
 
 .link {
-  margin-top: 8px;
-  align-self: flex-start;
+  margin-top: auto;
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   color: #1e40af;
   font-weight: 600;
   text-decoration: none;
+  transition: gap 0.2s ease;
 }
 
 .link:hover {
   text-decoration: underline;
+  gap: 8px;
+}
+
+.arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
 .link:focus-visible {
@@ -75,5 +159,13 @@
 
   .title {
     font-size: 20px;
+  }
+
+  .planning {
+    padding: 22px 20px;
+
+    .title {
+      font-size: 18px;
+    }
   }
 }

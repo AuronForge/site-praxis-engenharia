@@ -19,10 +19,15 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 }): React.ReactElement => {
   return (
     <article className={`${styles.card} ${styles[variant]}`}>
-      {icon ? <div className={styles.icon}>{icon}</div> : null}
+      <div className={styles.header}>
+        {icon ? <div className={styles.icon}>{icon}</div> : null}
 
-      <p className={styles.value}>{value}</p>
-      <h3 className={styles.label}>{label}</h3>
+        <div className={styles.content}>
+          <p className={styles.value}>{value}</p>
+          <h3 className={styles.label}>{label}</h3>
+        </div>
+      </div>
+
       {helper ? <p className={styles.helper}>{helper}</p> : null}
     </article>
   );

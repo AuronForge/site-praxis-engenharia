@@ -25,6 +25,10 @@ const mockProps: HeroSectionProps = {
     { value: '100%', label: 'Conformidade ANVISA' },
   ],
   backgroundImageUrl: '/images/hero-background.jpg',
+  scrollIndicator: {
+    label: 'Role para baixo',
+    href: '#servicos',
+  },
 };
 
 describe('HeroSection', () => {
@@ -95,6 +99,13 @@ describe('HeroSection', () => {
       expect(screen.getByText('Conformidade ANVISA')).toBeInTheDocument();
     });
 
+    it('should render scroll indicator when provided', () => {
+      render(<HeroSection {...mockProps} />);
+      const indicator = screen.getByRole('link', { name: 'Role para baixo' });
+      expect(indicator).toBeInTheDocument();
+      expect(indicator).toHaveAttribute('href', '#servicos');
+    });
+
     it('should render stat helper text when provided', () => {
       const propsWithHelper = {
         ...mockProps,
@@ -135,6 +146,12 @@ describe('HeroSection', () => {
   });
 
   describe('Background Image', () => {
+    it('should apply centered content class when contentAlignment is center', () => {
+      const { container } = render(<HeroSection {...mockProps} contentAlignment="center" />);
+      const content = container.querySelector('[class*="content"]');
+      expect(content?.className).toContain('contentCentered');
+    });
+
     it('should apply background image when provided', () => {
       const { container } = render(<HeroSection {...mockProps} />);
       const section = container.querySelector('section');
@@ -175,6 +192,64 @@ describe('HeroSection', () => {
       render(<HeroSection {...propsWithOneStat} />);
       expect(screen.getByText('25+')).toBeInTheDocument();
       expect(screen.getByText('Anos')).toBeInTheDocument();
+    });
+  });
+
+  describe('Simple Variant', () => {
+    it('should render without CTAs when not provided', () => {
+      const simpleProps = {
+        title: 'Engenharia Clínica',
+        description: 'Gestão completa e especializada',
+      };
+      render(<HeroSection {...simpleProps} />);
+
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Engenharia Clínica');
+      expect(screen.getByText('Gestão completa e especializada')).toBeInTheDocument();
+      expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    });
+
+    it('should render without stats when not provided', () => {
+      const simpleProps = {
+        title: 'Test Title',
+        description: 'Test Description',
+      };
+      const { container } = render(<HeroSection {...simpleProps} />);
+
+      // Stats section should not be rendered at all
+      expect(container.querySelector('.stats')).not.toBeInTheDocument();
+    });
+
+    it('should not render scroll indicator when not provided', () => {
+      const simpleProps = {
+        title: 'Test Title',
+        description: 'Test Description',
+      };
+      render(<HeroSection {...simpleProps} />);
+
+      expect(screen.queryByRole('link', { name: 'Role para baixo' })).not.toBeInTheDocument();
+    });
+
+    it('should render with only primaryCta', () => {
+      const propsWithPrimaryCta = {
+        title: 'Test',
+        description: 'Test',
+        primaryCta: { label: 'Primary', href: '#primary' },
+      };
+      render(<HeroSection {...propsWithPrimaryCta} />);
+
+      expect(screen.getByRole('link', { name: 'Primary' })).toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'Secondary' })).not.toBeInTheDocument();
+    });
+
+    it('should render with only secondaryCta', () => {
+      const propsWithSecondaryCta = {
+        title: 'Test',
+        description: 'Test',
+        secondaryCta: { label: 'Secondary', href: '#secondary' },
+      };
+      render(<HeroSection {...propsWithSecondaryCta} />);
+
+      expect(screen.getByRole('link', { name: 'Secondary' })).toBeInTheDocument();
     });
   });
 });

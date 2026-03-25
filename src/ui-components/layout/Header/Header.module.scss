@@ -90,8 +90,8 @@ $breakpoint-desktop: 1024px;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 275px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -114,7 +114,7 @@ $breakpoint-desktop: 1024px;
 .navLinks {
   display: none;
   align-items: center;
-  gap: 2rem;
+  gap: 2.75rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -130,6 +130,8 @@ $breakpoint-desktop: 1024px;
 }
 
 .navLink {
+  display: inline-block;
+  padding: 0.25rem 0.35rem;
   text-decoration: none;
   color: $link-color;
   font-weight: 500;

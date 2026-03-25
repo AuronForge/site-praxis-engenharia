@@ -1,0 +1,186 @@
+name: Feature Branch Reintegration
+
+on:
+  push:
+    branches:
+      - feature/**
+
+concurrency:
+  group: feature-reintegration-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:ci
+
+  lints:
+    name: Lints
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lints
+        run: npm run lint
+
+  tag-validation:
+    name: Tag Validation
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate commit tags (Conventional Commits)
+        run: |
+          git fetch origin develop --depth=1
+          BASE_SHA=$(git merge-base HEAD origin/develop)
+          echo "Validating commits from ${BASE_SHA} to HEAD"
+          npx commitlint --from "${BASE_SHA}" --to HEAD --verbose
+
+  pr-to-develop:
+    name: PR to DEVELOP
+    runs-on: ubuntu-latest
+    needs: [test, lints, tag-validation]
+
+    steps:
+      - name: Create or update PR to develop
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const base = 'develop';
+            const branch = context.ref.replace('refs/heads/', '');
+
+            const compare = await github.rest.repos.compareCommitsWithBasehead({
+              owner,
+              repo,
+              basehead: `${base}...${branch}`,
+              per_page: 250,
+            });
+
+            const commits = compare.data.commits || [];
+            if (commits.length === 0) {
+              core.setFailed(`No commits found between ${base} and ${branch}.`);
+              return;
+            }
+
+            const shortSha = (sha) => sha.substring(0, 7);
+            const commitLines = commits
+              .map((commit) => {
+                const subject = commit.commit.message.split('\n')[0];
+                return `- ${subject} (${shortSha(commit.sha)})`;
+              })
+              .join('\n');
+
+            const latestSubject = commits[commits.length - 1].commit.message.split('\n')[0];
+            const title = `Reintegração ${branch}: ${latestSubject}`;
+
+            const body = [
+              `## Reintegração automática para ${base}`,
+              '',
+              `Branch origem: \`${branch}\``,
+              '',
+              '### Commits reintegrados',
+              commitLines,
+            ].join('\n');
+
+            const { data: existingPulls } = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              base,
+              head: `${owner}:${branch}`,
+              per_page: 1,
+            });
+
+            if (existingPulls.length > 0) {
+              const pull = existingPulls[0];
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: pull.number,
+                title,
+                body,
+              });
+              core.info(`Updated PR #${pull.number}: ${pull.html_url}`);
+              return;
+            }
+
+            const { data: createdPull } = await github.rest.pulls.create({
+              owner,
+              repo,
+              base,
+              head: branch,
+              title,
+              body,
+              maintainer_can_modify: true,
+            });
+
+            core.info(`Created PR #${createdPull.number}: ${createdPull.html_url}`);

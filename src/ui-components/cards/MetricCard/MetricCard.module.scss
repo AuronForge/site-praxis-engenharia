@@ -1,55 +1,77 @@
 .card {
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 24px 26px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: flex-start;
 }
 
 .icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 9999px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .value {
   margin: 0;
-  font-size: 32px;
-  line-height: 1;
+  font-size: 28px;
+  line-height: 1.1;
   font-weight: 700;
 }
 
 .label {
   margin: 0;
-  font-size: 16px;
-  line-height: 1.4;
-  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 }
 
 .helper {
   margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 22px;
+  color: inherit;
 }
 
 .light {
   background: #fff;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #dbe3ef;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 
   .icon {
-    background: #eff6ff;
-    color: #1e40af;
+    background: #e4efff;
+    color: #155dfc;
   }
 
   .value {
-    color: #1e3a8a;
+    color: #111827;
   }
 
   .label {
-    color: #121826;
+    color: #475569;
   }
 
   .helper {

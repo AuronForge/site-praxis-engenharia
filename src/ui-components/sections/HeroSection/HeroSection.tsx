@@ -37,21 +37,39 @@ export interface HeroSectionProps {
    */
   description: string;
   /**
-   * Primary CTA button
+   * Primary CTA button (optional)
    */
-  primaryCta: CTAButton;
+  primaryCta?: CTAButton;
   /**
-   * Secondary CTA button
+   * Secondary CTA button (optional)
    */
-  secondaryCta: CTAButton;
+  secondaryCta?: CTAButton;
   /**
-   * Statistics/metrics to display
+   * Statistics/metrics to display (optional)
    */
-  stats: Stat[];
+  stats?: Stat[];
+  /**
+   * Prevent stat labels from wrapping on larger screens
+   */
+  singleLineStatLabels?: boolean;
   /**
    * Background image URL
    */
   backgroundImageUrl?: string;
+  /**
+   * Hero variant - controls height
+   * @default 'full'
+   */
+  variant?: 'full' | 'compact';
+  /**
+   * Horizontal alignment of hero content
+   * @default 'left'
+   */
+  contentAlignment?: 'left' | 'center';
+  /**
+   * Optional scroll hint shown below hero stats
+   */
+  scrollIndicator?: CTAButton;
 }
 
 /**
@@ -78,7 +96,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   primaryCta,
   secondaryCta,
   stats,
+  singleLineStatLabels = false,
   backgroundImageUrl,
+  variant = 'full',
+  contentAlignment = 'left',
+  scrollIndicator,
 }): React.ReactElement => {
   /**
    * Renders the title with optional highlighted word
@@ -98,21 +120,53 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     );
   };
 
+  const heroClassName = [
+    styles.hero,
+    variant === 'compact' ? styles.heroCompact : '',
+    scrollIndicator && variant !== 'compact' ? styles.heroWithScrollIndicator : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  const contentClassName = [
+    styles.content,
+    contentAlignment === 'center' ? styles.contentCentered : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <section
-      className={styles.hero}
+      className={heroClassName}
       style={{
         backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
       }}
     >
       {/* Dark overlay gradient */}
-      <div className={styles.overlay} />
+      <div className={backgroundImageUrl ? styles.overlay : styles.overlaySolid} />
 
       <div className={styles.container}>
-        <div className={styles.content}>
+        <div className={contentClassName}>
           {/* Badge/Pill */}
           {badge && (
             <div className={styles.badge} role="status">
+              <svg
+                className={styles.badgeIcon}
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3.25L18 5.9V11.66C18 16.38 14.78 19.29 12 20.62C9.22 19.29 6 16.38 6 11.66V5.9L12 3.25Z"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               {badge}
             </div>
           )}
@@ -127,31 +181,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <p className={styles.description}>{description}</p>
 
           {/* CTAs */}
-          <div className={styles.ctas}>
-            <a
-              href={primaryCta.href}
-              className={`${styles.cta} ${styles.ctaPrimary}`}
-              aria-label={primaryCta.label}
-            >
-              {primaryCta.label}
-            </a>
-            <a
-              href={secondaryCta.href}
-              className={`${styles.cta} ${styles.ctaSecondary}`}
-              aria-label={secondaryCta.label}
-            >
-              {secondaryCta.label}
-            </a>
-          </div>
+          {(primaryCta ?? secondaryCta) && (
+            <div className={styles.ctas}>
+              {primaryCta && (
+                <a
+                  href={primaryCta.href}
+                  className={`${styles.cta} ${styles.ctaPrimary}`}
+                  aria-label={primaryCta.label}
+                >
+                  {primaryCta.label}
+                </a>
+              )}
+              {secondaryCta && (
+                <a
+                  href={secondaryCta.href}
+                  className={`${styles.cta} ${styles.ctaSecondary}`}
+                  aria-label={secondaryCta.label}
+                >
+                  {secondaryCta.label}
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Stats */}
-          {stats.length > 0 && (
+          {stats && stats.length > 0 && (
             <div className={styles.stats}>
-              <StatsRow items={stats} variant="light" />
+              <StatsRow items={stats} variant="light" singleLineLabels={singleLineStatLabels} />
             </div>
           )}
         </div>
       </div>
+
+      {scrollIndicator && (
+        <a
+          href={scrollIndicator.href}
+          className={styles.scrollIndicator}
+          aria-label={scrollIndicator.label}
+        >
+          <span className={styles.scrollLabel}>{scrollIndicator.label}</span>
+          <span className={styles.scrollMouse} aria-hidden="true">
+            <span className={styles.scrollWheel} />
+          </span>
+        </a>
+      )}
     </section>
   );
 };

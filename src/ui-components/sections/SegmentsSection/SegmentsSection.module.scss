@@ -1,0 +1,162 @@
+.section {
+  padding: 96px 24px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  border: 1px solid #dbeafe;
+  background-color: #dbeafe;
+  color: #193cb8;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.title {
+  margin: 0;
+  color: #121826;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.description {
+  margin: 16px auto 0;
+  max-width: 680px;
+  color: #4b5563;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    border-color: #dbeafe;
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+    transform: translateY(-4px);
+  }
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #dbeafe;
+  border: 1px solid #dbeafe;
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #155dfc;
+
+  svg {
+    display: block;
+  }
+}
+
+.value {
+  margin: 0;
+  color: #155dfc;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.label {
+  margin: 8px 0 0;
+  color: #121826;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.cardDescription {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (width <= 1024px) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 768px) {
+  .section {
+    padding: 64px 16px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 24px 20px;
+  }
+
+  .value {
+    font-size: 36px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

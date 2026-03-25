@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { HeroSection } from '@ui-components/sections/HeroSection';
+
 export interface CTALink {
   text: string;
   href: string;
@@ -8,55 +10,71 @@ export interface CTALink {
 export interface Stat {
   value: string;
   label: string;
+  helper?: string;
+  icon?: 'trophy' | 'chart' | 'shield';
 }
 
 export interface HeroProps {
+  badge?: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  highlightWord?: string;
   description: string;
-  primaryCTA: CTALink;
-  secondaryCTA: CTALink;
-  stats: Stat[];
-  backgroundImage: string;
+  primaryCTA?: CTALink;
+  secondaryCTA?: CTALink;
+  stats?: Stat[];
+  backgroundImage?: string;
+  variant?: 'full' | 'compact';
+  scrollIndicator?: {
+    label: string;
+    href: string;
+  };
 }
 
-/**
- * Hero Component
- *
- * Above-the-fold hero section with:
- * - Large headline with gradient/colored text
- * - Description text
- * - Primary and secondary CTAs
- * - Stats/metrics row
- * - Background image with overlay
- *
- * @param props - Hero section data
- */
 export function Hero({
+  badge,
   title,
   subtitle,
-  _description,
-  _primaryCTA,
-  _secondaryCTA,
-  _stats,
-  _backgroundImage,
+  highlightWord,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  stats,
+  backgroundImage,
+  variant,
+  scrollIndicator,
 }: HeroProps): React.ReactElement {
-  // TODO: Implement Hero component
-  // - Background image with dark overlay
-  // - Gradient or colored subtitle text (e.g., "de Excelência" in blue)
-  // - Two CTA buttons (primary solid, secondary outline)
-  // - Stats row with icons
-  // - Responsive layout (stack on mobile)
+  // Auto-detect compact variant if no CTAs and stats
+  const effectiveVariant = variant ?? (!primaryCTA && !secondaryCTA && !stats ? 'compact' : 'full');
 
   return (
-    <section aria-label={`${title} ${subtitle}`}>
-      {/* TODO: Background image with overlay */}
-      {/* TODO: Content container */}
-      {/* TODO: Title with colored subtitle */}
-      {/* TODO: Description */}
-      {/* TODO: CTA buttons */}
-      {/* TODO: Stats row */}
-      <p>Hero - TODO: Implement hero section with background and CTAs</p>
-    </section>
+    <HeroSection
+      badge={badge}
+      title={title}
+      subtitle={subtitle}
+      highlightWord={highlightWord}
+      description={description}
+      primaryCta={
+        primaryCTA
+          ? {
+              label: primaryCTA.text,
+              href: primaryCTA.href,
+            }
+          : undefined
+      }
+      secondaryCta={
+        secondaryCTA
+          ? {
+              label: secondaryCTA.text,
+              href: secondaryCTA.href,
+            }
+          : undefined
+      }
+      stats={stats}
+      singleLineStatLabels={Boolean(scrollIndicator)}
+      backgroundImageUrl={backgroundImage}
+      variant={effectiveVariant}
+      scrollIndicator={scrollIndicator}
+    />
   );
 }
