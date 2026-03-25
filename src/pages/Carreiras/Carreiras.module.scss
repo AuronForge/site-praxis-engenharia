@@ -1,0 +1,416 @@
+// Variables
+$color-primary: #0066cc;
+$color-primary-dark: #0052a3;
+$color-primary-light: #e6f0fa;
+$color-secondary: #1a1a2e;
+$color-text: #333333;
+$color-text-light: #666666;
+$color-text-muted: #999999;
+$color-background: #ffffff;
+$color-background-alt: #f8f9fa;
+$color-background-dark: #1a1a2e;
+$color-border: #e0e0e0;
+$color-success: #28a745;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+
+// Typography
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+  sans-serif;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+$font-size-4xl: 2.5rem;
+$font-size-5xl: 3rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include respond-to('lg') {
+    padding: 0 $spacing-xl;
+  }
+}
+
+// Base styles
+.container {
+  @include container;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+}
+
+.sectionTitle {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $color-secondary;
+  margin: 0 0 $spacing-md;
+
+  @include respond-to('md') {
+    font-size: $font-size-4xl;
+  }
+}
+
+.sectionDescription {
+  font-size: $font-size-lg;
+  color: $color-text-light;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+// Benefits Section
+.benefitsSection {
+  padding: $spacing-3xl 0;
+  background-color: $color-background;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.benefitCard {
+  background: $color-background;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: $spacing-xl;
+  text-align: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+}
+
+.benefitIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: $color-primary-light;
+  border-radius: 12px;
+  margin-bottom: $spacing-md;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    color: $color-primary;
+  }
+}
+
+.benefitTitle {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-secondary;
+  margin: 0 0 $spacing-sm;
+}
+
+.benefitDescription {
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  margin: 0;
+  line-height: 1.5;
+}
+
+// Culture Section
+.cultureSection {
+  padding: $spacing-3xl 0;
+  background-color: $color-background-alt;
+}
+
+.cultureGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cultureCard {
+  background: $color-background;
+  border-radius: 12px;
+  padding: $spacing-xl;
+  border-left: 4px solid $color-primary;
+}
+
+.cultureTitle {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-secondary;
+  margin: 0 0 $spacing-sm;
+}
+
+.cultureDescription {
+  font-size: $font-size-base;
+  color: $color-text-light;
+  margin: 0;
+  line-height: 1.6;
+}
+
+// Positions Section
+.positionsSection {
+  padding: $spacing-3xl 0;
+  background-color: $color-background;
+}
+
+.positionsList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.positionCard {
+  background: $color-background;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: $spacing-xl;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: $color-primary;
+  }
+}
+
+.positionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-md;
+  gap: $spacing-md;
+}
+
+.positionTitle {
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-secondary;
+  margin: 0;
+}
+
+.positionType {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  background: $color-primary-light;
+  color: $color-primary;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.positionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.positionLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-text-light;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.positionDepartment {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.positionDescription {
+  font-size: $font-size-base;
+  color: $color-text-light;
+  margin: 0 0 $spacing-md;
+  line-height: 1.5;
+}
+
+.positionRequirements {
+  margin-bottom: $spacing-lg;
+}
+
+.requirementsTitle {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-secondary;
+  margin: 0 0 $spacing-sm;
+}
+
+.requirementsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.requirementItem {
+  position: relative;
+  padding-left: $spacing-lg;
+  font-size: $font-size-sm;
+  color: $color-text-light;
+  margin-bottom: $spacing-xs;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: $color-primary;
+    border-radius: 50%;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.positionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: $color-primary;
+  color: $color-background;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: $color-primary-dark;
+    text-decoration: none;
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}
+
+// CTA Section
+.ctaSection {
+  padding: $spacing-3xl 0;
+  background: linear-gradient(135deg, $color-secondary 0%, darken($color-secondary, 10%) 100%);
+}
+
+.ctaContent {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $color-background;
+  margin: 0 0 $spacing-md;
+
+  @include respond-to('md') {
+    font-size: $font-size-4xl;
+  }
+}
+
+.ctaText {
+  font-size: $font-size-lg;
+  color: rgba($color-background, 0.8);
+  margin: 0 0 $spacing-xl;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  background: $color-background;
+  color: $color-secondary;
+  font-size: $font-size-base;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: $color-primary;
+    color: $color-background;
+    text-decoration: none;
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}

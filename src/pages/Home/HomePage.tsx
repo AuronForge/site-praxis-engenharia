@@ -358,7 +358,7 @@ const footerData = {
       links: [
         { label: 'Sobre Nós', href: '#sobre' },
         { label: 'Equipe', href: '#equipe' },
-        { label: 'Carreiras', href: '#carreiras' },
+        { label: 'Carreiras', href: '/carreiras' },
         { label: 'Blog', href: '#blog' },
       ],
     },
