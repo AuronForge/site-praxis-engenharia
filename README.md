@@ -253,12 +253,54 @@ Invalid commit messages break:
 
 On pull requests and main branch, run:
 
-```bash
+````bash
 npm run lint          # All linters
 npm run type-check    # TypeScript validation
 npm run test:ci       # Tests with coverage
 npm run build         # Production build
-```
+
+## ▲ Deploy no Vercel
+
+Este projeto já está preparado para deploy no Vercel com Vite e fallback de rotas para SPA.
+
+### Configuração aplicada
+
+- `framework`: `vite`
+- `buildCommand`: `npm run build`
+- `outputDirectory`: `dist`
+- `rewrites`: fallback de todas as rotas para `index.html` (necessário para `BrowserRouter`)
+
+### Deploy via Dashboard
+
+1. Acesse o Vercel e clique em **Add New Project**.
+2. Importe o repositório.
+3. Confirme os campos:
+   - Framework Preset: `Vite`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+4. Clique em **Deploy**.
+
+### Deploy via CLI
+
+```bash
+# Instalar CLI globalmente (opcional)
+npm i -g vercel
+
+# Login
+vercel login
+
+# Primeiro deploy (preview)
+vercel
+
+# Deploy em produção
+vercel --prod
+````
+
+### Variáveis de ambiente
+
+Se o projeto usar variáveis, configure-as no painel do Vercel em **Project Settings > Environment Variables** antes do deploy em produção.
+
+````
 
 See [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md) for details.
 
@@ -283,7 +325,7 @@ npm run release
 # Manual version
 npm run release:minor  # 1.0.0 → 1.1.0
 npm run release:major  # 1.0.0 → 2.0.0
-```
+````
 
 ### What Happens
 

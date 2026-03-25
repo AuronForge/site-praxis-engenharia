@@ -1,0 +1,212 @@
+name: Develop Reintegration
+
+on:
+  push:
+    branches:
+      - develop
+
+concurrency:
+  group: develop-reintegration-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:ci
+
+  tag-validation:
+    name: Tag Validation
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate commit tags (Conventional Commits)
+        run: |
+          git fetch origin main --depth=1
+          BASE_SHA=$(git merge-base HEAD origin/main)
+          echo "Validating commits from ${BASE_SHA} to HEAD"
+          npx commitlint --from "${BASE_SHA}" --to HEAD --verbose
+
+  deploy-to-vercel-staging:
+    name: Deploy to Vercel (Staging)
+    runs-on: ubuntu-latest
+    needs: [tests, tag-validation]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel environment information (staging/preview)
+        run: vercel pull --yes --environment=preview --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Build Vercel artifacts
+        run: vercel build --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Deploy to Vercel preview (staging)
+        run: |
+          DEPLOYMENT_URL=$(vercel deploy --prebuilt --token="${{ secrets.VERCEL_TOKEN }}")
+          echo "deployment_url=${DEPLOYMENT_URL}" >> "$GITHUB_OUTPUT"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  pr-to-main:
+    name: PR to Main
+    runs-on: ubuntu-latest
+    needs: deploy-to-vercel-staging
+
+    steps:
+      - name: Create or update PR to main
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const base = 'main';
+            const head = 'develop';
+
+            const compare = await github.rest.repos.compareCommitsWithBasehead({
+              owner,
+              repo,
+              basehead: `${base}...${head}`,
+              per_page: 250,
+            });
+
+            const commits = compare.data.commits || [];
+            if (commits.length === 0) {
+              core.setFailed(`No commits found between ${base} and ${head}.`);
+              return;
+            }
+
+            const shortSha = (sha) => sha.substring(0, 7);
+            const subjects = commits.map((commit) => commit.commit.message.split('\n')[0]);
+
+            const cleanedSubjects = subjects.map((subject) =>
+              subject.replace(/^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]+\))?!?:\s*/i, '')
+            );
+
+            const summary = cleanedSubjects
+              .slice(-3)
+              .join(' | ')
+              .slice(0, 110);
+
+            const title = `Reintegração develop -> main: ${summary}`;
+            const commitLines = commits
+              .map((commit) => `- ${commit.commit.message.split('\n')[0]} (${shortSha(commit.sha)})`)
+              .join('\n');
+
+            const body = [
+              '## Reintegração automática para main',
+              '',
+              'Branch origem: `develop`',
+              '',
+              '### Commits reintegrados',
+              commitLines,
+            ].join('\n');
+
+            const { data: existingPulls } = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              base,
+              head: `${owner}:${head}`,
+              per_page: 1,
+            });
+
+            if (existingPulls.length > 0) {
+              const pull = existingPulls[0];
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: pull.number,
+                title,
+                body,
+              });
+              core.info(`Updated PR #${pull.number}: ${pull.html_url}`);
+              return;
+            }
+
+            const { data: createdPull } = await github.rest.pulls.create({
+              owner,
+              repo,
+              base,
+              head,
+              title,
+              body,
+              maintainer_can_modify: true,
+            });
+
+            core.info(`Created PR #${createdPull.number}: ${createdPull.html_url}`);
