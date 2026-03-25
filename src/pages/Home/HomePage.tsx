@@ -17,9 +17,9 @@ const heroData = {
   description:
     'Soluções integradas em gestão de tecnologia médico-hospitalar para instituições que buscam segurança, conformidade e eficiência operacional.',
   primaryCTA: {
-    text: 'Fale com Especialistas',
-    href: '#contato',
-  },
+      text: 'Fale com Especialistas',
+      href: '/contato',
+    },
   secondaryCTA: {
     text: 'Conheça os Serviços',
     href: '#servicos',
@@ -110,7 +110,7 @@ const servicesData = {
     title: 'Precisa de uma solução personalizada?',
     text: 'Nossa equipe está pronta para desenvolver um projeto sob medida para sua instituição.',
     buttonLabel: 'Solicitar Proposta',
-    href: '#contato',
+    href: '/contato',
   },
 };
 
@@ -329,7 +329,7 @@ const headerData = {
   ],
   cta: {
     label: 'Contato',
-    href: '#contato',
+    href: '/contato',
   },
 };
 
