@@ -95,7 +95,7 @@ describe('EngenhariaClinicaPage', () => {
       const secondaryButton = screen.getByRole('link', { name: 'Voltar ao Início' });
 
       expect(primaryButton);
-      expect(primaryButton).toHaveAttribute('href', '#contato');
+      expect(primaryButton).toHaveAttribute('href', '/contato');
       expect(secondaryButton);
       expect(secondaryButton).toHaveAttribute('href', '/');
     });
@@ -105,18 +105,17 @@ describe('EngenhariaClinicaPage', () => {
     it('renders header with navigation links', () => {
       renderWithRouter();
 
-      expect(screen.getByRole('link', { name: 'Serviços' }));
-      expect(screen.getByRole('link', { name: 'Experiência' }));
-      expect(screen.getByRole('link', { name: 'Gestão' }));
-      expect(screen.getByRole('link', { name: 'Clientes' }));
-      expect(screen.getByRole('link', { name: 'Contato' }));
+      expect(screen.getByRole('link', { name: 'Engenharia Clinica' }));
+      expect(screen.getByRole('link', { name: 'Planejamento Tecnoloógico' }));
+      expect(screen.getAllByRole('link', { name: 'Acreditação' }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('link', { name: 'Contato' }).length).toBeGreaterThan(0);
     });
 
     it('renders footer with contact information', () => {
       renderWithRouter();
 
-      expect(screen.getByText('+55 11 3000-0000'));
-      expect(screen.getByText('contato@praxis.com.br'));
+      expect(screen.getByText('11-2609-7511'));
+      expect(screen.getByText('contato@praxisengenharia.com.br'));
     });
   });
 

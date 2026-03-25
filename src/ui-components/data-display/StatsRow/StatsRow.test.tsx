@@ -63,6 +63,12 @@ describe('StatsRow', () => {
       const statsRow = container.firstChild;
       expect(statsRow).toHaveClass('light');
     });
+
+    it('should apply single-line label class when specified', () => {
+      const { container } = render(<StatsRow items={mockItems} singleLineLabels />);
+      const statsRow = container.firstChild;
+      expect(statsRow).toHaveClass('singleLineLabels');
+    });
   });
 
   describe('Semantic HTML', () => {

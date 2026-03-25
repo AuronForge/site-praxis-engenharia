@@ -10,45 +10,30 @@
 
 /* Hero Section */
 .heroSection {
-  padding: 80px 24px 64px;
-  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+  padding: 44px 24px 48px;
+  background: linear-gradient(135deg, #32437f 0%, #405db2 100%);
   text-align: center;
 }
 
 .heroContent {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
-}
-
-.heroBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  border: 1px solid #dbeafe;
-  background: #eff6ff;
-  color: #1e40af;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
 }
 
 .heroTitle {
   margin: 0;
-  color: #0f172a;
-  font-size: 48px;
+  color: #fff;
+  font-size: 40px;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -0.02em;
 }
 
 .heroDescription {
-  margin: 20px auto 0;
-  max-width: 640px;
-  color: #475569;
-  font-size: 18px;
+  margin: 18px auto 0;
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 17px;
   line-height: 1.65;
 }
 
@@ -71,19 +56,36 @@
   top: 120px;
 }
 
+.contactBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: #dbeafe;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .sectionTitle {
   margin: 0;
   color: #0f172a;
   font-size: 28px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 360px;
 }
 
 .sectionDescription {
-  margin: 16px 0 32px;
+  margin: 16px 0 28px;
   color: #64748b;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 390px;
 }
 
 .infoCards {
@@ -94,7 +96,7 @@
 
 .infoCard {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   padding: 20px 24px;
   border-radius: 16px;
@@ -116,8 +118,8 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
-  color: #fff;
+  background: #dbeafe;
+  color: #2563eb;
   flex-shrink: 0;
 
   svg {
@@ -129,20 +131,27 @@
 .infoCardContent {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .infoCardLabel {
-  color: #64748b;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .infoCardValue {
-  color: #0f172a;
-  font-size: 16px;
-  font-weight: 600;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.infoCardHelper {
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -152,21 +161,22 @@
   border-radius: 24px;
   border: 1px solid #e2e8f0;
   background: #fff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 
 .formTitle {
   margin: 0;
   color: #0f172a;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .formDescription {
-  margin: 12px 0 32px;
+  margin: 4px 0 28px;
   color: #64748b;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .form {
@@ -284,6 +294,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 100%;
   padding: 16px 32px;
   border-radius: 10px;
   border: none;
@@ -312,6 +323,15 @@
     outline: 3px solid rgba(37, 99, 235, 0.4);
     outline-offset: 2px;
   }
+}
+
+.formDisclaimer {
+  margin: 12px auto 0;
+  max-width: 440px;
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
 }
 
 /* Map Section */
@@ -425,17 +445,22 @@
   }
 
   .heroTitle {
-    font-size: 40px;
+    font-size: 36px;
+  }
+
+  .sectionTitle,
+  .sectionDescription {
+    max-width: none;
   }
 }
 
 @media (width <= 768px) {
   .heroSection {
-    padding: 60px 16px 48px;
+    padding: 36px 16px 40px;
   }
 
   .heroTitle {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .heroDescription {
@@ -451,6 +476,10 @@
     border-radius: 20px;
   }
 
+  .contactBadge {
+    margin-bottom: 14px;
+  }
+
   .formGrid {
     grid-template-columns: 1fr;
   }
@@ -462,6 +491,10 @@
   .formTitle,
   .sectionTitle {
     font-size: 24px;
+  }
+
+  .sectionDescription {
+    font-size: 16px;
   }
 
   .ctaSection {

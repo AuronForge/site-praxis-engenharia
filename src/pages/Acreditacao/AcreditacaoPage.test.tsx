@@ -155,8 +155,11 @@ describe('AcreditacaoPage', () => {
 
     it('renders the CTA buttons', () => {
       renderWithRouter(<AcreditacaoPage />);
-      expect(screen.getByText('Solicitar Diagnóstico')).toBeInTheDocument();
-      expect(screen.getByText('Voltar ao Início')).toBeInTheDocument();
+      const primaryButton = screen.getByRole('link', { name: 'Solicitar Diagnóstico' });
+      const secondaryButton = screen.getByRole('link', { name: 'Voltar ao Início' });
+
+      expect(primaryButton).toHaveAttribute('href', '/contato');
+      expect(secondaryButton).toHaveAttribute('href', '/');
     });
   });
 
@@ -171,10 +174,9 @@ describe('AcreditacaoPage', () => {
     it('renders the header with navigation links', () => {
       renderWithRouter(<AcreditacaoPage />);
       // Use queryAllByText for links that appear in both desktop and mobile menus
-      expect(screen.getAllByText('Serviços')).toBeDefined();
-      expect(screen.getAllByText('Experiência')).toBeDefined();
-      expect(screen.getAllByText('Gestão')).toBeDefined();
-      expect(screen.getAllByText('Clientes')).toBeDefined();
+      expect(screen.getAllByText('Engenharia Clinica')).toBeDefined();
+      expect(screen.getAllByText('Planejamento Tecnoloógico')).toBeDefined();
+      expect(screen.getAllByText('Acreditação')).toBeDefined();
     });
 
     it('renders the header with CTA button', () => {

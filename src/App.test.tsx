@@ -10,9 +10,9 @@ describe('App', () => {
 
   it('should render navigation links', () => {
     render(<App />);
-    expect(screen.getAllByText('Serviços').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Experiência').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Gestão').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Engenharia Clinica').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Planejamento Tecnoloógico').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Acreditação').length).toBeGreaterThan(0);
   });
 
   it('should render hero section with title', () => {

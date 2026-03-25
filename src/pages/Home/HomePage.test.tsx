@@ -21,6 +21,10 @@ describe('HomePage', () => {
 
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Role para baixo' })).toHaveAttribute(
+      'href',
+      '#servicos'
+    );
   });
 
   it('should have proper semantic HTML structure', () => {
@@ -36,10 +40,11 @@ describe('HomePage', () => {
   });
 
   it('should render services section', () => {
-    renderWithRouter(<HomePage />);
+    const { container } = renderWithRouter(<HomePage />);
 
     const main = screen.getByRole('main');
     expect(main).toBeInTheDocument();
+    expect(container.querySelector('#servicos')).toBeInTheDocument();
   });
 
   it('should render all sections in correct order', () => {
