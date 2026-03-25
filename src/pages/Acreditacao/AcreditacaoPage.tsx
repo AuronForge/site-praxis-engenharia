@@ -43,15 +43,22 @@ const servicesData: ServiceCardProps[] = [
   {
     title: 'Preparação ONA',
     description:
-      'Acompanhamento completo no processo de acreditação pela Organização Nacional de Acreditação, desde o diagnóstico inicial até a certificação.',
+      'Adequação completa do parque tecnológico e documentação para atender aos requisitos da Organização Nacional de Acreditação.',
     bullets: [
-      'Diagnóstico de maturidade',
-      'Plano de ação estruturado',
-      'Treinamento de equipes',
-      'Simulado de avaliação',
+      'Diagnóstico de conformidade',
+      'Plano de ação customizado',
+      'Acompanhamento de visita',
     ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
+        <path
+          d="M9 3h6v3H9z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
         <path
           d="M9 12l2 2 4-4"
           stroke="currentColor"
@@ -59,99 +66,18 @@ const servicesData: ServiceCardProps[] = [
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <path
-          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
       </svg>
     ),
   },
   {
-    title: 'ISO 9001',
+    title: 'Adequação JCI',
     description:
-      'Implementação e certificação do Sistema de Gestão de Qualidade conforme requisitos da norma ISO 9001:2015.',
-    bullets: [
-      'Mapeamento de processos',
-      'Documentação técnica',
-      'Auditoria interna',
-      'Certificação',
-    ],
+      'Preparação para certificação internacional com adequação aos rigorosos padrões da Joint Commission International.',
+    bullets: ['Gap analysis detalhado', 'Adequação de processos', 'Simulados de auditoria'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
-          d="M12 15l-2 5 2-2 2 2-2-5z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9 5l3-3 3 3"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M12 2v3"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-      </svg>
-    ),
-  },
-  {
-    title: 'ISO 14001',
-    description:
-      'Implementação do Sistema de Gestão Ambiental para organizações que buscam sustentabilidade e conformidade ambiental.',
-    bullets: [
-      'Diagnóstico ambiental',
-      'Aspectos e impactos',
-      'Controle operacional',
-      'Melhoria contínua',
-    ],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path
-          d="M12 3v18M3 12h18"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M12 3a9 9 0 019 9c0 5-9 9-9 9s-9-4-9-9 4-9 9-9z"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: 'ISO 45001',
-    description:
-      'Sistema de Gestão de Saúde e Segurança Ocupacional, prevenindo riscos e promovendo ambiente de trabalho seguro.',
-    bullets: [
-      'Identificação de perigos',
-      'Avaliação de riscos',
-      'Controle de perigos',
-      'Auditoria do SGSO',
-    ],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path
-          d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9 12l2 2 4-4"
+          d="M12 3.5l2.6 5.26 5.8.84-4.2 4.09.99 5.78L12 16.73l-5.19 2.74.99-5.78-4.2-4.09 5.8-.84L12 3.5z"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
@@ -163,12 +89,11 @@ const servicesData: ServiceCardProps[] = [
   {
     title: 'Documentação Técnica',
     description:
-      'Elaboração e organização de toda a documentação técnica exigida pelos processos de acreditação e certificação.',
+      'Organização e padronização de toda documentação técnica dos equipamentos conforme requisitos das certificadoras.',
     bullets: [
-      'Procedimentos operacionais',
-      'Registros de qualidade',
-      'Políticas e instruções',
-      'Gestão documental',
+      'Inventário técnico completo',
+      'Registros de manutenção',
+      'Certificados de calibração',
     ],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -190,31 +115,79 @@ const servicesData: ServiceCardProps[] = [
     ),
   },
   {
-    title: 'Auditoria',
+    title: 'Auditorias Internas',
     description:
-      'Serviços de auditoria interna e externa para verificar conformidade e identificar oportunidades de melhoria.',
-    bullets: [
-      'Auditoria interna',
-      'Auditoria de fornecedores',
-      'Auditoria de processos',
-      'Relatórios e ações',
-    ],
+      'Realização de auditorias periódicas para garantir manutenção dos padrões de qualidade e conformidade contínua.',
+    bullets: ['Auditorias programadas', 'Relatórios detalhados', 'Planos de ação corretiva'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path
-          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"
+          d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <rect x="9" y="3" width="6" height="4" rx="1" stroke="currentColor" strokeWidth="2" />
         <path
-          d="M9 12h6M9 16h6"
+          d="M9 12l2 2 4-4"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
+          strokeLinejoin="round"
         />
+      </svg>
+    ),
+  },
+  {
+    title: 'Treinamento de Equipes',
+    description:
+      'Capacitação de equipes técnicas e assistenciais sobre requisitos e práticas de acreditação relacionadas a equipamentos.',
+    bullets: ['Workshops customizados', 'Material didático exclusivo', 'Simulações práticas'],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M16 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.5 11a4 4 0 100-8 4 4 0 000 8zM21 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: 'Manutenção de Certificação',
+    description:
+      'Suporte contínuo para manter e renovar certificações, garantindo conformidade permanente aos requisitos.',
+    bullets: [
+      'Acompanhamento periódico',
+      'Preparação para reacreditação',
+      'Gestão de não conformidades',
+    ],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M4 16l6-6 4 4 6-6"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M14 8h6v6"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -299,44 +272,113 @@ const managementData = {
   ],
 };
 
+const certificationsData = {
+  title: 'Certificações que Atendemos',
+  description: 'Suporte especializado para as principais acreditadoras do mercado',
+  ona: {
+    title: 'ONA',
+    subtitle: 'Organização Nacional de Acreditação',
+    description:
+      'A ONA é a principal certificadora de qualidade em saúde no Brasil, reconhecida pelo Ministério da Saúde e ISQua (International Society for Quality in Health Care).',
+    levels: [
+      {
+        badge: 'N1',
+        title: 'Acreditado',
+        description: 'Atende aos requisitos de segurança do paciente',
+      },
+      {
+        badge: 'N2',
+        title: 'Acreditado Pleno',
+        description: 'Gestão integrada com foco em processos',
+      },
+      {
+        badge: 'N3',
+        title: 'Acreditado com Excelência',
+        description: 'Cultura de melhoria contínua e inovação',
+      },
+    ],
+  },
+  jci: {
+    title: 'JCI',
+    subtitle: 'Joint Commission International',
+    description:
+      'A JCI é a maior acreditadora internacional de serviços de saúde, presente em mais de 100 países e padrão ouro para hospitais de excelência.',
+    highlights: [
+      {
+        title: 'Padrões Internacionais',
+        description: 'Reconhecimento global de qualidade e segurança',
+      },
+      {
+        title: 'Metas Internacionais',
+        description: 'Foco em segurança do paciente e qualidade assistencial',
+      },
+      {
+        title: 'Certificação Triênio',
+        description: 'Validade de 3 anos com avaliações periódicas',
+      },
+    ],
+  },
+};
+
 // Process data
 const processData = {
-  title: 'Nossa Metodologia de Acreditação',
-  subtitle: 'Processo estruturado para garantir resultado assertivo',
+  title: 'Nosso Processo de Acreditação',
+  subtitle: 'Metodologia comprovada para garantir certificação',
   steps: [
     {
       number: '1',
-      title: 'Diagnóstico',
-      description: 'Avaliação do estado atual e identificação de gaps',
+      title: 'Diagnóstico Inicial',
+      description: 'Análise completa de conformidade com os padrões da certificadora',
     },
     {
       number: '2',
-      title: 'Planejamento',
-      description: 'Elaboração do plano de ação com cronograma e metas',
+      title: 'Plano de Ação',
+      description: 'Desenvolvimento de cronograma com todas as adequações necessárias',
     },
     {
       number: '3',
       title: 'Implementação',
-      description: 'Execução das ações corretivas e treinamento de equipes',
+      description: 'Execução das melhorias e organização da documentação técnica',
     },
     {
       number: '4',
-      title: 'Auditoria',
-      description: 'Verificação interna da conformidade antes da avaliação externa',
+      title: 'Certificação',
+      description: 'Acompanhamento da visita e suporte durante todo o processo',
+    },
+  ],
+};
+
+const benefitsData = {
+  title: 'Benefícios da Acreditação Hospitalar',
+  items: [
+    {
+      title: 'Reconhecimento de Qualidade',
+      description:
+        'Certificação reconhecida nacional e internacionalmente como selo de excelência e segurança em saúde.',
     },
     {
-      number: '5',
-      title: 'Certificação',
-      description: 'Acompanhamento na avaliação externa e pós-certificação',
+      title: 'Segurança do Paciente',
+      description:
+        'Processos estruturados que garantem máxima segurança no uso de equipamentos e tecnologias médicas.',
+    },
+    {
+      title: 'Vantagem Competitiva',
+      description:
+        'Diferenciação no mercado atraindo médicos, convênios e pacientes em busca de instituições certificadas.',
+    },
+    {
+      title: 'Melhoria Contínua',
+      description:
+        'Cultura de qualidade e excelência com processos de monitoramento e aprimoramento constantes.',
     },
   ],
 };
 
 const ctaData = {
-  title: 'Pronto para Elevar o Padrão de Qualidade?',
+  title: 'Pronto para Conquistar a Acreditação?',
   description:
-    'Nossa equipe está pronta para guiar sua instituição no caminho da excelência em acreditação',
-  primaryButtonLabel: 'Solicitar Consultoria',
+    'Nossa equipe especializada está pronta para guiar sua instituição rumo à certificação de excelência',
+  primaryButtonLabel: 'Solicitar Diagnóstico',
   primaryButtonHref: 'mailto:contato@praxis.com.br',
   secondaryButtonLabel: 'Voltar ao Início',
   secondaryButtonHref: '/',
@@ -432,7 +474,117 @@ export function AcreditacaoPage(): React.ReactElement {
           whyChooseTitle={managementData.whyChooseTitle}
           whyChooseItems={managementData.whyChooseItems}
           metrics={managementData.metrics}
+          spacing="compact"
         />
+
+        <section className={styles.certificationsSection} aria-labelledby="certifications-title">
+          <div className={styles.container}>
+            <div className={styles.sectionHeader}>
+              <h2 id="certifications-title" className={styles.sectionTitle}>
+                {certificationsData.title}
+              </h2>
+              <p className={styles.sectionDescription}>{certificationsData.description}</p>
+            </div>
+
+            <div className={styles.certificationsGrid}>
+              <article className={`${styles.certificationCard} ${styles.certificationCardBlue}`}>
+                <div className={styles.certificationCardHeader}>
+                  <div className={`${styles.certificationIcon} ${styles.certificationIconBlue}`}>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="2" />
+                      <path
+                        d="M8.5 12.5v7l3.5-2 3.5 2v-7"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <h3 className={styles.certificationTitle}>{certificationsData.ona.title}</h3>
+                    <p className={styles.certificationSubtitle}>
+                      {certificationsData.ona.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                <p className={styles.certificationText}>{certificationsData.ona.description}</p>
+
+                <div className={styles.levelList}>
+                  {certificationsData.ona.levels.map((level, index) => (
+                    <div key={`ona-level-${index}`} className={styles.levelCard}>
+                      <div className={styles.levelHeaderRow}>
+                        <span className={styles.levelBadge}>{level.badge}</span>
+                        <h4 className={styles.levelTitle}>{level.title}</h4>
+                      </div>
+                      <p className={styles.levelDescription}>{level.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className={`${styles.certificationCard} ${styles.certificationCardViolet}`}>
+                <div className={styles.certificationCardHeader}>
+                  <div className={`${styles.certificationIcon} ${styles.certificationIconViolet}`}>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 3.5l2.6 5.26 5.8.84-4.2 4.09.99 5.78L12 16.73l-5.19 2.74.99-5.78-4.2-4.09 5.8-.84L12 3.5z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <h3 className={styles.certificationTitle}>{certificationsData.jci.title}</h3>
+                    <p className={styles.certificationSubtitle}>
+                      {certificationsData.jci.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                <p className={styles.certificationText}>{certificationsData.jci.description}</p>
+
+                <ul className={styles.highlightList}>
+                  {certificationsData.jci.highlights.map((highlight, index) => (
+                    <li key={`jci-highlight-${index}`} className={styles.highlightItem}>
+                      <span className={styles.highlightIcon} aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+                          <path
+                            d="M9.25 12l1.85 1.85L14.75 10"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <div className={styles.highlightContent}>
+                        <h4 className={styles.highlightTitle}>{highlight.title}</h4>
+                        <p className={styles.highlightDescription}>{highlight.description}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
 
         <ServicesSection
           sectionId="servicos"
@@ -440,6 +592,7 @@ export function AcreditacaoPage(): React.ReactElement {
           description="Soluções completas para transformar a qualidade da sua instituição"
           services={servicesData}
           cardVariant="planning"
+          spacing="compact"
         />
 
         {/* Process Section */}
@@ -460,6 +613,40 @@ export function AcreditacaoPage(): React.ReactElement {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.benefitsSection} aria-labelledby="benefits-title">
+          <div className={styles.container}>
+            <div className={styles.sectionHeader}>
+              <h2 id="benefits-title" className={styles.sectionTitle}>
+                {benefitsData.title}
+              </h2>
+            </div>
+
+            <div className={styles.benefitsGrid}>
+              {benefitsData.items.map((benefit, index) => (
+                <article key={`benefit-${index}`} className={styles.benefitItem}>
+                  <div className={styles.benefitIcon} aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2" />
+                      <path
+                        d="M10.1 12l1.4 1.4 2.9-3"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+
+                  <div className={styles.benefitContent}>
+                    <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+                    <p className={styles.benefitDescription}>{benefit.description}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

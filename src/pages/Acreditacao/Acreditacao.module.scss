@@ -45,9 +45,199 @@
   line-height: 1.6;
 }
 
+/* Certifications Section */
+.certificationsSection {
+  padding: 24px 24px 40px;
+  background: #fff;
+}
+
+.certificationsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
+
+.certificationCard {
+  min-height: 100%;
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.certificationCardBlue {
+  border-color: #b9d6ff;
+  background: linear-gradient(180deg, #deebff 0%, #d7e6fb 100%);
+}
+
+.certificationCardViolet {
+  border-color: #e6c8ff;
+  background: linear-gradient(180deg, #f1e9ff 0%, #efe3ff 100%);
+}
+
+.certificationCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.certificationIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 18px;
+  color: #fff;
+  flex-shrink: 0;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.certificationIconBlue {
+  background: linear-gradient(180deg, #2d6bff 0%, #1d54e6 100%);
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.2);
+}
+
+.certificationIconViolet {
+  background: linear-gradient(180deg, #9b27ff 0%, #7d13e4 100%);
+  box-shadow: 0 14px 26px rgba(139, 92, 246, 0.18);
+}
+
+.certificationTitle {
+  margin: 0;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.certificationSubtitle {
+  margin: 6px 0 0;
+  color: #334e68;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.certificationText {
+  margin: 28px 0 0;
+  color: #20344d;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.levelList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.levelCard {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.08);
+}
+
+.levelHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.levelBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 12px;
+  background: #dbeafe;
+  color: #2563eb;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.levelTitle {
+  margin: 0;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.levelDescription {
+  margin: 10px 0 0;
+  color: #334e68;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.highlightList {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.08);
+}
+
+.highlightIcon {
+  width: 22px;
+  height: 22px;
+  color: #a21caf;
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.highlightContent {
+  min-width: 0;
+}
+
+.highlightTitle {
+  margin: 0;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.highlightDescription {
+  margin: 6px 0 0;
+  color: #334e68;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
 /* Process Section */
 .processSection {
-  padding: 88px 24px 96px;
+  padding: 56px 24px 60px;
   background: #fff;
 }
 
@@ -60,6 +250,9 @@
 .processHeader {
   text-align: center;
   margin-bottom: 52px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .processTitle {
@@ -80,14 +273,16 @@
 
 .processGrid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
   align-items: start;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .processStep {
   text-align: center;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 
 .stepNumber {
@@ -121,9 +316,65 @@
   line-height: 1.5;
 }
 
+/* Benefits Section */
+.benefitsSection {
+  padding: 8px 24px 52px;
+  background: #fff;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 40px;
+  align-items: start;
+}
+
+.benefitItem {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.benefitIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #dbeafe;
+  color: #2563eb;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+}
+
+.benefitContent {
+  min-width: 0;
+}
+
+.benefitTitle {
+  margin: 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.benefitDescription {
+  margin: 10px 0 0;
+  color: #334e68;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
 /* CTA Section */
 .ctaSection {
-  padding: 24px 24px 96px;
+  padding: 10px 24px 56px;
   background: #fff;
 }
 
@@ -132,25 +383,25 @@
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  padding: 40px 32px 36px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #2563eb 0%, #2446c3 100%);
-  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.18);
+  padding: 44px 32px 48px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #2860f0 0%, #2445c8 100%);
+  box-shadow: none;
 }
 
 .ctaTitle {
   margin: 0;
   color: #fff;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   line-height: 1.2;
 }
 
 .ctaText {
-  margin: 12px auto 0;
-  max-width: 640px;
+  margin: 14px auto 0;
+  max-width: 760px;
   color: rgba(255, 255, 255, 0.92);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
 }
 
@@ -158,7 +409,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin-top: 28px;
   flex-wrap: wrap;
 }
@@ -167,12 +418,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 48px;
-  padding: 0 24px;
-  border-radius: 10px;
+  gap: 10px;
+  min-height: 58px;
+  padding: 0 32px;
+  border-radius: 12px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   transition: all 0.2s ease;
@@ -186,12 +437,12 @@
 .ctaPrimary {
   background: #fff;
   color: #2563eb;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
 
   &:hover {
     background: #f8fafc;
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
 
     svg {
       transform: translateX(4px);
@@ -200,13 +451,13 @@
 }
 
 .ctaSecondary {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
+  border-color: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);
   }
 }
@@ -218,9 +469,30 @@
 
 /* Responsive - Tablet */
 @media (width <= 1024px) {
+  .certificationsSection {
+    padding: 16px 20px 32px;
+  }
+
+  .certificationsGrid {
+    gap: 24px;
+  }
+
+  .certificationCard {
+    padding: 28px 24px;
+  }
+
   .processSection,
+  .benefitsSection,
   .ctaSection {
-    padding: 80px 20px;
+    padding: 52px 20px;
+  }
+
+  .benefitsGrid {
+    gap: 26px 28px;
+  }
+
+  .benefitDescription {
+    font-size: 16px;
   }
 
   .sectionTitle,
@@ -237,7 +509,8 @@
   }
 
   .processGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 24px;
   }
 
   .ctaTitle {
@@ -245,19 +518,81 @@
   }
 
   .ctaSection {
-    padding-top: 8px;
+    padding-top: 4px;
   }
 
   .ctaContent {
-    padding: 36px 28px 32px;
+    padding: 40px 28px 36px;
   }
 }
 
 /* Responsive - Mobile */
 @media (width <= 768px) {
+  .certificationsSection {
+    padding: 12px 16px 28px;
+  }
+
+  .certificationsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .certificationCard {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .certificationCardHeader {
+    align-items: flex-start;
+  }
+
+  .certificationIcon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+  }
+
+  .certificationTitle {
+    font-size: 20px;
+  }
+
+  .certificationSubtitle,
+  .certificationText,
+  .levelDescription,
+  .highlightDescription {
+    font-size: 15px;
+  }
+
+  .certificationText,
+  .highlightList,
+  .levelList {
+    margin-top: 22px;
+  }
+
   .processSection,
+  .benefitsSection,
   .ctaSection {
-    padding: 64px 16px;
+    padding: 44px 16px;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .benefitItem {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .benefitIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .benefitTitle {
+    font-size: 17px;
   }
 
   .sectionHeader {
@@ -282,6 +617,7 @@
   .processSubtitle,
   .sectionDescription,
   .stepDescription,
+  .benefitDescription,
   .ctaText {
     font-size: 16px;
   }
@@ -291,13 +627,14 @@
   }
 
   .ctaContent {
-    padding: 32px 20px 24px;
+    padding: 32px 20px 28px;
     border-radius: 18px;
   }
 
   .processGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 18px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 340px;
   }
 
   .processStep {

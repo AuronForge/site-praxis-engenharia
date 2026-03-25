@@ -27,9 +27,7 @@ describe('AcreditacaoPage', () => {
     it('renders the hero section with description', () => {
       renderWithRouter(<AcreditacaoPage />);
       expect(
-        screen.getByText(
-          /Suporte completo para processos de certificação e acreditação hospitalar/
-        )
+        screen.getByText(/Suporte completo para processos de certificação e acreditação hospitalar/)
       ).toBeInTheDocument();
     });
 
@@ -47,12 +45,11 @@ describe('AcreditacaoPage', () => {
     it('renders all service cards', () => {
       renderWithRouter(<AcreditacaoPage />);
       expect(screen.getAllByText('Preparação ONA').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('ISO 9001').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('ISO 14001').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('ISO 45001').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Adequação JCI').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Documentação Técnica').length).toBeGreaterThan(0);
-      // "Auditoria" appears in both services and process sections
-      expect(screen.getAllByText('Auditoria').length).toBeGreaterThan(1);
+      expect(screen.getAllByText('Auditorias Internas').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Treinamento de Equipes').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Manutenção de Certificação').length).toBeGreaterThan(0);
     });
 
     it('does not render service card links in planning variant', () => {
@@ -69,18 +66,14 @@ describe('AcreditacaoPage', () => {
     it('renders the management section content', () => {
       renderWithRouter(<AcreditacaoPage />);
       expect(
-        screen.getByText(
-          /Acreditação é um processo de avaliação sistemática que verifica/
-        )
+        screen.getByText(/Acreditação é um processo de avaliação sistemática que verifica/)
       ).toBeInTheDocument();
     });
 
     it('renders the methodology text', () => {
       renderWithRouter(<AcreditacaoPage />);
       expect(
-        screen.getByText(
-          /Nossa metodologia combina expertise técnica em engenharia clínica/
-        )
+        screen.getByText(/Nossa metodologia combina expertise técnica em engenharia clínica/)
       ).toBeInTheDocument();
     });
 
@@ -91,9 +84,13 @@ describe('AcreditacaoPage', () => {
 
     it('renders why choose items', () => {
       renderWithRouter(<AcreditacaoPage />);
-      expect(screen.getByText('Experiência em múltiplos modelos de acreditação')).toBeInTheDocument();
+      expect(
+        screen.getByText('Experiência em múltiplos modelos de acreditação')
+      ).toBeInTheDocument();
       expect(screen.getByText('Metodologia focada em resultados sustentáveis')).toBeInTheDocument();
-      expect(screen.getByText('Equipemultidisciplinar com certificação internacional')).toBeInTheDocument();
+      expect(
+        screen.getByText('Equipemultidisciplinar com certificação internacional')
+      ).toBeInTheDocument();
       expect(screen.getByText('Acompanhamento integral do processo')).toBeInTheDocument();
     });
 
@@ -107,36 +104,58 @@ describe('AcreditacaoPage', () => {
       expect(screen.getAllByText('Conformidade').length).toBeGreaterThan(0);
     });
 
+    it('renders the certifications section content', () => {
+      renderWithRouter(<AcreditacaoPage />);
+      expect(screen.getByText('Certificações que Atendemos')).toBeInTheDocument();
+      expect(screen.getByText('ONA')).toBeInTheDocument();
+      expect(screen.getByText('Organização Nacional de Acreditação')).toBeInTheDocument();
+      expect(screen.getByText('JCI')).toBeInTheDocument();
+      expect(screen.getByText('Joint Commission International')).toBeInTheDocument();
+      expect(screen.getByText('Acreditado com Excelência')).toBeInTheDocument();
+      expect(screen.getByText('Padrões Internacionais')).toBeInTheDocument();
+      expect(screen.getByText('Certificação Triênio')).toBeInTheDocument();
+    });
+
     it('renders the process section title', () => {
       renderWithRouter(<AcreditacaoPage />);
-      expect(screen.getByText('Nossa Metodologia de Acreditação')).toBeInTheDocument();
-      expect(screen.getByText('Processo estruturado para garantir resultado assertivo')).toBeInTheDocument();
+      expect(screen.getByText('Nosso Processo de Acreditação')).toBeInTheDocument();
+      expect(
+        screen.getByText('Metodologia comprovada para garantir certificação')
+      ).toBeInTheDocument();
     });
 
     it('renders all process steps', () => {
       renderWithRouter(<AcreditacaoPage />);
-      expect(screen.getAllByText('Diagnóstico').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('Planejamento').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Diagnóstico Inicial').length).toBeGreaterThan(0);
+      expect(screen.getAllByText('Plano de Ação').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Implementação').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('Auditoria').length).toBeGreaterThan(0);
       expect(screen.getAllByText('Certificação').length).toBeGreaterThan(0);
       const processSection = document.querySelector('[class*="processSection"]');
       expect(processSection).toBeInTheDocument();
     });
 
+    it('renders the benefits section content', () => {
+      renderWithRouter(<AcreditacaoPage />);
+      expect(screen.getByText('Benefícios da Acreditação Hospitalar')).toBeInTheDocument();
+      expect(screen.getByText('Reconhecimento de Qualidade')).toBeInTheDocument();
+      expect(screen.getByText('Segurança do Paciente')).toBeInTheDocument();
+      expect(screen.getByText('Vantagem Competitiva')).toBeInTheDocument();
+      expect(screen.getByText('Melhoria Contínua')).toBeInTheDocument();
+    });
+
     it('renders the CTA section', () => {
       renderWithRouter(<AcreditacaoPage />);
-      expect(screen.getByText('Pronto para Elevar o Padrão de Qualidade?')).toBeInTheDocument();
+      expect(screen.getByText('Pronto para Conquistar a Acreditação?')).toBeInTheDocument();
       expect(
         screen.getByText(
-          'Nossa equipe está pronta para guiar sua instituição no caminho da excelência em acreditação'
+          'Nossa equipe especializada está pronta para guiar sua instituição rumo à certificação de excelência'
         )
       ).toBeInTheDocument();
     });
 
     it('renders the CTA buttons', () => {
       renderWithRouter(<AcreditacaoPage />);
-      expect(screen.getByText('Solicitar Consultoria')).toBeInTheDocument();
+      expect(screen.getByText('Solicitar Diagnóstico')).toBeInTheDocument();
       expect(screen.getByText('Voltar ao Início')).toBeInTheDocument();
     });
   });

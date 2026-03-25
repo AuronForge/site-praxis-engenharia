@@ -3,6 +3,10 @@
   background: #fff;
 }
 
+.sectionCompact {
+  padding: 44px 24px 60px;
+}
+
 .container {
   max-width: 1216px;
   margin: 0 auto;
@@ -122,6 +126,10 @@
     padding: 80px 20px;
   }
 
+  .sectionCompact {
+    padding: 54px 20px;
+  }
+
   .title {
     font-size: 34px;
   }
@@ -142,6 +150,10 @@
 @media (width <= 768px) {
   .section {
     padding: 64px 16px;
+  }
+
+  .sectionCompact {
+    padding: 44px 16px 52px;
   }
 
   .title {

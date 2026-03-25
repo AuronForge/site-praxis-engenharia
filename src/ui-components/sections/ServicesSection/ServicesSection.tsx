@@ -18,6 +18,7 @@ export interface ServicesSectionProps {
   services: ServiceCardProps[];
   ctaBanner?: ServicesSectionCtaBanner;
   cardVariant?: ServiceCardProps['variant'];
+  spacing?: 'default' | 'compact';
 }
 
 /**
@@ -38,9 +39,16 @@ export function ServicesSection({
   services,
   ctaBanner,
   cardVariant = 'default',
+  spacing = 'default',
 }: ServicesSectionProps): React.ReactElement {
   return (
-    <section id={sectionId} className={styles.section} aria-labelledby="services-title">
+    <section
+      id={sectionId}
+      className={
+        spacing === 'compact' ? `${styles.section} ${styles.sectionCompact}` : styles.section
+      }
+      aria-labelledby="services-title"
+    >
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 id="services-title" className={styles.title}>

@@ -22,6 +22,7 @@ export interface ManagementSectionProps {
   whyChooseTitle: string;
   whyChooseItems: WhyChooseItem[];
   metrics: Metric[];
+  spacing?: 'default' | 'compact';
 }
 
 /**
@@ -42,6 +43,7 @@ export function ManagementSection({
   whyChooseTitle,
   whyChooseItems,
   metrics,
+  spacing = 'default',
 }: ManagementSectionProps): React.ReactElement {
   const checkIcon = (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -57,7 +59,12 @@ export function ManagementSection({
   );
 
   return (
-    <section className={styles.section} aria-labelledby="management-title">
+    <section
+      className={
+        spacing === 'compact' ? `${styles.section} ${styles.sectionCompact}` : styles.section
+      }
+      aria-labelledby="management-title"
+    >
       <div className={styles.container}>
         <div className={styles.grid}>
           {/* Left Column: Content */}
