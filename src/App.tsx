@@ -2,13 +2,13 @@ import './App.css';
 
 import React from 'react';
 
-import { SobreNosPage } from '@pages/SobreNos';
 import { AcreditacaoPage } from '@pages/Acreditacao';
 import { CarreirasPage } from '@pages/Carreiras';
 import { ContatoPage } from '@pages/Contato';
 import { EngenhariaClinicaPage } from '@pages/EngenhariaClinica';
 import { HomePage } from '@pages/Home';
 import { PlanejamentoTecnologicoPage } from '@pages/PlanejamentoTecnologico';
+import { SobreNosPage } from '@pages/SobreNos';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export const App: React.FC = (): JSX.Element => {
