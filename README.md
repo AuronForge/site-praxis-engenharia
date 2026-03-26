@@ -92,17 +92,80 @@ If all commands pass, you're ready to develop! 🎉
 
 Coverage reports are generated in `coverage/lcov-report/index.html`
 
-### Code Quality
+**Test Requirements:**
 
-| Command                  | Description                                     |
-| ------------------------ | ----------------------------------------------- |
-| `npm run lint`           | Run ALL linters (ESLint + Stylelint + HTMLHint) |
-| `npm run lint:eslint`    | Lint TypeScript/React files                     |
-| `npm run lint:stylelint` | Lint CSS/SCSS files                             |
-| `npm run lint:html`      | Lint HTML files                                 |
-| `npm run lint:fix`       | Auto-fix linting issues                         |
-| `npm run format`         | Format all files with Prettier                  |
-| `npm run format:check`   | Check if files are formatted                    |
+- Minimum coverage: **90%**
+- All critical paths must be tested
+- Components should have unit & integration tests
+- Utilities should have comprehensive unit tests
+
+See [docs/TESTING_GUIDE.md](docs/TESTING_GUIDE.md) for testing best practices.
+
+## 🎨 Code Style & Quality
+
+This project enforces consistent code style through automated tooling:
+
+### ESLint
+
+Lints TypeScript/React code for logical errors and best practices:
+
+```bash
+npm run lint:eslint      # Check for issues
+npm run lint:eslint:fix  # Auto-fix issues
+```
+
+**Key Rules:**
+
+- No `any` types (use generics, proper typing)
+- No unused variables
+- No unreachable code
+- Proper hook dependencies
+- React best practices
+
+### Stylelint
+
+Lints CSS/SCSS for consistency:
+
+```bash
+npm run lint:stylelint      # Check for issues
+npm run lint:stylelint:fix  # Auto-fix issues
+```
+
+**Key Rules:**
+
+- Consistent property ordering
+- No duplicate properties
+- Proper vendor prefixes
+- SCSS best practices
+
+### Prettier
+
+Formats all code files automatically:
+
+```bash
+npm run format       # Format all files
+npm run format:check # Check if files are formatted
+```
+
+**Supported files:**
+
+- TypeScript/React (`.ts`, `.tsx`)
+- CSS/SCSS (`.css`, `.scss`)
+- JSON/YAML (`.json`, `.yml`, `.yaml`)
+- Markdown (`.md`)
+- HTML (`.html`)
+
+### Running All Quality Checks
+
+```bash
+npm run lint          # Runs ESLint + Stylelint + HTMLHint
+npm run lint:fix      # Auto-fix all fixable issues
+npm run format        # Format everything with Prettier
+npm run type-check    # TypeScript validation
+npm test              # Tests
+```
+
+Before committing, all quality gates run automatically via Husky pre-commit hooks.
 
 ### Git & Releases
 
@@ -371,11 +434,16 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 src/
 ├── pages/              # Application pages/routes
 │   ├── Home/
-│   │   ├── Home.tsx           # Page component
-│   │   ├── Home.test.tsx      # Tests
-│   │   ├── Home.module.scss   # Styles
-│   │   └── index.ts           # Barrel export
-│   └── ...
+│   │   ├── HomePage.tsx           # Page component
+│   │   ├── HomePage.test.tsx      # Tests
+│   │   ├── Home.module.scss       # Styles
+│   │   └── index.ts               # Barrel export
+│   ├── Acreditacao/
+│   ├── Carreiras/
+│   ├── Contato/
+│   ├── EngenhariaClinica/
+│   ├── PlanejamentoTecnologico/
+│   └── SobreNos/
 │
 ├── core/               # Core business logic
 │   ├── types/          # TypeScript types
@@ -385,11 +453,11 @@ src/
 │   │   ├── validation.ts
 │   │   ├── validation.test.ts
 │   │   └── date.ts
-│   ├── hooks/          # Custom React hooks
-│   │   ├── useAuth.ts
-│   │   └── useApi.ts
-│   └── constants/      # App-wide constants
-│       └── app.constants.ts
+│   ├── constants/      # App-wide constants
+│   │   └── app.constants.ts
+│   └── hooks/          # Custom React hooks
+│       ├── useAuth.ts
+│       └── useApi.ts
 │
 ├── ui-components/      # Reusable UI components
 │   ├── Button/
@@ -397,8 +465,17 @@ src/
 │   │   ├── Button.test.tsx
 │   │   ├── Button.module.scss
 │   │   └── index.ts
-│   ├── Input/
-│   └── Card/
+│   ├── layout/
+│   │   └── Header/
+│   ├── sections/
+│   │   ├── Footer/
+│   │   │   ├── Footer.tsx          # Footer component
+│   │   │   ├── footerData.ts       # Shared footer config
+│   │   │   ├── Footer.test.tsx
+│   │   │   ├── Footer.module.scss
+│   │   │   └── index.ts
+│   │   └── HeroSection/
+│   └── ...
 │
 ├── services/           # External services & API
 │   ├── api/
@@ -435,22 +512,100 @@ import { validateEmail } from '@core/utils/validation';
 - `@ui-components/*` → `src/ui-components/*`
 - `@services/*` → `src/services/*`
 
+### Shared Data Configs
+
+Components that are used across multiple pages should have their data configuration centralized to avoid duplication and ensure consistency.
+
+**Example: Footer Component**
+
+Instead of defining `footerData` in every page component:
+
+```typescript
+// ❌ Before - Duplicated in each page
+// pages/Home/HomePage.tsx
+const footerData = { logo, description, sections, social, copyright };
+
+// pages/Acreditacao/AcreditacaoPage.tsx
+const footerData = { logo, description, sections, social, copyright }; // Same!
+```
+
+We centralize it in the component's module:
+
+```typescript
+// ✅ After - Single source of truth
+// ui-components/sections/Footer/footerData.ts
+export const defaultFooterData: FooterProps = {
+  logo: { src: '/images/logo.jpg', alt: 'Praxis Engenharia Clínica' },
+  description: '...',
+  sections: [...],
+  social: [...],
+  copyright: '...',
+  legalLinks: [...]
+};
+
+// In any page:
+import { Footer, defaultFooterData } from '@ui-components/sections/Footer';
+
+export function HomePage(): JSX.Element {
+  return (
+    <>
+      {/* ... */}
+      <Footer {...defaultFooterData} />
+    </>
+  );
+}
+```
+
+**Benefits:**
+
+- ✅ **Single source of truth** - Only one place to update links/content
+- ✅ **Reduced duplication** - No copy-paste across 7+ pages
+- ✅ **Centralized maintenance** - Change footer once, it updates everywhere
+- ✅ **Easier to extend** - Add new pages without repeating config
+- ✅ **Better testing** - Test config once, use everywhere
+
+## 📄 Application Pages
+
+The application consists of the following main pages:
+
+| Page                         | Route                       | Purpose                                                    |
+| ---------------------------- | --------------------------- | ---------------------------------------------------------- |
+| **Home**                     | `/`                         | Landing page with company overview, services, testimonials |
+| **Engenharia Clínica**       | `/engenharia-clinica`       | Clinical engineering services details                      |
+| **Planejamento Tecnológico** | `/planejamento-tecnologico` | Technology planning services details                       |
+| **Acreditação**              | `/acreditacao`              | Accreditation services (ONA, JCI) details                  |
+| **Carreiras**                | `/carreiras`                | Job opportunities and company culture                      |
+| **Sobre Nós**                | `/sobre-nos`                | Company information, mission, vision, values               |
+| **Contato**                  | `/contato`                  | Contact form and company information                       |
+
+All pages share:
+
+- **Header**: Navigation and branding (consistent across all pages)
+- **Footer**: Navigation, contact info, social links (centralized config)
+- **Responsive design**: Mobile-first with SCSS modules
+
 ## 🏗️ Architecture Rules
 
-1. **Components don't fetch data directly**
+1. **Shared Component Data**
+   - Components used on multiple pages should have centralized data config
+   - Store near the component (e.g., `footer/footerData.ts`)
+   - Export from barrel (`index.ts`) for easy imports
+   - Only override on rare exceptions (with strong reason)
+
+2. **Components don't fetch data directly**
    - Use service layer (`@services/api`)
    - Components consume hooks or props
 
-2. **Business logic in `core/`**
+3. **Business logic in `core/`**
    - Keep components thin
    - Reusable logic goes to `core/utils` or `core/hooks`
 
-3. **UI components are presentational**
+4. **UI components are presentational**
    - Accept props, render UI
    - No API calls, minimal state
    - Maximum reusability
 
-4. **Pages orchestrate**
+5. **Pages orchestrate**
    - Compose UI components
    - Fetch data via services/hooks
    - Handle page-level state
@@ -517,6 +672,111 @@ npm run test:coverage
 
 # Open HTML report
 # Open: coverage/lcov-report/index.html
+```
+
+## 💡 Best Practices & Conventions
+
+### File Naming
+
+| What             | Convention                      | Example                       |
+| ---------------- | ------------------------------- | ----------------------------- |
+| Components       | PascalCase                      | `Button.tsx`, `Header.tsx`    |
+| Component tests  | Same as component + `.test`     | `Button.test.tsx`             |
+| Utilities/Hooks  | camelCase                       | `validation.ts`, `useAuth.ts` |
+| SCSS modules     | kebab-case with `.module`       | `button.module.scss`          |
+| Types/Interfaces | PascalCase with `.types` suffix | `user.types.ts`               |
+
+### Component Structure
+
+```typescript
+import React from 'react';
+import styles from './Button.module.scss';
+
+// 1. Type definitions/interfaces
+export interface ButtonProps {
+  label: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
+}
+
+// 2. Component
+export function Button({ label, onClick, variant = 'primary' }: ButtonProps): React.ReactElement {
+  return (
+    <button className={styles[variant]} onClick={onClick}>
+      {label}
+    </button>
+  );
+}
+
+// 3. Display name (for debugging)
+Button.displayName = 'Button';
+```
+
+### Testing Pattern
+
+```typescript
+import { render, screen } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button', () => {
+  describe('Rendering', () => {
+    it('renders with label', () => {
+      render(<Button label="Click me" />);
+      expect(screen.queryByText('Click me')).not.toBeNull();
+    });
+  });
+
+  describe('Interactions', () => {
+    it('calls onClick handler', () => {
+      const handleClick = jest.fn();
+      render(<Button label="Click" onClick={handleClick} />);
+      screen.getByText('Click').click();
+      expect(handleClick).toHaveBeenCalled();
+    });
+  });
+});
+```
+
+### TypeScript Best Practices
+
+```typescript
+// ✅ Good
+function processUsers(users: User[]): string[] {
+  return users.map((user) => user.name);
+}
+
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+}
+
+type Status = 'pending' | 'success' | 'error';
+
+// ❌ Avoid
+function processUsers(users: any[]): any[] {
+  // ...
+}
+
+const response: any = {};
+```
+
+### Commit Before Push Checklist
+
+Before pushing code, ensure:
+
+```bash
+# 1. All quality checks pass
+npm run lint          # ✅ No lint errors
+npm run format:check  # ✅ Code formatted
+npm run type-check    # ✅ TypeScript valid
+npm run test:ci       # ✅ 90%+ coverage
+npm run build         # ✅ Build succeeds
+
+# 2. Commit with proper message
+npm run commit        # Conventional Commits format
+
+# 3. Push
+git push
 ```
 
 ---
