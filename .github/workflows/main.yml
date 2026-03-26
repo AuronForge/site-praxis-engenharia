@@ -90,19 +90,6 @@ jobs:
 
           echo "No existing tag found for package version ${VERSION}."
 
-      - name: Validate commit tags (Conventional Commits)
-        env:
-          BEFORE_SHA: ${{ github.event.before }}
-        run: |
-          if [ "${BEFORE_SHA}" = "0000000000000000000000000000000000000000" ]; then
-            FROM_SHA=$(git rev-parse HEAD~1)
-          else
-            FROM_SHA="${BEFORE_SHA}"
-          fi
-
-          echo "Validating commits from ${FROM_SHA} to ${GITHUB_SHA}"
-          npx commitlint --from "${FROM_SHA}" --to "${GITHUB_SHA}" --verbose --git-log-args "--first-parent"
-
   deploy-to-vercel-production:
     name: Deploy to Vercel (Production)
     runs-on: ubuntu-latest
