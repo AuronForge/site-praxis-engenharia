@@ -782,3 +782,11 @@ git push
 ---
 
 **Built with ❤️ by Praxis Engenharia**
+
+## 👨‍💻 Author
+
+**José Eduardo Trindade E Marques**
+
+- 🏢 Company: [AuronForge](https://auronforge.com) 🚀
+- 📧 Email: [edu.temarques@gmail.com](mailto:edu.temarques@gmail.com)
+- 💼 LinkedIn: [linkedin.com/in/edu-marques29](https://linkedin.com/in/edu-marques29)
