@@ -96,7 +96,7 @@ describe('Footer', () => {
       expect(screen.queryByText('Termos de Uso')).toBeNull();
     });
 
-    it('hides specific links from Empresa section', () => {
+    it('hides only restricted links from Empresa section', () => {
       const propsWithEmpresa: FooterProps = {
         ...mockProps,
         sections: [
@@ -115,7 +115,7 @@ describe('Footer', () => {
 
       render(<Footer {...propsWithEmpresa} />);
 
-      expect(screen.queryByText('Sobre Nós')).toBeNull();
+      expect(screen.queryByText('Sobre Nós')).not.toBeNull();
       expect(screen.queryByText('Equipe')).toBeNull();
       expect(screen.queryByText('Blog')).toBeNull();
       expect(screen.queryByText('Carreiras')).not.toBeNull();

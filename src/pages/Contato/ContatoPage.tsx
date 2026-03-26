@@ -371,9 +371,9 @@ export function ContatoPage(): React.ReactElement {
           {
             title: 'Empresa',
             links: [
-              { label: 'Sobre Nós', href: '#sobre' },
-              { label: 'Equipe', href: '#equipe' },
               { label: 'Carreiras', href: '#carreiras' },
+              { label: 'Sobre Nós', href: '/sobre-nos' },
+              { label: 'Equipe', href: '#equipe' },
               { label: 'Blog', href: '#blog' },
             ],
           },

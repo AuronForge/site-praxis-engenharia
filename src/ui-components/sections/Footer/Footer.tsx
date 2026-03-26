@@ -101,7 +101,7 @@ const ContactIcon: React.FC<{ type?: string }> = ({ type }) => {
   return icons[type ?? 'location'] || icons.location;
 };
 
-const HIDDEN_EMPRESA_LINKS = new Set(['sobre nos', 'equipe', 'blog']);
+const HIDDEN_EMPRESA_LINKS = new Set(['equipe', 'blog']);
 
 const normalizeLabel = (value: string): string =>
   value
