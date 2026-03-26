@@ -8,6 +8,7 @@ import { ContatoPage } from '@pages/Contato';
 import { EngenhariaClinicaPage } from '@pages/EngenhariaClinica';
 import { HomePage } from '@pages/Home';
 import { PlanejamentoTecnologicoPage } from '@pages/PlanejamentoTecnologico';
+import { SobreNosPage } from '@pages/SobreNos';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export const App: React.FC = (): JSX.Element => {
@@ -15,6 +16,7 @@ export const App: React.FC = (): JSX.Element => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/sobre-nos" element={<SobreNosPage />} />
         <Route path="/contato" element={<ContatoPage />} />
         <Route path="/engenharia-clinica" element={<EngenhariaClinicaPage />} />
         <Route path="/planejamento-tecnologico" element={<PlanejamentoTecnologicoPage />} />

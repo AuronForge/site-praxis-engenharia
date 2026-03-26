@@ -1,6 +1,6 @@
 {
   "name": "praxis-engenharia",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Praxis Engenharia - React TypeScript Application",
   "private": true,
   "scripts": {
