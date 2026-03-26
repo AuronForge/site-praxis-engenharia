@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Header } from '@ui-components/layout/Header';
 import { ExperienceSection } from '@ui-components/sections/ExperienceSection';
-import { Footer } from '@ui-components/sections/Footer';
+import { Footer, defaultFooterData } from '@ui-components/sections/Footer';
 import { Hero } from '@ui-components/sections/Hero';
 import { PlatformSection } from '@ui-components/sections/PlatformSection';
 import { SegmentsSection } from '@ui-components/sections/SegmentsSection';
@@ -337,68 +337,6 @@ const headerData = {
   },
 };
 
-const footerData = {
-  logo: {
-    src: '/images/logo.jpg',
-    alt: 'Praxis Engenharia Clínica',
-  },
-  description:
-    'Excelência em gestão de tecnologia médico-hospitalar com mais de 25 anos de experiência no mercado brasileiro.',
-  sections: [
-    {
-      title: 'Serviços',
-      links: [
-        { label: 'Engenharia Clínica', href: '/engenharia-clinica' },
-        { label: 'Planejamento Tecnológico', href: '/planejamento-tecnologico' },
-        { label: 'Acreditação', href: '#acreditacao' },
-        { label: 'Contato', href: '/contato' },
-      ],
-    },
-    {
-      title: 'Empresa',
-      links: [
-        { label: 'Carreiras', href: '/carreiras' },
-        { label: 'Sobre Nós', href: '/sobre-nos' },
-        { label: 'Equipe', href: '#equipe' },
-        { label: 'Blog', href: '#blog' },
-      ],
-    },
-    {
-      title: 'Contato',
-      links: [
-        { label: '11-2609-7511', href: 'tel:+551126097511', icon: 'phone' },
-        {
-          label: 'contato@praxisengenharia.com.br',
-          href: 'mailto:contato@praxisengenharia.com.br',
-          icon: 'email',
-        },
-        {
-          label: 'Rua Roma, 620 - Lapa, São Paulo - SP, 05050-090',
-          href: '#',
-          icon: 'location',
-        },
-      ],
-    },
-  ],
-  social: [
-    {
-      platform: 'linkedin',
-      href: 'https://www.linkedin.com/company/praxisengenhariaclinica/',
-      ariaLabel: 'LinkedIn',
-    },
-    {
-      platform: 'instagram',
-      href: 'https://www.instagram.com/praxisengenhariaclinica/',
-      ariaLabel: 'Instagram',
-    },
-  ],
-  copyright: '© 2026 Praxis Engenharia Clínica. Todos os direitos reservados.',
-  legalLinks: [
-    { label: 'Política de Privacidade', href: '#privacidade' },
-    { label: 'Termos de Uso', href: '#termos' },
-  ],
-};
-
 /**
  * HomePage Component
  *
@@ -471,14 +409,7 @@ export function HomePage(): React.ReactElement {
       </main>
 
       {/* Footer - Bottom navigation and contact info */}
-      <Footer
-        logo={footerData.logo}
-        description={footerData.description}
-        sections={footerData.sections}
-        social={footerData.social}
-        copyright={footerData.copyright}
-        legalLinks={footerData.legalLinks}
-      />
+      <Footer {...defaultFooterData} />
     </>
   );
 }
