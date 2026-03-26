@@ -75,12 +75,34 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate commit tags (Conventional Commits)
+      - name: Validate package version tag uniqueness
         run: |
-          git fetch origin main --depth=1
-          BASE_SHA=$(git merge-base HEAD origin/main)
-          echo "Validating commits from ${BASE_SHA} to HEAD"
-          npx commitlint --from "${BASE_SHA}" --to HEAD --verbose
+          VERSION=$(node -p "require('./package.json').version")
+          TAG_WITH_V="v${VERSION}"
+          TAG_NO_V="${VERSION}"
+
+          git fetch --tags --force
+
+          if git rev-parse -q --verify "refs/tags/${TAG_WITH_V}" >/dev/null || git rev-parse -q --verify "refs/tags/${TAG_NO_V}" >/dev/null; then
+            echo "Tag for version ${VERSION} already exists (${TAG_WITH_V} or ${TAG_NO_V})."
+            echo "Please bump package.json version before merging."
+            exit 1
+          fi
+
+          echo "No existing tag found for package version ${VERSION}."
+
+      - name: Validate commit tags (Conventional Commits)
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if [ "${BEFORE_SHA}" = "0000000000000000000000000000000000000000" ]; then
+            FROM_SHA=$(git rev-parse HEAD~1)
+          else
+            FROM_SHA="${BEFORE_SHA}"
+          fi
+
+          echo "Validating commits from ${FROM_SHA} to ${GITHUB_SHA}"
+          npx commitlint --from "${FROM_SHA}" --to "${GITHUB_SHA}" --verbose
 
   deploy-to-vercel-staging:
     name: Deploy to Vercel (Staging)
