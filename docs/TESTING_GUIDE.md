@@ -1,15 +1,53 @@
-# Test Structure for UI Components
+# Testing Guide
 
-Este documento apresenta a estrutura recomendada e exemplos de testes para componentes UI.
+> Testing best practices, patterns, and examples for the Praxis Engenharia project.
 
-## 📁 Estrutura de Arquivos
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Coverage Requirements](#-coverage-requirements)
+- [Test Structure](#-test-structure)
+- [Testing Patterns](#-testing-patterns)
+- [Best Practices](#-best-practices)
+- [Common Issues](#-common-issues)
+
+## 🎯 Overview
+
+This project enforces **90% test coverage minimum**. Testing is not optional—it's part of the quality gates.
+
+**Why 90%?**
+
+- Catches bugs before production
+- Documents intended behavior
+- Enables confident refactoring
+- Reduces maintenance cost
+
+**Coverage is measured by:**
+
+- 📊 **Statements**: % of code statements executed
+- 🔀 **Branches**: % of conditional branches tested
+- ✅ **Functions**: % of all functions called
+- 📍 **Lines**: % of all lines executed
+
+**Current Status:**
+
+| Metric              | Threshold | Current |
+| ------------------- | --------- | ------- |
+| Statements coverage | >= 90%    | 98.82%  |
+| Branch coverage     | >= 90%    | 95.45%  |
+| Function coverage   | >= 90%    | 95.23%  |
+| Line coverage       | >= 90%    | 100%    |
+
+See [jest.config.cjs](../jest.config.cjs) for configuration.
+
+## 📁 Test Structure for UI Components
 
 ```
 src/ui-components/
 ├── Button/
-│   ├── Button.tsx              # Componente
-│   ├── Button.test.tsx         # Testes
-│   ├── Button.module.scss      # Estilos
+│   ├── Button.tsx              # Component
+│   ├── Button.test.tsx         # Tests
+│   ├── Button.module.scss      # Styles
 │   └── index.ts                # Barrel export
 ├── Input/
 │   ├── Input.tsx
@@ -23,21 +61,21 @@ src/ui-components/
     └── index.ts
 ```
 
-## 🧪 Anatomia de um Teste de Componente
+## 🧪 Testing Patterns
 
-### Estrutura Básica
+### 1. Component Test Structure
 
 ```typescript
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ComponentName, ComponentProps } from './ComponentName';
 
 describe('ComponentName', () => {
-  // Props padrão para reutilização
+  // Default props for reuse
   const defaultProps: ComponentProps = {
     // ...props
   };
 
-  // Helper para renderizar com props padrão
+  // Helper to render with default props
   const renderComponent = (props: Partial<ComponentProps> = {}) => {
     return render(<ComponentName {...defaultProps} {...props} />);
   };
@@ -59,14 +97,18 @@ describe('ComponentName', () => {
       // Test component states
     });
   });
+
+  describe('Accessibility', () => {
+    it('should be accessible', () => {
+      // Test a11y
+    });
+  });
 });
 ```
 
-## 📋 Categorias de Testes
+### 2. Rendering Tests
 
-### 1. Testes de Renderização
-
-Verificam se o componente renderiza corretamente.
+Verify the component renders correctly.
 
 ```typescript
 describe('Rendering', () => {
@@ -75,23 +117,22 @@ describe('Rendering', () => {
     expect(screen.getByText('Click me')).toBeInTheDocument();
   });
 
-  it('should render with custom className', () => {
+  it('should render without failing', () => {
+    const { container } = renderComponent();
+    expect(container).toBeInTheDocument();
+  });
+
+  it('should apply correct className', () => {
     renderComponent({ className: 'custom' });
     const element = screen.getByTestId('component');
     expect(element).toHaveClass('custom');
   });
-
-  it('should apply correct styles', () => {
-    renderComponent({ variant: 'primary' });
-    const element = screen.getByTestId('component');
-    expect(element.className).toContain('component--primary');
-  });
 });
 ```
 
-### 2. Testes de Variantes
+### 3. Variant Tests
 
-Verificam diferentes variações visuais do componente.
+Verify different visual variations.
 
 ```typescript
 describe('Variants', () => {
@@ -112,152 +153,243 @@ describe('Variants', () => {
 });
 ```
 
-### 3. Testes de Tamanhos
+### 4. Interaction Tests
 
-Verificam diferentes tamanhos do componente.
-
-```typescript
-describe('Sizes', () => {
-  it('should render medium size by default', () => {
-    renderComponent();
-    expect(screen.getByTestId('button')).toHaveClass('button--medium');
-  });
-
-  it('should render small size', () => {
-    renderComponent({ size: 'small' });
-    expect(screen.getByTestId('button')).toHaveClass('button--small');
-  });
-
-  it('should render large size', () => {
-    renderComponent({ size: 'large' });
-    expect(screen.getByTestId('button')).toHaveClass('button--large');
-  });
-});
-```
-
-### 4. Testes de Estados
-
-Verificam diferentes estados do componente.
-
-```typescript
-describe('States', () => {
-  it('should not be disabled by default', () => {
-    renderComponent();
-    expect(screen.getByTestId('element')).not.toBeDisabled();
-  });
-
-  it('should be disabled when disabled prop is true', () => {
-    renderComponent({ disabled: true });
-    expect(screen.getByTestId('element')).toBeDisabled();
-  });
-
-  it('should show loading state', () => {
-    renderComponent({ loading: true });
-    expect(screen.getByTestId('loader')).toBeInTheDocument();
-  });
-
-  it('should show error state', () => {
-    renderComponent({ error: 'Error message' });
-    expect(screen.getByText('Error message')).toBeInTheDocument();
-  });
-});
-```
-
-### 5. Testes de Interações
-
-Verificam eventos e callbacks do usuário.
+Verify user interactions work correctly.
 
 ```typescript
 describe('Interactions', () => {
-  it('should call onClick when clicked', () => {
-    const onClick = jest.fn();
-    renderComponent({ onClick });
+  it('should call onClick handler', () => {
+    const handleClick = jest.fn();
+    render(<Button label="Click" onClick={handleClick} />);
 
-    fireEvent.click(screen.getByTestId('button'));
-    expect(onClick).toHaveBeenCalledTimes(1);
+    screen.getByText('Click').click();
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should not call onClick when disabled', () => {
-    const onClick = jest.fn();
-    renderComponent({ onClick, disabled: true });
+  it('should be disabled when disabled prop is true', () => {
+    render(<Button label="Click" disabled />);
 
-    fireEvent.click(screen.getByTestId('button'));
-    expect(onClick).not.toHaveBeenCalled();
-  });
-
-  it('should handle multiple clicks', () => {
-    const onClick = jest.fn();
-    renderComponent({ onClick });
-
-    const button = screen.getByTestId('button');
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
-
-    expect(onClick).toHaveBeenCalledTimes(3);
+    expect(screen.getByRole('button')).toBeDisabled();
   });
 });
 ```
 
-### 6. Testes de Acessibilidade
+### 5. State Tests
 
-Verificam conformidade com práticas de acessibilidade.
+Verify component state management.
+
+```typescript
+describe('States', () => {
+  it('should show loading state', () => {
+    renderComponent({ loading: true });
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+  });
+
+  it('should show error state', () => {
+    renderComponent({ error: 'Something went wrong' });
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+  });
+});
+```
+
+### 6. Accessibility Tests
+
+Verify component is accessible.
 
 ```typescript
 describe('Accessibility', () => {
-  it('should have correct aria-label', () => {
-    renderComponent({ ariaLabel: 'Close modal' });
-    expect(screen.getByLabelText('Close modal')).toBeInTheDocument();
+  it('should have proper heading hierarchy', () => {
+    renderComponent();
+    const headings = screen.getAllByRole('heading');
+    expect(headings.length).toBeGreaterThan(0);
   });
 
-  it('should have correct role', () => {
-    renderComponent();
-    expect(screen.getByRole('button')).toBeInTheDocument();
+  it('should have proper ARIA labels', () => {
+    render(<Button label="Submit" aria-label="Submit form" />);
+    expect(screen.getByLabelText('Submit form')).toBeInTheDocument();
   });
 
   it('should be keyboard accessible', () => {
-    const onClick = jest.fn();
-    renderComponent({ onClick });
+    const handleClick = jest.fn();
+    render(<Button label="Click" onClick={handleClick} />);
 
-    const button = screen.getByTestId('button');
+    const button = screen.getByRole('button');
+    button.focus();
     fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
-    expect(onClick).toHaveBeenCalled();
+
+    expect(handleClick).toHaveBeenCalled();
   });
 });
 ```
 
-### 7. Testes de Children/Content
+## ✅ Best Practices
 
-Verificam renderização de conteúdo dinâmico.
+### 1. Test Behavior, Not Implementation
 
 ```typescript
-describe('Children', () => {
-  it('should render text children', () => {
-    renderComponent({ children: 'Hello World' });
-    expect(screen.getByText('Hello World')).toBeInTheDocument();
+// ❌ Bad - Tests implementation
+it('should update state when button is clicked', () => {
+  const wrapper = shallow(<MyComponent />);
+  wrapper.find('button').simulate('click');
+  expect(wrapper.state('count')).toBe(1);
+});
+
+// ✅ Good - Tests behavior
+it('should display updated count when button is clicked', () => {
+  render(<MyComponent />);
+  fireEvent.click(screen.getByRole('button'));
+  expect(screen.getByText('Count: 1')).toBeInTheDocument();
+});
+```
+
+### 2. Use Semantic Queries
+
+```typescript
+// ❌ Bad - Implementation detail
+const element = container.querySelector('.button-primary');
+
+// ✅ Good - Semantic query
+const button = screen.getByRole('button', { name: /submit/i });
+```
+
+**Query priority:**
+
+1. `getByRole()` - Most accessible
+2. `getByLabelText()` - For form fields
+3. `getByPlaceholderText()` - For inputs
+4. `getByText()` - For other content
+5. `getByTestId()` - Last resort
+
+### 3. Test User Interactions
+
+```typescript
+// ✅ Test actual user events
+fireEvent.click(button);
+fireEvent.change(input, { target: { value: 'new value' } });
+fireEvent.submit(form);
+
+// ✅ Or use userEvent for more realistic interactions
+import userEvent from '@testing-library/user-event';
+
+await userEvent.click(button);
+await userEvent.type(input, 'new value');
+```
+
+### 4. Avoid Testing Internal State
+
+```typescript
+// ❌ Don't test internal state
+expect(component.state.isOpen).toBe(true);
+
+// ✅ Test what user sees
+expect(screen.getByText('Menu is open')).toBeInTheDocument();
+```
+
+### 5. Use Setup Functions
+
+```typescript
+describe('Complex Component', () => {
+  beforeEach(() => {
+    // Clean up before each test
+    jest.clearAllMocks();
   });
 
-  it('should render element children', () => {
-    renderComponent({
-      children: <span data-testid="custom-child">Custom</span>,
-    });
-    expect(screen.getByTestId('custom-child')).toBeInTheDocument();
+  afterEach(() => {
+    // Cleanup if needed
+    jest.restoreAllMocks();
   });
 
-  it('should render multiple children', () => {
-    renderComponent({
-      children: (
-        <>
-          <span>First</span>
-          <span>Second</span>
-        </>
-      ),
-    });
-    expect(screen.getByText('First')).toBeInTheDocument();
-    expect(screen.getByText('Second')).toBeInTheDocument();
+  it('test 1', () => {
+    // ...
+  });
+
+  it('test 2', () => {
+    // ...
   });
 });
 ```
+
+## ⚠️ Common Issues
+
+### Issue: "cannot find module" in tests
+
+**Cause:** Path aliases not configured for tests
+
+**Solution:**
+
+```javascript
+// jest.config.cjs
+module.exports = {
+  moduleNameMapper: {
+    '^@pages/(.*)$': '<rootDir>/src/pages/$1',
+    '^@core/(.*)$': '<rootDir>/src/core/$1',
+    '^@ui-components/(.*)$': '<rootDir>/src/ui-components/$1',
+    '^@services/(.*)$': '<rootDir>/src/services/$1',
+  },
+};
+```
+
+### Issue: Coverage not meeting 90% threshold
+
+**Solution:**
+
+```bash
+# See which files are below threshold
+npm run test:coverage
+
+# Open HTML report for detailed view
+open coverage/lcov-report/index.html
+
+# Add tests for missing coverage
+```
+
+### Issue: Tests timeout
+
+**Cause:** Unresolved async operations
+
+**Solution:**
+
+```typescript
+// Use proper async/await
+it('should load data', async () => {
+  render(<Component />);
+
+  // Wait for async operations
+  await screen.findByText('Loaded');
+
+  expect(screen.getByText('Loaded')).toBeInTheDocument();
+});
+```
+
+### Issue: Tests pass locally but fail in CI
+
+**Common causes:**
+
+- Test order dependency (use random order)
+- Timing issues (use proper wait utilities)
+- Environment variables not set
+- Different Node versions
+
+**Solutions:**
+
+```bash
+# Run tests in random order locally
+npm test -- --randomize
+
+# Run with CI settings
+npm run test:ci
+
+# Check Node version
+node --version
+```
+
+## 📖 Resources
+
+- [React Testing Library](https://testing-library.com/react)
+- [Jest Documentation](https://jestjs.io/)
+- [Testing Best Practices](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
 
 ## 🎯 Exemplo Completo: Input Component
 

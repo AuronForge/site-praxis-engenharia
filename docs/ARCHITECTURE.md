@@ -187,6 +187,54 @@ import { userService } from '@services/users';
 
 See [tsconfig.json](../tsconfig.json) and [vite.config.ts](../vite.config.ts).
 
+### Shared Component Data Configs
+
+Components used across multiple pages should have their configuration data centralized to:
+
+- Reduce duplication
+- Ensure consistency
+- Simplify maintenance
+- Facilitate updates
+
+**Example: Footer Component**
+
+```typescript
+// ✅ Centralized - Single source of truth
+// ui-components/sections/Footer/footerData.ts
+export const defaultFooterData: FooterProps = {
+  logo: { src: '/images/logo.jpg', alt: 'Praxis' },
+  description: 'Company description...',
+  sections: [...],
+  social: [...],
+  copyright: '© 2026 Praxis',
+  legalLinks: [...]
+};
+
+// Export from barrel for easy imports
+// ui-components/sections/Footer/index.ts
+export { Footer } from './Footer';
+export { defaultFooterData } from './footerData';
+
+// Usage in any page:
+import { Footer, defaultFooterData } from '@ui-components/sections/Footer';
+
+export function HomePage(): JSX.Element {
+  return <Footer {...defaultFooterData} />;
+}
+```
+
+**When to centralize:**
+
+- Component used on 2+ pages
+- Data is the same across all usages
+- Data changes should apply everywhere
+
+**When NOT to centralize:**
+
+- Component only used on one page
+- Data varies significantly per page
+- Specific page needs custom behavior
+
 ## 🏗️ Layer Responsibilities
 
 ### Pages Layer (`src/pages/`)
